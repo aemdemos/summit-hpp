@@ -1,0 +1,67 @@
+/* Feature Banner — dark promotional section with centered text and CTA */
+
+main .feature-banner {
+  background-color: var(--dark-alt-color);
+  padding: var(--spacing-xl) 0;
+  text-align: center;
+}
+
+main .feature-banner .feature-banner-inner {
+  max-width: var(--max-width-site);
+  margin: 0 auto;
+  padding: 0 var(--spacing-m);
+}
+
+main .feature-banner .feature-banner-inner > div {
+  margin-bottom: var(--spacing-s);
+}
+
+main .feature-banner .feature-banner-inner > div:last-child {
+  margin-bottom: 0;
+}
+
+main .feature-banner h2,
+main .feature-banner h3 {
+  color: var(--text-light-color);
+  font-size: var(--heading-font-size-xl);
+  margin-bottom: var(--spacing-s);
+}
+
+main .feature-banner p {
+  color: rgb(255 255 255 / 80%);
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-s);
+}
+
+main .feature-banner a.button {
+  background-color: var(--color-hpe-green);
+  color: var(--text-light-color);
+  margin-top: var(--spacing-s);
+}
+
+main .feature-banner a.button:hover {
+  background-color: var(--color-hpe-green-hover);
+}
+
+/* Tablet */
+@media (width >= 600px) {
+  main .feature-banner {
+    padding: var(--spacing-xl) 0;
+  }
+
+  main .feature-banner .feature-banner-inner {
+    padding: 0 var(--spacing-l);
+  }
+}
+
+/* Desktop */
+@media (width >= 900px) {
+  main .feature-banner {
+    padding: var(--spacing-xxl) 0;
+  }
+
+  main .feature-banner .feature-banner-inner {
+    padding: 0 var(--spacing-l);
+  }
+}
