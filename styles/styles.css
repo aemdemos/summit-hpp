@@ -1,49 +1,94 @@
 /*
- * Copyright 2020 Adobe. All rights reserved.
- * This file is licensed to you under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License. You may obtain a copy
- * of the License at http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under
- * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTATIONS
- * OF ANY KIND, either express or implied. See the License for the specific language
- * governing permissions and limitations under the License.
+ * HPE Design System — extracted from https://www.hpe.com/us/en/home.html
+ * For Adobe Summit demo — pixel-perfect reproduction
  */
 
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
-  --overlay-background-color:lightgrey;
+  /* ===== COLORS ===== */
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* brand */
+  --color-hpe-green: #01a982;
+  --color-hpe-green-hover: #008567;
+
+  /* backgrounds */
+  --background-color: #fff;
+  --light-color: #f7f7f7;
+  --dark-color: #1d1f27;
+  --dark-alt-color: #292d3a;
+  --overlay-background-color: #e6e8e9;
+
+  /* text */
+  --text-color: #292d3a;
+  --text-secondary-color: #67686e;
+  --text-light-color: #fff;
+  --text-muted-color: #a5a5a9;
+
+  /* links */
+  --link-color: #292d3a;
+  --link-hover-color: #01a982;
+
+  /* borders */
+  --border-color: #ccc;
+  --border-light-color: #e6e8e9;
+
+  /* ===== TYPOGRAPHY ===== */
+
+  /* stylelint-disable value-keyword-case */
+
+  /* font families — case must match @font-face declarations */
+  --body-font-family: HPEGraphik, hpegraphik-fallback, Arial, sans-serif;
+  --heading-font-family: HPEGraphik, hpegraphik-fallback, Arial, sans-serif;
+  --footer-font-family: 'Metric Light', metric-light-fallback, Arial, sans-serif;
+  /* stylelint-enable value-keyword-case */
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --body-font-size-l: 20px;
+  --body-font-size-m: 18px;
+  --body-font-size-s: 16px;
+  --body-font-size-xs: 14px;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  /* heading sizes — mobile first */
+  --heading-font-size-xxl: 48px;
+  --heading-font-size-xl: 32px;
+  --heading-font-size-l: 28px;
+  --heading-font-size-m: 24px;
+  --heading-font-size-s: 20px;
+  --heading-font-size-xs: 16px;
 
-  /* layout */
+  /* ===== SPACING ===== */
+  --spacing-xs: 8px;
+  --spacing-s: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 32px;
+  --spacing-xl: 48px;
+  --spacing-xxl: 64px;
+  --spacing-section: 80px;
+
+  /* ===== LAYOUT ===== */
   --max-width-site: 1200px;
-
-  /* nav heights */
-  --nav-height: 64px;
-  --breadcrumbs-height: 34px;
+  --nav-height: 80px;
   --header-height: var(--nav-height);
+
+  /* ===== BUTTONS ===== */
+  --button-border-radius: 100px;
+  --button-padding: 14px 28px;
+  --button-font-size: 20px;
+  --button-font-weight: 500;
+  --button-transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+
+  /* ===== TRANSITIONS ===== */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.2s ease-out;
+  --transition-slow: 0.3s ease-in-out;
+
+  /* ===== SHADOWS ===== */
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 8%);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 10%);
+  --shadow-lg: 0 8px 24px rgb(0 0 0 / 12%);
+
+  /* ===== FOCUS ===== */
+  --focus-outline: 2px solid var(--color-hpe-green);
+  --focus-outline-offset: 2px;
 
   /* fixed-width / code */
   --fixed-font-family: 'Roboto Mono', menlo, consolas, monospace;
@@ -51,33 +96,30 @@
 
 /* fallback fonts */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
+  font-family: hpegraphik-fallback;
+  size-adjust: 100%;
   src: local('Arial');
 }
 
 @font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
+  font-family: metric-light-fallback;
+  size-adjust: 95%;
   src: local('Arial');
 }
 
+/* desktop heading sizes */
 @media (width >= 900px) {
   :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
+    --heading-font-size-xxl: 80px;
+    --heading-font-size-xl: 40px;
+    --heading-font-size-l: 32px;
+    --heading-font-size-m: 24px;
     --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    --heading-font-size-xs: 16px;
   }
 }
+
+/* ===== BASE STYLES ===== */
 
 body {
   display: none;
@@ -86,7 +128,9 @@ body {
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: 1.44;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body.appear {
@@ -107,11 +151,7 @@ footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
 
-@media (width >= 900px) {
-  body[data-breadcrumbs] {
-    --header-height: calc(var(--nav-height) + var(--breadcrumbs-height));
-  }
-}
+/* ===== HEADINGS ===== */
 
 h1,
 h2,
@@ -119,20 +159,46 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-top: 0;
+  margin-bottom: 0;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 500;
+  line-height: 1.15;
   scroll-margin: 40px;
+  color: var(--text-color);
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
+h1 {
+  font-size: var(--heading-font-size-xxl);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: var(--heading-font-size-xl);
+  letter-spacing: -0.8px;
+}
+
+h3 {
+  font-size: var(--heading-font-size-l);
+  letter-spacing: -0.32px;
+}
+
+h4 {
+  font-size: var(--heading-font-size-m);
+}
+
+h5 {
+  font-size: var(--heading-font-size-s);
+}
+
+h6 {
+  font-size: var(--heading-font-size-xs);
+}
+
+/* ===== BODY TEXT ===== */
 
 p,
 dl,
@@ -140,8 +206,13 @@ ol,
 ul,
 pre,
 blockquote {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+p {
+  color: var(--text-secondary-color);
+  line-height: 1.44;
 }
 
 code,
@@ -158,22 +229,13 @@ pre {
   white-space: pre;
 }
 
-main > div {
-  margin: 40px 16px;
-}
+/* ===== LINKS ===== */
 
-input,
-textarea,
-select,
-button {
-  font: inherit;
-}
-
-/* links */
 a {
   color: var(--link-color);
   text-decoration: none;
   overflow-wrap: break-word;
+  transition: color var(--transition-base);
 }
 
 a:hover {
@@ -181,7 +243,14 @@ a:hover {
   text-decoration: underline;
 }
 
-/* buttons */
+a:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
+  border-radius: 2px;
+}
+
+/* ===== BUTTONS ===== */
+
 a.button,
 button {
   box-sizing: border-box;
@@ -189,42 +258,60 @@ button {
   max-width: 100%;
   margin: 12px 0;
   border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
   font-family: var(--body-font-family);
   font-style: normal;
-  font-weight: 500;
+  font-weight: var(--button-font-weight);
+  font-size: var(--button-font-size);
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
+  background-color: var(--color-hpe-green);
+  color: var(--text-light-color);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: var(--button-transition);
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: var(--color-hpe-green-hover);
   cursor: pointer;
+}
+
+a.button:focus-visible,
+button:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-outline-offset);
 }
 
 button:disabled,
 button:disabled:hover {
-  background-color: var(--light-color);
+  background-color: var(--overlay-background-color);
+  color: var(--text-muted-color);
   cursor: unset;
 }
 
+/* secondary button — outline style */
 a.button.secondary,
 button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
+  background-color: transparent;
+  border: 2px solid var(--text-color);
   color: var(--text-color);
 }
+
+a.button.secondary:hover,
+button.secondary:hover {
+  background-color: var(--text-color);
+  color: var(--text-light-color);
+}
+
+/* ===== IMAGES ===== */
 
 main img {
   max-width: 100%;
@@ -243,9 +330,23 @@ main img {
   width: 100%;
 }
 
-/* sections */
+/* ===== INPUTS ===== */
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+/* ===== SECTIONS ===== */
+
+main > div {
+  margin: 0 16px;
+}
+
 main > .section {
-  padding: 40px 0;
+  padding: var(--spacing-xl) 0;
   margin: 0;
 }
 
@@ -253,6 +354,11 @@ main > .section > div:not(.bg-image) {
   max-width: var(--max-width-site);
   margin: auto;
   padding: 0 24px;
+}
+
+main > .section:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 /* Section metadata: background image sits behind content */
@@ -284,20 +390,67 @@ main > .section > .bg-image img {
   object-fit: cover;
 }
 
-main > .section:first-of-type {
-  margin-top: 0;
-}
-
 @media (width >= 900px) {
   main > .section > div:not(.bg-image) {
     padding: 0 32px;
   }
+
+  main > .section {
+    padding: var(--spacing-section) 0;
+  }
 }
 
-/* section metadata */
+/* ===== SECTION VARIANTS ===== */
+
+/* light gray background */
 main .section.light,
 main .section.highlight {
   background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
+}
+
+/* dark background */
+main .section.dark {
+  background-color: var(--dark-color);
+  color: var(--text-light-color);
+}
+
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark h4,
+main .section.dark h5,
+main .section.dark h6 {
+  color: var(--text-light-color);
+}
+
+main .section.dark p {
+  color: var(--text-light-color);
+}
+
+main .section.dark a {
+  color: var(--text-light-color);
+}
+
+main .section.dark a.button {
+  background-color: var(--color-hpe-green);
+  color: var(--text-light-color);
+}
+
+/* dark-alt background */
+main .section.dark-alt {
+  background-color: var(--dark-alt-color);
+  color: var(--text-light-color);
+}
+
+main .section.dark-alt h1,
+main .section.dark-alt h2,
+main .section.dark-alt h3,
+main .section.dark-alt h4,
+main .section.dark-alt h5,
+main .section.dark-alt h6 {
+  color: var(--text-light-color);
+}
+
+main .section.dark-alt p {
+  color: rgb(255 255 255 / 80%);
 }
