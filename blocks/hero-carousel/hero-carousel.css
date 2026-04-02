@@ -1,0 +1,151 @@
+/* Hero Carousel — full-bleed hero with background image and text overlay */
+
+/* Break out of section max-width constraint */
+main .hero-carousel-container > .hero-carousel-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+main .hero-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Slide */
+main .hero-carousel .hero-carousel-slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+}
+
+/* Background image */
+main .hero-carousel .hero-carousel-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+main .hero-carousel .hero-carousel-bg picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+main .hero-carousel .hero-carousel-bg img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dark gradient overlay for text readability */
+main .hero-carousel .hero-carousel-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgb(0 0 0 / 70%) 0%,
+    rgb(0 0 0 / 50%) 40%,
+    rgb(0 0 0 / 10%) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Content overlay */
+main .hero-carousel .hero-carousel-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: var(--spacing-xl) var(--spacing-m);
+}
+
+/* Constrained inner container */
+main .hero-carousel .hero-carousel-content-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--max-width-site);
+  margin: 0 auto;
+  padding: 0 var(--spacing-m);
+}
+
+/* Heading */
+main .hero-carousel .hero-carousel-content h1 {
+  color: var(--text-light-color);
+  max-width: 600px;
+  margin-bottom: var(--spacing-s);
+}
+
+/* Description */
+main .hero-carousel .hero-carousel-content p {
+  color: var(--text-light-color);
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  max-width: 540px;
+  margin-bottom: var(--spacing-s);
+}
+
+/* CTA button */
+main .hero-carousel .hero-carousel-cta {
+  margin-top: var(--spacing-m);
+}
+
+main .hero-carousel .hero-carousel-cta a.button {
+  background-color: var(--color-hpe-green);
+  color: var(--text-light-color);
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  text-decoration: none;
+  transition: var(--button-transition);
+}
+
+main .hero-carousel .hero-carousel-cta a.button:hover {
+  background-color: var(--color-hpe-green-hover);
+  text-decoration: none;
+}
+
+/* ===== Tablet (600px+) ===== */
+@media (width >= 600px) {
+  main .hero-carousel .hero-carousel-slide {
+    min-height: 440px;
+  }
+
+  main .hero-carousel .hero-carousel-content {
+    padding: var(--spacing-xxl) var(--spacing-l);
+  }
+
+  main .hero-carousel .hero-carousel-content-inner {
+    padding: 0 var(--spacing-l);
+  }
+}
+
+/* ===== Desktop (900px+) ===== */
+@media (width >= 900px) {
+  main .hero-carousel .hero-carousel-slide {
+    min-height: 500px;
+  }
+
+  main .hero-carousel .hero-carousel-content {
+    padding: var(--spacing-xxl) var(--spacing-xl);
+  }
+
+  main .hero-carousel .hero-carousel-content-inner {
+    padding: 0 var(--spacing-l);
+  }
+}
+
+/* ===== Wide (1200px+) ===== */
+@media (width >= 1200px) {
+  main .hero-carousel .hero-carousel-slide {
+    min-height: 545px;
+  }
+}
