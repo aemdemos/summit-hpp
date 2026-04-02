@@ -24,8 +24,14 @@ export default async function decorate(block) {
   if (leftPictures.length > 0) {
     const logoWrap = document.createElement('div');
     logoWrap.classList.add('greenlake-promo-logo');
-    leftPictures[0].parentElement.replaceWith(logoWrap);
-    logoWrap.appendChild(leftPictures[0]);
+    const logoPicParent = leftPictures[0].parentElement;
+    if (logoPicParent === leftCell) {
+      leftCell.insertBefore(logoWrap, leftPictures[0]);
+      logoWrap.appendChild(leftPictures[0]);
+    } else {
+      logoPicParent.replaceWith(logoWrap);
+      logoWrap.appendChild(leftPictures[0]);
+    }
   }
 
   // Find the description paragraph (the one with substantial text, not just a picture)
@@ -81,26 +87,36 @@ export default async function decorate(block) {
   // --- Right Panel ---
   rightCell.classList.add('greenlake-promo-right');
 
+  // Collect elements before any DOM mutations
   const rightPicture = rightCell.querySelector('picture');
+  const heading = rightCell.querySelector('h3');
+  const ctaLink = rightCell.querySelector('a');
+  const ctaWrap = ctaLink ? ctaLink.closest('p') : null;
+
+  // Clear and rebuild the right panel
+  rightCell.innerHTML = '';
+
   if (rightPicture) {
     const screenshotWrap = document.createElement('div');
     screenshotWrap.classList.add('greenlake-promo-screenshot');
-    rightPicture.parentElement.replaceWith(screenshotWrap);
     screenshotWrap.appendChild(rightPicture);
+    rightCell.appendChild(screenshotWrap);
   }
 
-  const heading = rightCell.querySelector('h3');
   if (heading) {
     heading.classList.add('greenlake-promo-heading');
+    rightCell.appendChild(heading);
   }
 
-  // CTA link -> button
-  const ctaLink = rightCell.querySelector('a');
-  if (ctaLink) {
+  if (ctaWrap) {
+    ctaWrap.classList.add('greenlake-promo-cta');
+    if (ctaLink) ctaLink.classList.add('button');
+    rightCell.appendChild(ctaWrap);
+  } else if (ctaLink) {
     ctaLink.classList.add('button');
-    const ctaWrap = ctaLink.closest('p');
-    if (ctaWrap) {
-      ctaWrap.classList.add('greenlake-promo-cta');
-    }
+    const p = document.createElement('p');
+    p.classList.add('greenlake-promo-cta');
+    p.appendChild(ctaLink);
+    rightCell.appendChild(p);
   }
 }
