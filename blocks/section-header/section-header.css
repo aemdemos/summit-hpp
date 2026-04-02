@@ -1,0 +1,46 @@
+/* Section Header — centered heading with description text */
+
+main .section-header {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding-bottom: var(--spacing-xl);
+}
+
+main .section-header h2 {
+  margin-bottom: var(--spacing-s);
+}
+
+main .section-header p {
+  color: var(--text-secondary-color);
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-s);
+}
+
+main .section-header p:last-child {
+  margin-bottom: 0;
+}
+
+/* Inline links within paragraphs */
+main .section-header a {
+  color: var(--color-hpe-green);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+main .section-header a:hover {
+  color: var(--color-hpe-green-hover);
+  text-decoration: underline;
+}
+
+@media (width >= 900px) {
+  main .section-header {
+    max-width: 900px;
+    padding-bottom: var(--spacing-xxl);
+  }
+
+  main .section-header h2 {
+    margin-bottom: var(--spacing-m);
+  }
+}
