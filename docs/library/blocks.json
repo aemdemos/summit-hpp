@@ -1,0 +1,68 @@
+{
+  "blocks": [
+    {
+      "name": "hero-carousel",
+      "description": "Full-width hero section with rotating slides, each containing a background image, heading, description, and CTA. Supports dot indicators and optional thumbnail navigation strip.",
+      "variants": [],
+      "status": "planned"
+    },
+    {
+      "name": "news-carousel",
+      "description": "Horizontal scrolling carousel of news/press-release cards. Each card has an image, title (H6), optional description, and CTA link. Includes Previous/Next arrows and a 'see more' link.",
+      "variants": [],
+      "status": "planned"
+    },
+    {
+      "name": "feature-banner",
+      "description": "Full-width text banner with dark/gradient background. Contains heading, description paragraph, and CTA link. Used for AI Feature Banner and Services Banner sections.",
+      "variants": ["dark", "services"],
+      "status": "planned"
+    },
+    {
+      "name": "card-carousel",
+      "description": "Card carousel with background images. Each slide has a background image, heading, description text, and CTA link. Includes slide indicators and arrow navigation.",
+      "variants": [],
+      "status": "planned"
+    },
+    {
+      "name": "solutions-grid",
+      "description": "Grid of solution tiles with header. Each tile is a linked card with background image/gradient, heading, description, and CTA text. Supports 3+2 and other responsive grid layouts.",
+      "variants": [],
+      "status": "planned"
+    },
+    {
+      "name": "greenlake-promo",
+      "description": "Two-panel promotional section. Left panel has logo, description, and video thumbnail with play button. Right panel has product screenshot, heading, and CTA link.",
+      "variants": [],
+      "status": "planned"
+    },
+    {
+      "name": "customer-stories",
+      "description": "Tabbed section showcasing customer case studies. Tab bar selects between stories. Each story panel contains intro with video CTA, objectives, outcomes list, quote with attribution, solution details, and a bottom CTA.",
+      "variants": [],
+      "status": "planned"
+    },
+    {
+      "name": "product-cards",
+      "description": "Responsive grid of product cards. Each card has a full-width image, heading, description, and CTA link. Supports 2-column and 3-column layouts.",
+      "variants": ["two-column", "three-column"],
+      "status": "planned"
+    },
+    {
+      "name": "section-header",
+      "description": "Simple section introduction with heading and description paragraph. May include inline links within the description text.",
+      "variants": [],
+      "status": "planned"
+    }
+  ],
+  "global": {
+    "header": {
+      "description": "HPE global header with logo, mega-menu navigation, search, and language selector. Sticky on scroll.",
+      "status": "planned"
+    },
+    "footer": {
+      "description": "HPE global footer with logo, action links, social media icons, animation toggle, 5-column navigation, copyright bar, and language selector.",
+      "status": "planned"
+    }
+  }
+}
