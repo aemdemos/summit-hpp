@@ -1,0 +1,53 @@
+{
+  "templates": [
+    {
+      "name": "homepage",
+      "description": "HPE Homepage with hero carousel, news, features, solutions, products, and services sections",
+      "urls": [
+        "https://www.hpe.com/us/en/home.html"
+      ],
+      "blocks": [
+        {
+          "name": "hero-carousel",
+          "instances": [".adaptiveMarqueeCarousel"]
+        },
+        {
+          "name": "news-carousel",
+          "instances": ["main > .backgroundWrapper:nth-of-type(1)"]
+        },
+        {
+          "name": "feature-banner",
+          "instances": [".contentBlock"]
+        },
+        {
+          "name": "card-carousel",
+          "instances": [".bentoBox"]
+        },
+        {
+          "name": "solutions-grid",
+          "instances": ["main > .backgroundWrapper:nth-of-type(2)"]
+        },
+        {
+          "name": "greenlake-promo",
+          "instances": ["main > .backgroundWrapper:nth-of-type(3)"]
+        },
+        {
+          "name": "customer-stories",
+          "instances": [".customerStories"]
+        },
+        {
+          "name": "section-header",
+          "instances": ["main > .textOnly"]
+        },
+        {
+          "name": "product-cards",
+          "instances": [".cardGrid"]
+        },
+        {
+          "name": "feature-banner",
+          "instances": [".adaptiveMarqueeComponent"]
+        }
+      ]
+    }
+  ]
+}

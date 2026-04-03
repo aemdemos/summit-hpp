@@ -242,3 +242,57 @@ main .greenlake-promo .greenlake-promo-cta .button:hover {
     padding: var(--spacing-xxl);
   }
 }
+
+/* Video Lightbox */
+.greenlake-promo-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0 0 0 / 85%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.greenlake-promo-lightbox-content {
+  position: relative;
+  width: 90%;
+  max-width: 960px;
+}
+
+.greenlake-promo-lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+}
+
+.greenlake-promo-lightbox-close:hover {
+  color: var(--color-hpe-green);
+}
+
+.greenlake-promo-lightbox-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+.greenlake-promo-lightbox-video video,
+.greenlake-promo-lightbox-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+}
