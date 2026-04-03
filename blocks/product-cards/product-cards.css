@@ -73,18 +73,20 @@ main .product-cards .product-card-cta {
 main .product-cards .product-card-link {
   color: var(--color-hpe-green);
   font-size: var(--body-font-size-s);
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
+  display: inline;
+  line-height: 1.6;
   transition: color var(--transition-base);
 }
 
 main .product-cards .product-card-link::after {
   content: '\2192';
+  display: inline-block;
+  margin-left: 6px;
   font-size: 1.1em;
   transition: transform var(--transition-base);
+  vertical-align: middle;
 }
 
 main .product-cards .product-card-link:hover {
