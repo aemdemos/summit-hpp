@@ -59,6 +59,36 @@ export default async function decorate(block) {
     playBtn.appendChild(playIcon);
     thumbInner.appendChild(playBtn);
 
+    // Video lightbox
+    playBtn.addEventListener('click', () => {
+      const overlay = document.createElement('div');
+      overlay.className = 'greenlake-promo-lightbox';
+      overlay.innerHTML = `<div class="greenlake-promo-lightbox-content">
+        <button class="greenlake-promo-lightbox-close" aria-label="Close video">&times;</button>
+        <div class="greenlake-promo-lightbox-video">
+          <video controls autoplay>
+            <source src="https://www.hpe.com/content/dam/hpe/shared-publishing/video/greenlake-explainer.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>`;
+      document.body.appendChild(overlay);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay || e.target.closest('.greenlake-promo-lightbox-close')) {
+          const video = overlay.querySelector('video');
+          if (video) video.pause();
+          overlay.remove();
+        }
+      });
+      document.addEventListener('keydown', function closeOnEsc(e) {
+        if (e.key === 'Escape') {
+          const video = overlay.querySelector('video');
+          if (video) video.pause();
+          overlay.remove();
+          document.removeEventListener('keydown', closeOnEsc);
+        }
+      });
+    });
+
     thumbWrap.appendChild(thumbInner);
 
     // Video info text

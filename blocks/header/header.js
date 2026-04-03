@@ -76,6 +76,62 @@ export default async function decorate(block) {
       const btn = bc.querySelector('.button');
       if (btn) btn.classList.remove('button');
     });
+
+    // Convert nav links to dropdown buttons (except Services which is a direct link)
+    const navList = navSections.querySelector('ul');
+    if (navList) {
+      [...navList.children].forEach((li) => {
+        const link = li.querySelector('a');
+        if (!link) return;
+        const text = link.textContent.trim();
+        const hasDropdown = ['GreenLake', 'Solutions', 'Products', 'Support', 'Company'].includes(text);
+        if (hasDropdown) {
+          const dropBtn = document.createElement('button');
+          dropBtn.type = 'button';
+          dropBtn.className = 'nav-drop-toggle';
+          dropBtn.textContent = text;
+          dropBtn.setAttribute('aria-expanded', 'false');
+          dropBtn.setAttribute('aria-haspopup', 'true');
+
+          const dropPanel = document.createElement('div');
+          dropPanel.className = 'nav-drop-panel';
+          dropPanel.setAttribute('role', 'menu');
+          dropPanel.hidden = true;
+          const panelMsg = document.createElement('p');
+          panelMsg.className = 'nav-drop-placeholder';
+          panelMsg.textContent = `${text} menu`;
+          dropPanel.append(panelMsg);
+
+          dropBtn.addEventListener('click', () => {
+            const expanded = dropBtn.getAttribute('aria-expanded') === 'true';
+            // Close all other dropdowns
+            navList.querySelectorAll('.nav-drop-toggle').forEach((b) => {
+              b.setAttribute('aria-expanded', 'false');
+              const panel = b.nextElementSibling;
+              if (panel) panel.hidden = true;
+            });
+            if (!expanded) {
+              dropBtn.setAttribute('aria-expanded', 'true');
+              dropPanel.hidden = false;
+            }
+          });
+
+          link.replaceWith(dropBtn);
+          li.append(dropPanel);
+        }
+      });
+
+      // Close dropdowns on click outside
+      document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target)) {
+          navList.querySelectorAll('.nav-drop-toggle').forEach((b) => {
+            b.setAttribute('aria-expanded', 'false');
+            const panel = b.nextElementSibling;
+            if (panel) panel.hidden = true;
+          });
+        }
+      });
+    }
   }
 
   // Build utility nav (search + language)

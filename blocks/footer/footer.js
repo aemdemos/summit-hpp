@@ -43,6 +43,36 @@ function buildTopBar(section) {
     topBar.append(actionsDiv);
   }
 
+  // Animation & motion toggle
+  const motionDiv = document.createElement('div');
+  motionDiv.className = 'footer-motion';
+  const motionLabel = document.createElement('span');
+  motionLabel.className = 'footer-motion-label';
+  motionLabel.textContent = 'Animation & motion';
+  motionDiv.append(motionLabel);
+
+  const motionToggle = document.createElement('div');
+  motionToggle.className = 'footer-motion-toggle';
+  const offLabel = document.createElement('span');
+  offLabel.textContent = 'Off';
+  offLabel.className = 'footer-motion-off';
+  const onLabel = document.createElement('span');
+  onLabel.textContent = 'On';
+  onLabel.className = 'footer-motion-on';
+  const switchEl = document.createElement('button');
+  switchEl.className = 'footer-motion-switch';
+  switchEl.setAttribute('role', 'switch');
+  switchEl.setAttribute('aria-checked', 'true');
+  switchEl.setAttribute('aria-label', 'Animation & motion');
+  switchEl.addEventListener('click', () => {
+    const checked = switchEl.getAttribute('aria-checked') === 'true';
+    switchEl.setAttribute('aria-checked', checked ? 'false' : 'true');
+    document.documentElement.classList.toggle('reduce-motion', checked);
+  });
+  motionToggle.append(offLabel, switchEl, onLabel);
+  motionDiv.append(motionToggle);
+  topBar.append(motionDiv);
+
   // Social icons (second ul)
   if (lists.length > 1) {
     const socialDiv = document.createElement('div');
