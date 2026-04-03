@@ -297,4 +297,55 @@ header nav .nav-tools-lang:hover {
   header nav .nav-tools-lang {
     display: inline-block;
   }
+
+  /* Dropdown buttons */
+  header nav .nav-drop-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-family: var(--body-font-family);
+    font-size: var(--body-font-size-s);
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 100px;
+    transition: background var(--transition-base);
+    white-space: nowrap;
+  }
+
+  header nav .nav-drop-toggle:hover,
+  header nav .nav-drop-toggle[aria-expanded="true"] {
+    background: rgb(255 255 255 / 15%);
+  }
+
+  header nav .nav-sections li {
+    position: relative;
+  }
+
+  /* Dropdown panel */
+  header nav .nav-drop-panel {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 12px;
+    background: var(--dark-color);
+    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: 12px;
+    padding: var(--spacing-l);
+    min-width: 240px;
+    box-shadow: 0 12px 32px rgb(0 0 0 / 40%);
+    z-index: 100;
+  }
+
+  header nav .nav-drop-panel[hidden] {
+    display: none;
+  }
+
+  header nav .nav-drop-placeholder {
+    color: var(--text-secondary-color);
+    font-size: var(--body-font-size-s);
+    margin: 0;
+    text-align: center;
+  }
 }
