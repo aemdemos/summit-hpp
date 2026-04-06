@@ -29,7 +29,7 @@ main .hero-carousel .hero-carousel-slide {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.8s ease-in-out, visibility 0.8s;
-  height: clamp(420px, calc(100vh - 160px), 700px);
+  height: clamp(420px, calc(100vh - 80px), 900px);
   width: 100%;
 }
 
