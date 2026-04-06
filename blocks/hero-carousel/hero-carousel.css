@@ -29,7 +29,7 @@ main .hero-carousel .hero-carousel-slide {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.8s ease-in-out, visibility 0.8s;
-  height: 420px;
+  height: clamp(420px, calc(100vh - 160px), 700px);
   width: 100%;
 }
 
@@ -211,10 +211,6 @@ main .hero-carousel .hero-carousel-next::after {
 
 /* ===== TABLET (600px+) ===== */
 @media (width >= 600px) {
-  main .hero-carousel .hero-carousel-slide {
-    height: 500px;
-  }
-
   main .hero-carousel .hero-carousel-content {
     padding: 48px 40px 72px;
   }
@@ -236,10 +232,6 @@ main .hero-carousel .hero-carousel-next::after {
 
 /* ===== DESKTOP (900px+) ===== */
 @media (width >= 900px) {
-  main .hero-carousel .hero-carousel-slide {
-    height: 648px;
-  }
-
   main .hero-carousel .hero-carousel-content {
     padding: 60px 0 96px;
     margin-left: 64px;
