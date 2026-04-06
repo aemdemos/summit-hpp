@@ -40,6 +40,28 @@
   src: url('https://www.hpe.com/content/dam/hpe/fonts/graphik/HPEGraphik-Bold-Web.woff2') format('woff2');
 }
 
+/* HPE Graphik XX Condensed — used for hero carousel H1 headings */
+
+/* stylelint-disable value-keyword-case */
+@font-face {
+  font-family: HPEGraphik;
+  font-style: normal;
+  font-weight: 300;
+  font-stretch: 75%;
+  font-display: swap;
+  src: url('https://www.hpe.com/content/dam/hpe/fonts/graphik/HPEGraphikXXCondensed-Light-Web.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: HPEGraphik;
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: 75%;
+  font-display: swap;
+  src: url('https://www.hpe.com/content/dam/hpe/fonts/graphik/HPEGraphikXXCondensed-Bold-Web.woff2') format('woff2');
+}
+/* stylelint-enable value-keyword-case */
+
 /* Metric Light — footer and secondary text */
 @font-face {
   font-family: 'Metric Light';
