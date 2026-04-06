@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "url": "https://www.hpe.com/us/en/home.html",
+  "path": "us/en/home.html",
+  "timestamp": "2026-04-06T15:08:28.277Z",
+  "error": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.hpe.com/us/en/home.html\nCall log:\n  - navigating to \"https://www.hpe.com/us/en/home.html\", waiting until \"domcontentloaded\"\n",
+  "errorStack": "page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://www.hpe.com/us/en/home.html\nCall log:\n  - navigating to \"https://www.hpe.com/us/en/home.html\", waiting until \"domcontentloaded\"\n\n    at processUrl (/home/node/.excat-marketplace/excat/skills/excat-content-import/scripts/run-bulk-import.js:260:18)\n    at async main (/home/node/.excat-marketplace/excat/skills/excat-content-import/scripts/run-bulk-import.js:457:22)"
+}
