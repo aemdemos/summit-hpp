@@ -18,7 +18,7 @@ main .hero-carousel .hero-carousel-slide {
   inset: 0;
   display: flex;
   flex-direction: column;
-  min-height: 360px;
+  min-height: 420px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.8s ease-in-out, visibility 0.8s;
@@ -30,7 +30,7 @@ main .hero-carousel .hero-carousel-slide.active {
   visibility: visible;
 }
 
-/* Background image */
+/* Background image — full bleed, cover */
 main .hero-carousel .hero-carousel-bg {
   position: absolute;
   inset: 0;
@@ -58,9 +58,9 @@ main .hero-carousel .hero-carousel-content::before {
   z-index: 1;
   background: linear-gradient(
     to right,
-    rgb(0 0 0 / 70%) 0%,
-    rgb(0 0 0 / 50%) 40%,
-    rgb(0 0 0 / 10%) 70%,
+    rgb(0 0 0 / 65%) 0%,
+    rgb(0 0 0 / 45%) 40%,
+    rgb(0 0 0 / 10%) 65%,
     transparent 100%
   );
   pointer-events: none;
@@ -73,7 +73,7 @@ main .hero-carousel .hero-carousel-content {
   display: flex;
   align-items: center;
   flex: 1;
-  padding: var(--spacing-xl) var(--spacing-m);
+  padding: 40px 20px 60px;
 }
 
 /* Constrained inner container */
@@ -81,174 +81,173 @@ main .hero-carousel .hero-carousel-content-inner {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: var(--max-width-site);
+  max-width: 1312px;
   margin: 0 auto;
-  padding: 0 var(--spacing-m);
+  padding: 0 24px;
 }
 
-/* Heading */
+/* Heading — uppercase, bold, tight line-height */
 main .hero-carousel .hero-carousel-content h1 {
-  color: var(--text-light-color);
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  line-height: 1;
   max-width: 600px;
-  margin-bottom: var(--spacing-s);
+  margin-bottom: 16px;
 }
 
 /* Description */
 main .hero-carousel .hero-carousel-content p {
-  color: var(--text-light-color);
-  font-size: var(--body-font-size-m);
-  line-height: 1.5;
-  max-width: 540px;
-  margin-bottom: var(--spacing-s);
+  color: #e5e5e5;
+  font-size: 16px;
+  line-height: 1.45;
+  max-width: 480px;
+  margin-bottom: 12px;
 }
 
-/* CTA button */
+/* CTA button — white background, pill shape */
 main .hero-carousel .hero-carousel-cta {
-  margin-top: var(--spacing-m);
+  margin-top: 20px;
 }
 
 main .hero-carousel .hero-carousel-cta a.button {
-  background-color: var(--color-hpe-green);
-  color: var(--text-light-color);
-  border-radius: var(--button-border-radius);
-  padding: var(--button-padding);
-  font-size: var(--button-font-size);
-  font-weight: var(--button-font-weight);
+  background-color: white;
+  color: var(--dark-color);
+  border-radius: 100px;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: 500;
   text-decoration: none;
-  transition: var(--button-transition);
+  display: inline-block;
+  transition: background-color 0.2s, color 0.2s;
+  border: none;
 }
 
 main .hero-carousel .hero-carousel-cta a.button:hover {
-  background-color: var(--color-hpe-green-hover);
+  background-color: #e5e5e5;
+  color: var(--dark-color);
   text-decoration: none;
 }
 
-/* ===== Navigation Arrows ===== */
+/* ===== Navigation Arrows — bottom-right, light gray circles ===== */
 main .hero-carousel .hero-carousel-nav {
   position: absolute;
-  bottom: var(--spacing-m);
-  right: var(--spacing-m);
+  bottom: 24px;
+  right: 24px;
   z-index: 10;
   display: flex;
-  gap: var(--spacing-xs);
+  gap: 8px;
 }
 
 main .hero-carousel .hero-carousel-prev,
 main .hero-carousel .hero-carousel-next {
   width: 40px;
   height: 40px;
-  border: 2px solid rgb(255 255 255 / 60%);
+  border: none;
   border-radius: 50%;
-  background: rgb(0 0 0 / 30%);
-  color: white;
+  background: rgb(230 232 233);
+  color: var(--dark-color);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s, border-color 0.2s;
+  transition: background 0.2s;
+  padding: 0;
 }
 
 main .hero-carousel .hero-carousel-prev:hover,
 main .hero-carousel .hero-carousel-next:hover {
-  background: rgb(0 0 0 / 60%);
-  border-color: white;
+  background: rgb(210 212 215);
 }
 
 main .hero-carousel .hero-carousel-prev::after {
   content: '';
   display: block;
-  width: 10px;
-  height: 10px;
-  border-left: 2px solid white;
-  border-bottom: 2px solid white;
+  width: 9px;
+  height: 9px;
+  border-left: 2px solid var(--dark-color);
+  border-bottom: 2px solid var(--dark-color);
   transform: rotate(45deg) translate(2px, -2px);
 }
 
 main .hero-carousel .hero-carousel-next::after {
   content: '';
   display: block;
-  width: 10px;
-  height: 10px;
-  border-right: 2px solid white;
-  border-top: 2px solid white;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--dark-color);
+  border-top: 2px solid var(--dark-color);
   transform: rotate(45deg) translate(-2px, 2px);
 }
 
-/* ===== Dot Indicators ===== */
+/* ===== Dot Indicators — hidden (source doesn't use dots) ===== */
 main .hero-carousel .hero-carousel-dots {
-  position: absolute;
-  bottom: var(--spacing-m);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  display: flex;
-  gap: 8px;
-}
-
-main .hero-carousel .hero-carousel-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid rgb(255 255 255 / 60%);
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.2s, border-color 0.2s;
-}
-
-main .hero-carousel .hero-carousel-dot.active {
-  background: white;
-  border-color: white;
-}
-
-main .hero-carousel .hero-carousel-dot:hover {
-  border-color: white;
+  display: none;
 }
 
 /* ===== Tablet (600px+) ===== */
 @media (width >= 600px) {
   main .hero-carousel .hero-carousel-slide {
-    min-height: 440px;
+    min-height: 500px;
   }
 
   main .hero-carousel .hero-carousel-content {
-    padding: var(--spacing-xxl) var(--spacing-l);
+    padding: 48px 32px 72px;
   }
 
   main .hero-carousel .hero-carousel-content-inner {
-    padding: 0 var(--spacing-l);
+    padding: 0 32px;
+  }
+
+  main .hero-carousel .hero-carousel-content h1 {
+    font-size: 60px;
+    letter-spacing: 1.2px;
+  }
+
+  main .hero-carousel .hero-carousel-cta a.button {
+    font-size: 20px;
+    padding: 14px 28px;
   }
 
   main .hero-carousel .hero-carousel-nav {
-    bottom: var(--spacing-l);
-    right: var(--spacing-l);
+    bottom: 32px;
+    right: 32px;
   }
 }
 
 /* ===== Desktop (900px+) ===== */
 @media (width >= 900px) {
   main .hero-carousel .hero-carousel-slide {
-    min-height: 500px;
+    min-height: 580px;
   }
 
   main .hero-carousel .hero-carousel-content {
-    padding: var(--spacing-xxl) var(--spacing-xl);
+    padding: 60px 40px 96px;
   }
 
-  main .hero-carousel .hero-carousel-content-inner {
-    padding: 0 var(--spacing-l);
+  main .hero-carousel .hero-carousel-content h1 {
+    font-size: 80px;
+    letter-spacing: 1.6px;
+    line-height: 80px;
   }
 
-  main .hero-carousel .hero-carousel-prev,
-  main .hero-carousel .hero-carousel-next {
-    width: 48px;
-    height: 48px;
+  main .hero-carousel .hero-carousel-content p {
+    font-size: 18px;
+    line-height: 26px;
+    max-width: 540px;
   }
 }
 
 /* ===== Wide (1200px+) ===== */
 @media (width >= 1200px) {
   main .hero-carousel .hero-carousel-slide {
-    min-height: 545px;
+    min-height: 648px;
+  }
+
+  main .hero-carousel .hero-carousel-nav {
+    bottom: 40px;
+    right: 64px;
   }
 }

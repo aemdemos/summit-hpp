@@ -45,17 +45,6 @@ export default async function decorate(block) {
   let current = 0;
   let autoplayTimer = null;
 
-  // Dot indicators (built first so goTo can reference them)
-  const dotsWrap = document.createElement('div');
-  dotsWrap.className = 'hero-carousel-dots';
-  const dots = slides.map((_, i) => {
-    const dot = document.createElement('button');
-    dot.className = `hero-carousel-dot${i === 0 ? ' active' : ''}`;
-    dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-    dotsWrap.append(dot);
-    return dot;
-  });
-
   function stopAutoplay() {
     if (autoplayTimer) {
       clearInterval(autoplayTimer);
@@ -65,10 +54,8 @@ export default async function decorate(block) {
 
   function goTo(index) {
     slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
     current = (index + slides.length) % slides.length;
     slides[current].classList.add('active');
-    dots[current].classList.add('active');
   }
 
   function startAutoplay() {
@@ -76,28 +63,22 @@ export default async function decorate(block) {
     autoplayTimer = setInterval(() => goTo(current + 1), 6000);
   }
 
-  // Wire up dot clicks
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => { goTo(i); startAutoplay(); });
-  });
-
-  // Navigation arrows
+  // Navigation arrows (bottom-right, matching source)
   const nav = document.createElement('div');
   nav.className = 'hero-carousel-nav';
 
   const prevBtn = document.createElement('button');
   prevBtn.className = 'hero-carousel-prev';
-  prevBtn.setAttribute('aria-label', 'Previous slide');
+  prevBtn.setAttribute('aria-label', 'Previous');
   prevBtn.addEventListener('click', () => { goTo(current - 1); startAutoplay(); });
 
   const nextBtn = document.createElement('button');
   nextBtn.className = 'hero-carousel-next';
-  nextBtn.setAttribute('aria-label', 'Next slide');
+  nextBtn.setAttribute('aria-label', 'Next');
   nextBtn.addEventListener('click', () => { goTo(current + 1); startAutoplay(); });
 
   nav.append(prevBtn, nextBtn);
   block.append(nav);
-  block.append(dotsWrap);
 
   startAutoplay();
 }
