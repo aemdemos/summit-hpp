@@ -12,12 +12,22 @@ main .hero-carousel {
   overflow: hidden;
 }
 
-/* Slide */
+/* Slide — hidden by default, shown when active */
 main .hero-carousel .hero-carousel-slide {
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   min-height: 360px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-in-out, visibility 0.8s;
+}
+
+main .hero-carousel .hero-carousel-slide.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Background image */
@@ -113,6 +123,88 @@ main .hero-carousel .hero-carousel-cta a.button:hover {
   text-decoration: none;
 }
 
+/* ===== Navigation Arrows ===== */
+main .hero-carousel .hero-carousel-nav {
+  position: absolute;
+  bottom: var(--spacing-m);
+  right: var(--spacing-m);
+  z-index: 10;
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+main .hero-carousel .hero-carousel-prev,
+main .hero-carousel .hero-carousel-next {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgb(255 255 255 / 60%);
+  border-radius: 50%;
+  background: rgb(0 0 0 / 30%);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+main .hero-carousel .hero-carousel-prev:hover,
+main .hero-carousel .hero-carousel-next:hover {
+  background: rgb(0 0 0 / 60%);
+  border-color: white;
+}
+
+main .hero-carousel .hero-carousel-prev::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(45deg) translate(2px, -2px);
+}
+
+main .hero-carousel .hero-carousel-next::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid white;
+  border-top: 2px solid white;
+  transform: rotate(45deg) translate(-2px, 2px);
+}
+
+/* ===== Dot Indicators ===== */
+main .hero-carousel .hero-carousel-dots {
+  position: absolute;
+  bottom: var(--spacing-m);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+}
+
+main .hero-carousel .hero-carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgb(255 255 255 / 60%);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+main .hero-carousel .hero-carousel-dot.active {
+  background: white;
+  border-color: white;
+}
+
+main .hero-carousel .hero-carousel-dot:hover {
+  border-color: white;
+}
+
 /* ===== Tablet (600px+) ===== */
 @media (width >= 600px) {
   main .hero-carousel .hero-carousel-slide {
@@ -125,6 +217,11 @@ main .hero-carousel .hero-carousel-cta a.button:hover {
 
   main .hero-carousel .hero-carousel-content-inner {
     padding: 0 var(--spacing-l);
+  }
+
+  main .hero-carousel .hero-carousel-nav {
+    bottom: var(--spacing-l);
+    right: var(--spacing-l);
   }
 }
 
@@ -140,6 +237,12 @@ main .hero-carousel .hero-carousel-cta a.button:hover {
 
   main .hero-carousel .hero-carousel-content-inner {
     padding: 0 var(--spacing-l);
+  }
+
+  main .hero-carousel .hero-carousel-prev,
+  main .hero-carousel .hero-carousel-next {
+    width: 48px;
+    height: 48px;
   }
 }
 
