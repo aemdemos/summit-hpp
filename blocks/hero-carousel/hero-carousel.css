@@ -24,7 +24,7 @@ main .hero-carousel .hero-carousel-slide {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.8s ease-in-out, visibility 0.8s;
-  height: 420px;
+  height: 480px;
   width: 100%;
 }
 
@@ -39,7 +39,7 @@ main .hero-carousel .hero-carousel-slides {
   position: relative;
   width: 100%;
   overflow: hidden;
-  min-height: 420px;
+  min-height: 480px;
 }
 
 /* ===== IMAGE: absolute, covers entire slide edge-to-edge ===== */
@@ -63,17 +63,17 @@ main .hero-carousel img.hero-carousel-bg-img {
   display: block;
 }
 
-/* ===== GRADIENT OVERLAY: dark left-to-right for text readability ===== */
-main .hero-carousel .hero-carousel-content::before {
+/* ===== GRADIENT OVERLAY: on the SLIDE, covers entire image area ===== */
+main .hero-carousel .hero-carousel-slide::after {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   background: linear-gradient(
     to right,
-    rgb(0 0 0 / 60%) 0%,
-    rgb(0 0 0 / 40%) 35%,
-    rgb(0 0 0 / 15%) 55%,
+    rgb(0 0 0 / 55%) 0%,
+    rgb(0 0 0 / 35%) 35%,
+    rgb(0 0 0 / 12%) 55%,
     transparent 75%
   );
   pointer-events: none;
@@ -82,7 +82,7 @@ main .hero-carousel .hero-carousel-content::before {
 /* ===== CONTENT: relative, left-aligned, white text ===== */
 main .hero-carousel .hero-carousel-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -208,11 +208,11 @@ main .hero-carousel .hero-carousel-next::after {
 /* ===== TABLET (600px+) ===== */
 @media (width >= 600px) {
   main .hero-carousel .hero-carousel-slide {
-    height: 500px;
+    height: 560px;
   }
 
   main .hero-carousel .hero-carousel-slides {
-    min-height: 500px;
+    min-height: 560px;
   }
 
   main .hero-carousel .hero-carousel-content {
@@ -237,11 +237,11 @@ main .hero-carousel .hero-carousel-next::after {
 /* ===== DESKTOP (900px+) ===== */
 @media (width >= 900px) {
   main .hero-carousel .hero-carousel-slide {
-    height: 580px;
+    height: 648px;
   }
 
   main .hero-carousel .hero-carousel-slides {
-    min-height: 580px;
+    min-height: 648px;
   }
 
   main .hero-carousel .hero-carousel-content {
@@ -273,10 +273,10 @@ main .hero-carousel .hero-carousel-next::after {
 /* ===== WIDE (1200px+) ===== */
 @media (width >= 1200px) {
   main .hero-carousel .hero-carousel-slide {
-    height: 648px;
+    height: 720px;
   }
 
   main .hero-carousel .hero-carousel-slides {
-    min-height: 648px;
+    min-height: 720px;
   }
 }
