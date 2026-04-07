@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { getMetadata, decorateIcons } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -89,9 +89,13 @@ export default async function decorate(block) {
           const dropBtn = document.createElement('button');
           dropBtn.type = 'button';
           dropBtn.className = 'nav-drop-toggle';
-          dropBtn.textContent = text;
           dropBtn.setAttribute('aria-expanded', 'false');
           dropBtn.setAttribute('aria-haspopup', 'true');
+          dropBtn.textContent = text;
+          const chevron = document.createElement('span');
+          chevron.className = 'nav-drop-chevron';
+          chevron.setAttribute('aria-hidden', 'true');
+          dropBtn.append(chevron);
 
           const dropPanel = document.createElement('div');
           dropPanel.className = 'nav-drop-panel';
@@ -148,12 +152,14 @@ export default async function decorate(block) {
   searchBtn.append(searchIcon);
   navTools.append(searchBtn);
 
-  // Language selector
+  // Language selector (globe icon)
   const langLink = document.createElement('a');
-  langLink.href = '/us/en/home.html';
+  langLink.href = '/us/en/country-selector.html';
   langLink.className = 'nav-tools-lang';
-  langLink.textContent = 'EN';
-  langLink.setAttribute('aria-label', 'Select language');
+  langLink.setAttribute('aria-label', 'Change language');
+  const globeIcon = document.createElement('span');
+  globeIcon.className = 'icon icon-globe';
+  langLink.append(globeIcon);
   navTools.append(langLink);
 
   nav.append(navTools);
@@ -181,4 +187,7 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  // Load SVG icons for search and globe
+  decorateIcons(navTools);
 }
