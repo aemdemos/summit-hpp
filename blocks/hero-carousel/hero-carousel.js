@@ -3,57 +3,75 @@
  *
  * Source layout per slide:
  *   slide (position:relative, display:flex, flex-direction:row, overflow:hidden)
- *     img  (position:absolute, inset:0, object-fit:cover — fills entire slide)
+ *     picture/img (position:absolute, inset:0, object-fit:cover — fills entire slide)
  *     .content (position:relative, z-index:1, flex child — text sits on left)
  *
  * Nav arrows sit at bottom-left INSIDE the carousel (position:absolute).
  *
  * @param {Element} block The hero-carousel block element
  */
+
+/**
+ * Extracts the background image from its cell and prepends it to the slide.
+ * @param {Element} slide The slide element
+ * @param {Element} imageCell The cell containing the image
+ * @param {boolean} eager Whether to load eagerly (first slide)
+ */
+function extractSlideImage(slide, imageCell, eager) {
+  const picture = imageCell.querySelector('picture');
+  const img = imageCell.querySelector('img');
+  if (picture) {
+    picture.classList.add('hero-carousel-bg-picture');
+    if (img) {
+      img.classList.add('hero-carousel-bg-img');
+      img.loading = eager ? 'eager' : 'lazy';
+    }
+    slide.prepend(picture);
+  } else if (img) {
+    img.classList.add('hero-carousel-bg-img');
+    img.loading = eager ? 'eager' : 'lazy';
+    slide.prepend(img);
+  }
+  imageCell.remove();
+}
+
+/**
+ * Decorates a single slide — extracts image, styles content, adds CTA arrows.
+ * @param {Element} slide The slide row element
+ * @param {number} index Slide index (0-based)
+ */
+function decorateSlide(slide, index) {
+  const [imageCell, contentCell] = [...slide.children];
+
+  slide.classList.add('hero-carousel-slide');
+  if (index === 0) slide.classList.add('active');
+
+  if (imageCell) extractSlideImage(slide, imageCell, index === 0);
+
+  if (contentCell) {
+    contentCell.classList.add('hero-carousel-content');
+    contentCell.querySelectorAll('a').forEach((a) => {
+      const p = a.closest('p');
+      if (p) {
+        a.classList.add('button');
+        p.classList.add('hero-carousel-cta');
+        const arrow = document.createElement('span');
+        arrow.className = 'hero-carousel-arrow';
+        a.append(arrow);
+      }
+    });
+  }
+}
+
 export default async function decorate(block) {
   const slides = [...block.children];
   if (slides.length === 0) return;
 
-  // Wrap all slides in a slides container
   const slidesContainer = document.createElement('div');
   slidesContainer.className = 'hero-carousel-slides';
 
   slides.forEach((slide, i) => {
-    const [imageCell, contentCell] = [...slide.children];
-
-    slide.classList.add('hero-carousel-slide');
-    if (i === 0) slide.classList.add('active');
-
-    // Image: pull img out of its cell, make it a direct child of slide
-    // so it can be position:absolute covering the entire slide
-    if (imageCell) {
-      const img = imageCell.querySelector('img');
-      if (img) {
-        img.classList.add('hero-carousel-bg-img');
-        img.loading = i === 0 ? 'eager' : 'lazy';
-        slide.prepend(img);
-      }
-      imageCell.remove();
-    }
-
-    // Content: becomes the flex child with text
-    if (contentCell) {
-      contentCell.classList.add('hero-carousel-content');
-
-      // Style CTA links as pill buttons with arrow
-      contentCell.querySelectorAll('a').forEach((a) => {
-        const p = a.closest('p');
-        if (p) {
-          a.classList.add('button');
-          p.classList.add('hero-carousel-cta');
-          // Add arrow span matching source structure
-          const arrow = document.createElement('span');
-          arrow.className = 'hero-carousel-arrow';
-          a.append(arrow);
-        }
-      });
-    }
-
+    decorateSlide(slide, i);
     slidesContainer.append(slide);
   });
 
@@ -84,7 +102,6 @@ export default async function decorate(block) {
     autoplayTimer = setInterval(() => goTo(current + 1), 6000);
   }
 
-  // Navigation arrows — bottom-left inside the carousel (position:absolute)
   const nav = document.createElement('div');
   nav.className = 'hero-carousel-nav';
 
