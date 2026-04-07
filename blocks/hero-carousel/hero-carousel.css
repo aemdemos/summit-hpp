@@ -127,8 +127,8 @@ main .hero-carousel .hero-carousel-cta a.button {
   color: var(--dark-color);
   border: none;
   border-radius: 100px;
-  padding: 14px 28px;
-  font-size: 18px;
+  padding: 18px 36px;
+  font-size: 20px;
   font-weight: 500;
   text-decoration: none;
   display: inline-flex;
@@ -171,8 +171,8 @@ main .hero-carousel .hero-carousel-nav {
 
 main .hero-carousel .hero-carousel-prev,
 main .hero-carousel .hero-carousel-next {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border: none;
   border-radius: 50%;
   background: rgb(230 232 233);
@@ -262,16 +262,16 @@ main .hero-carousel .hero-carousel-dot:hover {
 @media (width >= 900px) {
   main .hero-carousel .hero-carousel-content {
     padding: 60px 0 96px;
-    margin-left: 64px;
+    margin-left: 120px;
   }
 
   main .hero-carousel .hero-carousel-content h1 {
-    font-size: 80px;
+    font-size: 96px;
     font-weight: 700;
     font-stretch: 75%;
     letter-spacing: 1.6px;
-    line-height: 80px;
-    max-width: 556px;
+    line-height: 96px;
+    max-width: 640px;
   }
 
   main .hero-carousel .hero-carousel-content p {
@@ -281,7 +281,7 @@ main .hero-carousel .hero-carousel-dot:hover {
   }
 
   main .hero-carousel .hero-carousel-nav {
-    left: 64px;
+    left: 120px;
     padding: 32px 0 29px;
   }
 }

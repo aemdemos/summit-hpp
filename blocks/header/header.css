@@ -263,7 +263,7 @@ header nav .nav-tools-lang:hover {
     visibility: visible;
     white-space: nowrap;
     flex: 1 1 auto;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   header nav[aria-expanded='true'] .nav-sections {
@@ -285,7 +285,7 @@ header nav .nav-tools-lang:hover {
 
   header nav .nav-sections .default-content-wrapper > ul > li > a {
     display: inline-block;
-    padding: 8px 14px;
+    padding: 8px 22px;
     font-size: var(--body-font-size-m);
     font-weight: 400;
     color: rgb(212 212 212);
@@ -334,7 +334,7 @@ header nav .nav-tools-lang:hover {
     font-size: var(--body-font-size-m);
     font-weight: 400;
     cursor: pointer;
-    padding: 8px 14px;
+    padding: 8px 22px;
     border-radius: var(--button-border-radius);
     transition: background var(--transition-base), color var(--transition-base);
     white-space: nowrap;
