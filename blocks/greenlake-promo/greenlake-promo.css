@@ -170,19 +170,45 @@ main .greenlake-promo .greenlake-promo-cta {
   margin: 0;
 }
 
-main .greenlake-promo .greenlake-promo-cta .button {
+main .greenlake-promo .greenlake-promo-cta .button,
+main .greenlake-promo .greenlake-promo-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   background-color: var(--color-hpe-green);
   color: var(--text-light-color);
-  border-radius: var(--button-border-radius);
-  padding: var(--button-padding);
-  font-size: var(--button-font-size);
-  font-weight: var(--button-font-weight);
+  border: none;
+  border-radius: 100px;
+  padding: 14px 28px;
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  text-decoration: none;
   margin: 0;
+  transition: background-color 0.2s;
 }
 
-main .greenlake-promo .greenlake-promo-cta .button:hover {
+main .greenlake-promo .greenlake-promo-cta .button:hover,
+main .greenlake-promo .greenlake-promo-cta a:hover {
   background-color: var(--color-hpe-green-hover);
   text-decoration: none;
+}
+
+main .greenlake-promo .greenlake-promo-cta .button::after,
+main .greenlake-promo .greenlake-promo-cta a::after {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-color: var(--text-light-color);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17 8l4 4m0 0l-4 4m4-4H3'/%3E%3C/svg%3E") center/contain no-repeat;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17 8l4 4m0 0l-4 4m4-4H3'/%3E%3C/svg%3E") center/contain no-repeat;
+  transition: transform 0.2s;
+}
+
+main .greenlake-promo .greenlake-promo-cta .button:hover::after,
+main .greenlake-promo .greenlake-promo-cta a:hover::after {
+  transform: translateX(4px);
 }
 
 /* === Tablet (600px+) === */
@@ -202,7 +228,8 @@ main .greenlake-promo .greenlake-promo-cta .button:hover {
     min-height: 772px;
   }
 
-  main .greenlake-promo > div > div {
+  /* EDS wraps rows in a div — dissolve it so flex-direction: row works */
+  main .greenlake-promo > div {
     display: contents;
   }
 
