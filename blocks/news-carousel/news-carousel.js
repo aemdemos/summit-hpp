@@ -38,7 +38,7 @@ export default async function decorate(block) {
       card.append(imageWrap);
     }
 
-    // Content: title + CTA
+    // Content: title + optional description + CTA
     const contentCol = cols[1];
     const contentWrap = document.createElement('div');
     contentWrap.classList.add('news-carousel-card-content');
@@ -77,9 +77,6 @@ export default async function decorate(block) {
   });
 
   // --- Navigation buttons ---
-  const navContainer = document.createElement('div');
-  navContainer.classList.add('news-carousel-nav');
-
   const prevBtn = document.createElement('button');
   prevBtn.classList.add('news-carousel-btn', 'news-carousel-btn-prev');
   prevBtn.setAttribute('aria-label', 'Previous');
@@ -90,31 +87,29 @@ export default async function decorate(block) {
   nextBtn.setAttribute('aria-label', 'Next');
   nextBtn.type = 'button';
 
-  navContainer.append(prevBtn);
-  navContainer.append(nextBtn);
-
-  // --- Track wrapper (contains track + nav) ---
-  const trackWrapper = document.createElement('div');
-  trackWrapper.classList.add('news-carousel-track-wrapper');
-  trackWrapper.append(navContainer);
-  trackWrapper.append(track);
-
   // --- Footer CTA ---
   const footerLink = footerRow.querySelector('a');
-  const footer = document.createElement('div');
-  footer.classList.add('news-carousel-footer');
+
+  // --- Control bar: nav buttons (left) + explore link (right) ---
+  const controlBar = document.createElement('div');
+  controlBar.classList.add('news-carousel-controls');
+
+  const navContainer = document.createElement('div');
+  navContainer.classList.add('news-carousel-nav');
+  navContainer.append(prevBtn, nextBtn);
+  controlBar.append(navContainer);
+
   if (footerLink) {
     footerLink.classList.add('news-carousel-explore');
-    footer.append(footerLink);
+    controlBar.append(footerLink);
   }
 
   // --- Assemble ---
-  // Clear existing rows except heading
   headingRow.remove();
   footerRow.remove();
 
-  block.append(trackWrapper);
-  block.append(footer);
+  block.append(track);
+  block.append(controlBar);
 
   // Reinsert heading at top
   if (heading) {
@@ -140,6 +135,10 @@ export default async function decorate(block) {
   nextBtn.addEventListener('click', () => scrollByCard(1));
   track.addEventListener('scroll', updateButtons, { passive: true });
 
-  // Initial button state
-  updateButtons();
+  // Defer initial button state until layout is complete
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      updateButtons();
+    });
+  });
 }
