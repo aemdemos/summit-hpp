@@ -210,7 +210,7 @@ main .news-carousel .news-carousel-explore:hover {
 @media (width >= 900px) {
   main .news-carousel .news-carousel-card {
     flex: 0 0 calc((100% - 4 * var(--spacing-m)) / 5);
-    min-width: 200px;
+    min-width: 280px;
   }
 
   main .news-carousel .news-carousel-btn {

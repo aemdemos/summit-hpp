@@ -1,9 +1,9 @@
 /* header design tokens (layout only; colors/typography use global tokens) */
 :root {
   --header-nav-max-width: 1248px;
-  --header-nav-max-width-desktop: 1264px;
+  --header-nav-max-width-desktop: 1680px;
   --header-nav-padding: 0 24px;
-  --header-nav-padding-desktop: 0 32px;
+  --header-nav-padding-desktop: 0 120px;
   --header-nav-gap: 24px;
   --header-nav-gap-desktop: 32px;
   --header-brand-width: 64px;
