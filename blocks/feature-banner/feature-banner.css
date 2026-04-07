@@ -34,14 +34,47 @@ main .feature-banner p {
   margin-bottom: var(--spacing-s);
 }
 
-main .feature-banner a.button {
-  background-color: var(--color-hpe-green);
-  color: var(--text-light-color);
-  margin-top: var(--spacing-s);
+/* CTA: white pill button with arrow — matches hero and source */
+main .feature-banner a.button,
+main .feature-banner .feature-banner-inner > div:last-child a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background-color: white;
+  color: var(--dark-color);
+  border: none;
+  border-radius: 100px;
+  padding: 14px 28px;
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: var(--spacing-m);
+  transition: background-color 0.2s;
 }
 
-main .feature-banner a.button:hover {
-  background-color: var(--color-hpe-green-hover);
+main .feature-banner a.button:hover,
+main .feature-banner .feature-banner-inner > div:last-child a:hover {
+  background-color: #e5e5e5;
+  text-decoration: none;
+  color: var(--dark-color);
+}
+
+main .feature-banner a.button::after,
+main .feature-banner .feature-banner-inner > div:last-child a::after {
+  content: '';
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-color: var(--dark-color);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17 8l4 4m0 0l-4 4m4-4H3'/%3E%3C/svg%3E") center/contain no-repeat;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17 8l4 4m0 0l-4 4m4-4H3'/%3E%3C/svg%3E") center/contain no-repeat;
+  transition: transform 0.2s;
+}
+
+main .feature-banner a.button:hover::after,
+main .feature-banner .feature-banner-inner > div:last-child a:hover::after {
+  transform: translateX(4px);
 }
 
 /* Tablet */
