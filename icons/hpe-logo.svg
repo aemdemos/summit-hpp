@@ -1,3 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 36" fill="#01a982">
-  <path d="M46.7 0H36.1L24.8 14.6h10.6L46.7 0zM35 21.4H24.4L13.1 36h10.6L35 21.4zM23.3 14.6H12.7L1.4 29.2h10.6l11.3-14.6zM58.4 6.8H47.8L36.5 21.4h10.6L58.4 6.8z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 180" fill="none">
+  <title>Hewlett Packard Enterprise</title>
+  <!-- H -->
+  <path d="M18 180 V0" stroke="white" stroke-width="36"/>
+  <path d="M172 180 V0" stroke="white" stroke-width="36"/>
+  <path d="M18 89 H155" stroke="white" stroke-width="36"/>
+  <!-- P -->
+  <path d="M250 180 V0" stroke="white" stroke-width="36"/>
+  <path d="M250 18 H352 A32 32 0 0 1 352 118 H250" stroke="white" stroke-width="36" fill="none"/>
+  <!-- E top + vertical -->
+  <path d="M472 51 V18 H630" stroke="white" stroke-width="36"/>
+  <!-- E bottom half (green) -->
+  <path d="M630 162 H472 V86 H630" stroke="#01a982" stroke-width="36"/>
 </svg>
