@@ -24,7 +24,7 @@ main .hero-carousel .hero-carousel-slides {
   position: relative;
   width: 100%;
   overflow: hidden;
-  height: clamp(420px, calc(100vh - var(--nav-height)), 900px);
+  height: clamp(420px, calc(100vh - 66px), 900px);
 }
 
 /* ===== SLIDE: all absolute — avoids layout shift during crossfade ===== */

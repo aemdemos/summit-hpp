@@ -71,6 +71,8 @@ function decorateSlide(slide, index) {
     fgImg.alt = '';
     fgImg.className = 'hero-carousel-fg-img';
     fgImg.loading = 'lazy';
+    fgImg.width = 280;
+    fgImg.height = 280;
     slide.append(fgImg);
   }
 }
