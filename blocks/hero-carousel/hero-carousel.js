@@ -61,6 +61,18 @@ function decorateSlide(slide, index) {
       }
     });
   }
+
+  // Check for a foreground overlay image (e.g. badge/logo) matching the bg image
+  const bgImg = slide.querySelector('.hero-carousel-bg-img');
+  if (bgImg && bgImg.src.includes('background')) {
+    const fgSrc = bgImg.src.replace('background', 'foreground').replace('.jpg', '.png');
+    const fgImg = document.createElement('img');
+    fgImg.src = fgSrc;
+    fgImg.alt = '';
+    fgImg.className = 'hero-carousel-fg-img';
+    fgImg.loading = 'lazy';
+    slide.append(fgImg);
+  }
 }
 
 export default async function decorate(block) {
