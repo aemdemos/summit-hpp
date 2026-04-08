@@ -67,7 +67,7 @@
   /* ===== LAYOUT ===== */
   --max-width-site: 1200px;
   --nav-height: 66px;
-  --content-inset: 160px;
+  --content-inset: 120px;
   --header-height: var(--nav-height);
 
   /* ===== BUTTONS ===== */

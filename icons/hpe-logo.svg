@@ -1,12 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 40" fill="none">
-  <!-- Green geometric mark -->
-  <g fill="#01a982">
-    <path d="M26.2 0H20.2L13.9 8.2h6L26.2 0zM19.6 12H13.7L7.3 20.2h6L19.6 12zM13.1 8.2H7.1L.8 16.4h6l6.3-8.2zM32.7 3.8H26.8L20.5 12h6L32.7 3.8z"/>
-  </g>
-  <!-- White HPE text -->
-  <g fill="#ffffff">
-    <path d="M48.5 8.2h3.8v9h6.8v-9h3.8v22.6h-3.8v-10h-6.8v10h-3.8V8.2z"/>
-    <path d="M66.2 8.2h8.4c4.2 0 6.4 2.8 6.4 6.4 0 3.6-2.2 6.4-6.4 6.4h-4.6v9.8h-3.8V8.2zm3.8 9.6h4c2 0 3.2-1.2 3.2-3.2s-1.2-3.2-3.2-3.2h-4v6.4z"/>
-    <path d="M83.6 8.2H96v3.2h-8.6v6h7.4v3.2h-7.4v7h8.6v3.2H83.6V8.2z"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 180" fill="none">
+  <title>Hewlett Packard Enterprise</title>
+  <!-- H -->
+  <path d="M18 180 V0" stroke="white" stroke-width="36"/>
+  <path d="M172 180 V0" stroke="white" stroke-width="36"/>
+  <path d="M18 89 H155" stroke="white" stroke-width="36"/>
+  <!-- P -->
+  <path d="M250 180 V0" stroke="white" stroke-width="36"/>
+  <path d="M250 18 H352 A32 32 0 0 1 352 118 H250" stroke="white" stroke-width="36" fill="none"/>
+  <!-- E top + vertical -->
+  <path d="M472 51 V18 H630" stroke="white" stroke-width="36"/>
+  <!-- E bottom half (green) -->
+  <path d="M630 162 H472 V86 H630" stroke="#01a982" stroke-width="36"/>
 </svg>
