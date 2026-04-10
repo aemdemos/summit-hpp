@@ -5,7 +5,7 @@ header .nav-wrapper {
   background-color: var(--dark-color);
   color: rgb(212 212 212);
   width: 100%;
-  z-index: 2;
+  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
@@ -217,6 +217,16 @@ header nav .nav-tools-search .icon {
   display: inline-block;
   width: 20px;
   height: 20px;
+  color: rgb(212 212 212);
+}
+
+header nav .nav-tools-search .icon svg {
+  fill: currentcolor;
+  stroke: currentcolor;
+}
+
+header nav .nav-tools-search:hover .icon {
+  color: var(--text-light-color);
 }
 
 header nav .nav-tools-lang {
@@ -323,6 +333,16 @@ header nav .nav-tools-lang:hover {
     display: inline-block;
     width: 20px;
     height: 20px;
+    color: rgb(212 212 212);
+  }
+
+  header nav .nav-tools-lang .icon svg {
+    fill: none;
+    stroke: currentcolor;
+  }
+
+  header nav .nav-tools-lang:hover .icon {
+    color: var(--text-light-color);
   }
 
   /* Dropdown buttons */
