@@ -229,33 +229,6 @@ main .hero-carousel .hero-carousel-next::after {
   transform: rotate(45deg) translate(-2px, 2px);
 }
 
-/* ===== SLIDE INDICATORS (dots) ===== */
-main .hero-carousel .hero-carousel-indicators {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: 12px;
-}
-
-main .hero-carousel .hero-carousel-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid rgb(230 232 233);
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
-}
-
-main .hero-carousel .hero-carousel-dot.active {
-  background: rgb(230 232 233);
-}
-
-main .hero-carousel .hero-carousel-dot:hover {
-  border-color: white;
-}
-
 /* ===== TABLET (600px+) ===== */
 @media (width >= 600px) {
   main .hero-carousel .hero-carousel-content {

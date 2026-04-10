@@ -105,19 +105,10 @@ export default async function decorate(block) {
     }
   }
 
-  function updateIndicators() {
-    const dots = block.querySelectorAll('.hero-carousel-dot');
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === current);
-      dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
-    });
-  }
-
   function goTo(index) {
     slides[current].classList.remove('active');
     current = (index + slides.length) % slides.length;
     slides[current].classList.add('active');
-    updateIndicators();
   }
 
   function startAutoplay() {
@@ -138,23 +129,7 @@ export default async function decorate(block) {
   nextBtn.setAttribute('aria-label', 'Next');
   nextBtn.addEventListener('click', () => { goTo(current + 1); startAutoplay(); });
 
-  // Slide indicators (dots)
-  const indicators = document.createElement('div');
-  indicators.className = 'hero-carousel-indicators';
-  indicators.setAttribute('role', 'tablist');
-
-  slides.forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.className = 'hero-carousel-dot';
-    if (i === 0) dot.classList.add('active');
-    dot.setAttribute('role', 'tab');
-    dot.setAttribute('aria-label', `Slide ${i + 1}`);
-    dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-    dot.addEventListener('click', () => { goTo(i); startAutoplay(); });
-    indicators.append(dot);
-  });
-
-  nav.append(prevBtn, nextBtn, indicators);
+  nav.append(prevBtn, nextBtn);
   block.append(nav);
 
   startAutoplay();
