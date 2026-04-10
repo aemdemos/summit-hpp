@@ -193,37 +193,69 @@ main .card-carousel .carousel-navigation-buttons button.slide-next::after {
   left: calc(50% - 2px);
 }
 
-/* Dot indicators */
+/* Hide dot indicators — original has none */
 main .card-carousel .carousel-slide-indicators {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing-xs);
-  margin-top: var(--spacing-m);
+  display: none;
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
-main .card-carousel .carousel-slide-indicator button {
-  width: 10px;
-  height: 10px;
-  margin: 0;
-  padding: 0;
-  border-radius: 50%;
-  border: none;
-  background-color: rgb(255 255 255 / 30%);
-  cursor: pointer;
-  transition: background-color var(--transition-base);
+/* Gradient edge masks for smooth card reveal/disappear */
+main .card-carousel .card-carousel-slides {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
 }
 
-main .card-carousel .carousel-slide-indicator button:hover {
-  background-color: rgb(255 255 255 / 60%);
+/* No left gradient when at start */
+main .card-carousel .card-carousel-slides.at-start {
+  mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black 92%,
+    transparent 100%
+  );
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    black 0%,
+    black 92%,
+    transparent 100%
+  );
 }
 
-main .card-carousel .carousel-slide-indicator button:disabled {
-  background-color: var(--text-light-color);
-  cursor: default;
+/* No right gradient when at end */
+main .card-carousel .card-carousel-slides.at-end {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 100%
+  );
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 100%
+  );
+}
+
+/* No gradients at all when at both start and end (few cards) */
+main .card-carousel .card-carousel-slides.at-start.at-end {
+  mask-image: none;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-image: none;
 }
 
 /* === Mobile: 1 card visible === */
@@ -250,8 +282,8 @@ main .card-carousel .carousel-slide-indicator button:disabled {
 /* === Desktop: 2 cards visible with peek === */
 @media (width >= 900px) {
   main .card-carousel .card-carousel-slide {
-    flex: 0 0 calc(50% - var(--spacing-s));
-    min-height: 480px;
+    flex: 0 0 calc(45% - var(--spacing-s));
+    min-height: 540px;
   }
 
   main .card-carousel .card-carousel-card-content {
@@ -277,6 +309,6 @@ main .card-carousel .carousel-slide-indicator button:disabled {
 /* === Wide desktop === */
 @media (width >= 1200px) {
   main .card-carousel .card-carousel-slide {
-    min-height: 520px;
+    min-height: 560px;
   }
 }
