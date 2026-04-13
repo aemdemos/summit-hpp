@@ -76,6 +76,11 @@ export default async function decorate(block) {
     row.remove();
   });
 
+  // --- Track wrapper (for gradient overlays) ---
+  const trackWrapper = document.createElement('div');
+  trackWrapper.classList.add('news-carousel-track-wrapper');
+  trackWrapper.append(track);
+
   // --- Navigation buttons ---
   const prevBtn = document.createElement('button');
   prevBtn.classList.add('news-carousel-btn', 'news-carousel-btn-prev');
@@ -108,7 +113,7 @@ export default async function decorate(block) {
   headingRow.remove();
   footerRow.remove();
 
-  block.append(track);
+  block.append(trackWrapper);
   block.append(controlBar);
 
   // Reinsert heading at top
@@ -116,11 +121,18 @@ export default async function decorate(block) {
     block.prepend(heading);
   }
 
-  // --- Scroll behaviour ---
+  // --- Scroll behaviour with gradient state ---
   function updateButtons() {
     const { scrollLeft, scrollWidth, clientWidth } = track;
-    prevBtn.disabled = scrollLeft <= 0;
-    nextBtn.disabled = scrollLeft + clientWidth >= scrollWidth - 1;
+    const atStart = scrollLeft <= 1;
+    const atEnd = scrollLeft + clientWidth >= scrollWidth - 1;
+
+    prevBtn.disabled = atStart;
+    nextBtn.disabled = atEnd;
+
+    // Update gradient visibility
+    trackWrapper.classList.toggle('at-start', atStart);
+    trackWrapper.classList.toggle('at-end', atEnd);
   }
 
   function scrollByCard(direction) {

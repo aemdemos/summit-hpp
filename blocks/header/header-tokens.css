@@ -1,7 +1,7 @@
 /* header design tokens (layout only; colors/typography use global tokens) */
 :root {
   --header-nav-max-width: 1248px;
-  --header-nav-max-width-desktop: var(--max-width-site);
+  --header-nav-max-width-desktop: none;
   --header-nav-padding: 0 24px;
   --header-nav-padding-desktop: 0 var(--content-padding, 160px);
   --header-nav-gap: 24px;
