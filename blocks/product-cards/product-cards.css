@@ -58,7 +58,7 @@ main .product-cards .product-card-content {
 }
 
 main .product-cards .product-card-content h3 {
-  font-size: var(--heading-font-size-l);
+  font-size: 36px;
   font-weight: 500;
   color: var(--text-color);
   margin: 0;
@@ -127,10 +127,10 @@ main .product-cards .product-card-link:hover::after {
     padding: var(--spacing-xl);
   }
 
-  /* Two-up variant: 2 horizontal cards in a grid row */
+  /* Two-up variant: full-width stacked cards (original is NOT a 2-col grid) */
   main .product-cards.two-up {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
+    flex-direction: column;
   }
 
   /* Three-up variant: 3 horizontal cards in a grid row */
