@@ -4,7 +4,7 @@
 main .product-cards {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-m);
+  gap: var(--spacing-s);
   padding: 0;
 }
 
@@ -114,17 +114,17 @@ main .product-cards .product-card-link:hover::after {
 @media (width >= 900px) {
   main .product-cards .product-card {
     flex-direction: row;
-    min-height: 280px;
+    min-height: 220px;
   }
 
   main .product-cards .product-card-image {
     flex: 0 0 42%;
-    min-height: 280px;
+    min-height: 220px;
   }
 
   main .product-cards .product-card-content {
     flex: 1;
-    padding: var(--spacing-xl);
+    padding: var(--spacing-l);
   }
 
   /* Two-up variant: full-width stacked cards (original is NOT a 2-col grid) */

@@ -9,7 +9,7 @@ main > .section.customer-stories-light {
 
 /* Block container */
 main .customer-stories {
-  padding: var(--spacing-xl) 0;
+  padding: 0;
 }
 
 /* ===== HEADER ===== */
