@@ -148,59 +148,84 @@ main .customer-stories .customer-stories-panel[aria-hidden='true'] {
   }
 }
 
-/* ===== RICH PANEL GRID (KDDI style) ===== */
+/* ===== RICH PANEL GRID (bento style) ===== */
 
 main .customer-stories .customer-stories-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-l);
+  gap: var(--spacing-s);
 }
 
 @media (width >= 900px) {
   main .customer-stories .customer-stories-grid {
     grid-template-columns: 2fr 1fr 1fr;
-    gap: var(--spacing-l);
+    grid-template-rows: auto auto;
+    gap: var(--spacing-s);
   }
 
   main .customer-stories .customer-stories-intro {
     grid-column: 1;
+    grid-row: 1 / 3;
   }
 
   main .customer-stories .customer-stories-objectives {
     grid-column: 2;
+    grid-row: 1;
   }
 
   main .customer-stories .customer-stories-outcomes {
     grid-column: 3;
+    grid-row: 1 / 3;
   }
 }
 
-/* Intro section */
+/* Intro section — large hero tile */
+main .customer-stories .customer-stories-intro {
+  background-color: var(--dark-alt-color);
+  border-radius: 12px;
+  padding: var(--spacing-l);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+}
+
 main .customer-stories .customer-stories-intro h3 {
   color: var(--text-light-color);
   font-size: var(--heading-font-size-l);
-  margin-bottom: var(--spacing-s);
+  margin-bottom: 0;
 }
 
 main .customer-stories .customer-stories-intro p {
   color: rgb(255 255 255 / 80%);
   font-size: var(--body-font-size-m);
   line-height: 1.5;
-  margin-bottom: var(--spacing-s);
+  margin-bottom: 0;
 }
 
 main .customer-stories .customer-stories-intro strong {
   display: inline-block;
-  margin-top: var(--spacing-s);
   color: var(--color-hpe-green);
   font-weight: 500;
+}
+
+main .customer-stories .customer-stories-intro picture {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+main .customer-stories .customer-stories-intro img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
 }
 
 /* Objectives section */
 main .customer-stories .customer-stories-objectives {
   background-color: var(--dark-alt-color);
-  border-radius: 8px;
-  padding: var(--spacing-m);
+  border-radius: 12px;
+  padding: var(--spacing-l);
 }
 
 main .customer-stories .customer-stories-objectives h3 {
@@ -232,8 +257,8 @@ main .customer-stories .customer-stories-objectives img {
 /* Outcomes section */
 main .customer-stories .customer-stories-outcomes {
   background-color: var(--dark-alt-color);
-  border-radius: 8px;
-  padding: var(--spacing-m);
+  border-radius: 12px;
+  padding: var(--spacing-l);
 }
 
 main .customer-stories .customer-stories-outcomes h3 {
@@ -277,19 +302,22 @@ main .customer-stories .customer-stories-outcomes img {
 /* ===== QUOTE ===== */
 
 main .customer-stories .customer-stories-quote {
-  padding: var(--spacing-l) 0;
-  border-top: 1px solid rgb(255 255 255 / 10%);
-  border-bottom: 1px solid rgb(255 255 255 / 10%);
-  margin: var(--spacing-l) 0;
+  background-color: var(--dark-alt-color);
+  border-radius: 12px;
+  padding: var(--spacing-l);
+  margin: var(--spacing-s) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
 }
 
 main .customer-stories .customer-stories-quote h4 {
   color: var(--text-light-color);
-  font-size: var(--heading-font-size-m);
+  font-size: var(--heading-font-size-s);
   font-style: italic;
   font-weight: 400;
   line-height: 1.4;
-  margin-bottom: var(--spacing-s);
+  margin-bottom: 0;
 }
 
 main .customer-stories .customer-stories-quote p {
@@ -298,12 +326,25 @@ main .customer-stories .customer-stories-quote p {
   font-weight: 500;
 }
 
+main .customer-stories .customer-stories-quote picture {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+main .customer-stories .customer-stories-quote img {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+}
+
 /* ===== SOLUTION ===== */
 
 main .customer-stories .customer-stories-solution {
   background-color: var(--dark-alt-color);
-  border-radius: 8px;
-  padding: var(--spacing-m);
+  border-radius: 12px;
+  padding: var(--spacing-l);
   margin-bottom: var(--spacing-l);
   display: inline-block;
 }
