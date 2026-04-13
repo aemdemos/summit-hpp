@@ -140,58 +140,74 @@ main .customer-stories .customer-stories-panel[aria-hidden='true'] {
   }
 }
 
-/* ===== RICH PANEL GRID (bento style) ===== */
+/* ===== BENTO GRID PANEL (matches original uc-cs-slide-layout) ===== */
+/* Original: 10-column, 2-row CSS Grid, gap 32px, horizontally scrollable.
+   11 tiles alternating text (dark/white bg) and image tiles.
+   borderRadius: 0 on all tiles, overflow: clip. */
 
 main .customer-stories .customer-stories-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-s);
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
-@media (width >= 900px) {
-  main .customer-stories .customer-stories-grid {
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: var(--spacing-s);
-  }
-
-  main .customer-stories .customer-stories-intro {
-    grid-column: 1;
-    grid-row: 1 / 3;
-  }
-
-  main .customer-stories .customer-stories-objectives {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  main .customer-stories .customer-stories-outcomes {
-    grid-column: 3;
-    grid-row: 1 / 3;
-  }
+main .customer-stories .customer-stories-grid::-webkit-scrollbar {
+  display: none;
 }
 
-/* Intro section — large hero tile */
-main .customer-stories .customer-stories-intro {
+/* ===== SHARED TILE STYLES ===== */
+
+/* Text tiles — dark bg */
+main .customer-stories .customer-stories-intro,
+main .customer-stories .customer-stories-outcomes,
+main .customer-stories .customer-stories-solution {
   background-color: var(--dark-alt-color);
-  border-radius: 12px;
+  border-radius: 0;
   padding: var(--spacing-l);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-s);
 }
 
+/* Text tiles — white bg */
+main .customer-stories .customer-stories-objectives {
+  background-color: var(--background-color);
+  border-radius: 0;
+  padding: var(--spacing-l);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+}
+
+/* Section headings — green uppercase labels */
+main .customer-stories .customer-stories-objectives h3,
+main .customer-stories .customer-stories-outcomes h3,
+main .customer-stories .customer-stories-solution h3 {
+  color: var(--color-hpe-green);
+  font-size: var(--heading-font-size-s);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+/* Intro heading — white, larger */
 main .customer-stories .customer-stories-intro h3 {
   color: var(--text-light-color);
-  font-size: var(--heading-font-size-l);
-  margin-bottom: 0;
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0;
 }
 
 main .customer-stories .customer-stories-intro p {
   color: rgb(255 255 255 / 80%);
   font-size: var(--body-font-size-m);
   line-height: 1.5;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 main .customer-stories .customer-stories-intro strong {
@@ -200,67 +216,15 @@ main .customer-stories .customer-stories-intro strong {
   font-weight: 500;
 }
 
-main .customer-stories .customer-stories-intro picture {
-  display: block;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-main .customer-stories .customer-stories-intro img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  display: block;
-}
-
-/* Objectives section */
-main .customer-stories .customer-stories-objectives {
-  background-color: var(--dark-alt-color);
-  border-radius: 12px;
-  padding: var(--spacing-l);
-}
-
-main .customer-stories .customer-stories-objectives h3 {
-  color: var(--color-hpe-green);
-  font-size: var(--heading-font-size-s);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: var(--spacing-s);
-}
-
+/* Objectives text */
 main .customer-stories .customer-stories-objectives p {
-  color: rgb(255 255 255 / 80%);
+  color: var(--text-secondary-color);
   font-size: var(--body-font-size-s);
   line-height: 1.5;
+  margin: 0;
 }
 
-main .customer-stories .customer-stories-objectives picture {
-  display: block;
-  margin-bottom: var(--spacing-s);
-}
-
-main .customer-stories .customer-stories-objectives img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-top: var(--spacing-s);
-}
-
-/* Outcomes section */
-main .customer-stories .customer-stories-outcomes {
-  background-color: var(--dark-alt-color);
-  border-radius: 12px;
-  padding: var(--spacing-l);
-}
-
-main .customer-stories .customer-stories-outcomes h3 {
-  color: var(--color-hpe-green);
-  font-size: var(--heading-font-size-s);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: var(--spacing-s);
-}
-
+/* Outcomes list */
 main .customer-stories .customer-stories-outcomes ul {
   list-style: none;
   padding: 0;
@@ -279,76 +243,7 @@ main .customer-stories .customer-stories-outcomes li:last-child {
   border-bottom: none;
 }
 
-main .customer-stories .customer-stories-outcomes picture {
-  display: block;
-  margin-bottom: var(--spacing-s);
-}
-
-main .customer-stories .customer-stories-outcomes img {
-  width: 100%;
-  max-width: 120px;
-  height: auto;
-  margin-top: var(--spacing-s);
-}
-
-/* ===== QUOTE ===== */
-
-main .customer-stories .customer-stories-quote {
-  background-color: var(--dark-alt-color);
-  border-radius: 12px;
-  padding: var(--spacing-l);
-  margin: var(--spacing-s) 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-s);
-}
-
-main .customer-stories .customer-stories-quote h4 {
-  color: var(--text-light-color);
-  font-size: var(--heading-font-size-s);
-  font-style: italic;
-  font-weight: 400;
-  line-height: 1.4;
-  margin-bottom: 0;
-}
-
-main .customer-stories .customer-stories-quote p {
-  color: var(--color-hpe-green);
-  font-size: var(--body-font-size-s);
-  font-weight: 500;
-}
-
-main .customer-stories .customer-stories-quote picture {
-  display: block;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-main .customer-stories .customer-stories-quote img {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
-  border-radius: 8px;
-}
-
-/* ===== SOLUTION ===== */
-
-main .customer-stories .customer-stories-solution {
-  background-color: var(--dark-alt-color);
-  border-radius: 12px;
-  padding: var(--spacing-l);
-  margin-bottom: var(--spacing-l);
-  display: inline-block;
-}
-
-main .customer-stories .customer-stories-solution h3 {
-  color: var(--color-hpe-green);
-  font-size: var(--heading-font-size-s);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: var(--spacing-s);
-}
-
+/* Solution list */
 main .customer-stories .customer-stories-solution ul {
   list-style: none;
   padding: 0;
@@ -359,6 +254,105 @@ main .customer-stories .customer-stories-solution li {
   color: rgb(255 255 255 / 80%);
   font-size: var(--body-font-size-s);
   line-height: 1.5;
+}
+
+/* All images in panels — fill their containers */
+main .customer-stories .customer-stories-grid picture {
+  display: block;
+}
+
+main .customer-stories .customer-stories-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
+/* Logo images (smaller) */
+main .customer-stories .customer-stories-outcomes img {
+  max-width: 120px;
+  margin-top: var(--spacing-s);
+}
+
+/* ===== QUOTE (row 2) ===== */
+
+main .customer-stories .customer-stories-quote {
+  background-color: var(--background-color);
+  border-radius: 0;
+  padding: var(--spacing-l);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+}
+
+main .customer-stories .customer-stories-quote h4 {
+  color: var(--text-color);
+  font-size: var(--body-font-size-l);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 0;
+}
+
+main .customer-stories .customer-stories-quote p {
+  color: var(--color-hpe-green);
+  font-size: var(--body-font-size-s);
+  font-weight: 500;
+  margin: 0;
+}
+
+main .customer-stories .customer-stories-quote img {
+  max-width: 200px;
+}
+
+/* ===== SOLUTION ===== */
+
+main .customer-stories .customer-stories-solution {
+  margin: 0;
+  display: flex;
+}
+
+/* ===== DESKTOP BENTO GRID (900px+) ===== */
+
+@media (width >= 900px) {
+  main .customer-stories .customer-stories-grid {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-rows: 398px 428px;
+    gap: 32px;
+  }
+
+  /* Row 1: intro (text), image, objectives (text) */
+  main .customer-stories .customer-stories-intro {
+    grid-row: 1;
+  }
+
+  main .customer-stories .customer-stories-objectives {
+    grid-row: 1;
+  }
+
+  main .customer-stories .customer-stories-outcomes {
+    grid-row: 1;
+  }
+
+  /* Row 2: quote, solution */
+  main .customer-stories .customer-stories-quote {
+    grid-row: 2;
+  }
+
+  main .customer-stories .customer-stories-solution {
+    grid-row: 2;
+  }
+
+  /* All tiles same min-height */
+  main .customer-stories .customer-stories-intro,
+  main .customer-stories .customer-stories-objectives,
+  main .customer-stories .customer-stories-outcomes,
+  main .customer-stories .customer-stories-quote,
+  main .customer-stories .customer-stories-solution {
+    min-height: 0;
+  }
 }
 
 /* ===== SIMPLE PANEL ===== */
