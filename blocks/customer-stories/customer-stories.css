@@ -1,9 +1,14 @@
-/* Customer Stories block — dark tabbed interface */
+/* Customer Stories block — original has transparent bg with dark text.
+   JS adds .customer-stories-light to section to override dark context. */
+
+/* Override section dark bg */
+main > .section.customer-stories-light {
+  background-color: transparent;
+  color: var(--text-color);
+}
 
 /* Block container */
 main .customer-stories {
-  background-color: var(--dark-color);
-  color: var(--text-light-color);
   padding: var(--spacing-xl) 0;
 }
 
@@ -18,30 +23,32 @@ main .customer-stories .customer-stories-header {
 }
 
 main .customer-stories .customer-stories-header h2 {
-  color: var(--text-light-color);
+  color: #292d3a;
   font-size: var(--heading-font-size-xl);
   margin-bottom: var(--spacing-xs);
 }
 
 main .customer-stories .customer-stories-header p {
-  color: rgb(255 255 255 / 80%);
+  color: var(--text-secondary-color);
   font-size: var(--body-font-size-m);
   line-height: 1.5;
   margin-bottom: 0;
 }
 
-main .customer-stories .customer-stories-header-cta .button {
-  background-color: transparent;
-  border: 2px solid var(--text-light-color);
+/* CTA: dark pill matching original (bg: #292d3a, pad: 20px 36px) */
+main .section.customer-stories-light .customer-stories-header-cta .button {
+  background-color: #292d3a;
+  border: none;
   color: var(--text-light-color);
-  font-size: var(--body-font-size-s);
-  padding: 10px 24px;
+  font-size: var(--body-font-size-l);
+  padding: 20px 36px;
   white-space: nowrap;
+  border-radius: 100px;
 }
 
-main .customer-stories .customer-stories-header-cta .button:hover {
-  background-color: var(--text-light-color);
-  color: var(--dark-color);
+main .section.customer-stories-light .customer-stories-header-cta .button:hover {
+  background-color: #1d1f27;
+  color: var(--text-light-color);
 }
 
 @media (width >= 900px) {
