@@ -65,43 +65,42 @@ main .customer-stories .customer-stories-header-cta .button:hover {
 
 main .customer-stories .customer-stories-tablist {
   display: flex;
-  gap: 0;
+  gap: var(--spacing-m);
   overflow-x: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--color-hpe-green) transparent;
-  border-bottom: 1px solid rgb(255 255 255 / 20%);
+  border-bottom: none;
   padding: 0 var(--spacing-m);
-  margin-bottom: 0;
+  margin-bottom: var(--spacing-m);
 }
 
 main .customer-stories .customer-stories-tab {
   flex: 0 0 auto;
   margin: 0;
-  padding: var(--spacing-s) var(--spacing-m);
+  padding: 0;
   border: none;
-  border-bottom: 3px solid transparent;
   border-radius: 0;
   background: transparent;
-  color: rgb(255 255 255 / 70%);
+  color: rgb(0 0 0 / 60%);
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-xs);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: var(--body-font-size-s);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
   white-space: nowrap;
   cursor: pointer;
-  transition: color var(--transition-base), border-color var(--transition-base);
-  line-height: 1.25;
+  transition: color var(--transition-base);
+  line-height: 1.5;
 }
 
 main .customer-stories .customer-stories-tab:hover {
-  color: var(--text-light-color);
+  color: rgb(0 0 0);
   background: transparent;
 }
 
 main .customer-stories .customer-stories-tab[aria-selected='true'] {
-  color: var(--text-light-color);
-  border-bottom-color: var(--color-hpe-green);
+  color: rgb(0 0 0);
+  font-weight: 500;
   background: transparent;
 }
 
@@ -110,21 +109,14 @@ main .customer-stories .customer-stories-tab:focus-visible {
   outline-offset: -2px;
 }
 
-@media (width >= 600px) {
-  main .customer-stories .customer-stories-tab {
-    font-size: var(--body-font-size-xs);
-    padding: var(--spacing-s) var(--spacing-m);
-  }
-}
-
 @media (width >= 900px) {
   main .customer-stories .customer-stories-tablist {
     padding: 0;
+    gap: 64px;
   }
 
   main .customer-stories .customer-stories-tab {
-    font-size: var(--body-font-size-s);
-    padding: var(--spacing-s) var(--spacing-l);
+    font-size: var(--body-font-size-m);
   }
 }
 
