@@ -1,7 +1,10 @@
 /* === Solutions Grid Block ===
-   Matches original HPE "HPE solutions from edge to cloud" section */
+   Original HPE: 5 equal solid-dark cards in a horizontal row.
+   Verified via devtools: tiles are ~274×427px, bg: rgb(41,45,58),
+   borderRadius: 0, no background images, white text + green CTA.
+   Section is full-width on a dark background. */
 
-/* Override section light background — original renders this as dark-alt */
+/* Override section light background — original context is dark */
 main > .section.light:has(.solutions-grid) {
   background-color: var(--dark-alt-color);
   color: var(--text-light-color);
@@ -21,49 +24,45 @@ main .solutions-grid .solutions-grid-header h2 {
 }
 
 main .solutions-grid .solutions-grid-header p {
-  font-size: var(--body-font-size-m);
-  color: rgb(255 255 255 / 70%);
+  font-size: var(--body-font-size-l);
+  color: rgb(229 229 229);
   max-width: 640px;
   margin: 0;
 }
 
-/* Tiles grid */
+/* Tiles — horizontal row of equal cards */
 main .solutions-grid .solutions-grid-tiles {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-s);
+  gap: 0;
 }
 
 /* Tile link wrapper — full clickable area */
 main .solutions-grid .solutions-grid-tile-link {
   display: block;
   text-decoration: none;
-  border-radius: 12px;
   overflow: hidden;
-  transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+  transition: box-shadow var(--transition-slow);
 }
 
 main .solutions-grid .solutions-grid-tile-link:hover {
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 4px 24px rgb(0 0 0 / 30%);
   text-decoration: none;
 }
 
-/* Image zooms on hover */
-main .solutions-grid .solutions-grid-tile-link:hover .solutions-grid-tile-bg img {
-  transform: scale(1.08);
-}
-
-/* Tile */
+/* Tile — solid dark card, no background image */
 main .solutions-grid .solutions-grid-tile {
   position: relative;
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
-  aspect-ratio: 4 / 3;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: var(--dark-alt-color);
+  min-height: 300px;
 }
 
-/* Background image — picture element needs explicit sizing */
+/* Background image — hidden by default (original has none visible) */
 main .solutions-grid .solutions-grid-tile-bg {
   position: absolute;
   inset: 0;
@@ -71,6 +70,7 @@ main .solutions-grid .solutions-grid-tile-bg {
   display: block;
   width: 100%;
   height: 100%;
+  opacity: 0.15;
 }
 
 main .solutions-grid .solutions-grid-tile-bg img {
@@ -78,22 +78,18 @@ main .solutions-grid .solutions-grid-tile-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
 }
 
-/* Dark overlay */
+/* No overlay needed — tiles are solid dark */
 main .solutions-grid .solutions-grid-tile-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(to top, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 20%) 100%);
+  display: none;
 }
 
 /* Content layer */
 main .solutions-grid .solutions-grid-tile-content {
   position: relative;
-  z-index: 2;
-  padding: var(--spacing-m);
+  z-index: 1;
+  padding: var(--spacing-l);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
@@ -101,24 +97,23 @@ main .solutions-grid .solutions-grid-tile-content {
 }
 
 main .solutions-grid .solutions-grid-tile-content h3 {
-  font-size: var(--heading-font-size-m);
+  font-size: 28px;
   font-weight: 500;
   color: var(--text-light-color);
   margin: 0;
 }
 
 main .solutions-grid .solutions-grid-tile-content p {
-  font-size: var(--body-font-size-xs);
-  color: var(--text-light-color);
+  font-size: var(--body-font-size-s);
+  color: rgb(255 255 255 / 80%);
   line-height: 1.4;
   margin: 0;
-  opacity: 0.9;
 }
 
-/* CTA text with arrow */
+/* CTA — white text with green arrow (original: white CTA) */
 main .solutions-grid .solutions-grid-tile-cta a {
-  color: var(--color-hpe-green);
-  font-size: var(--body-font-size-xs);
+  color: var(--text-light-color);
+  font-size: var(--body-font-size-s);
   font-weight: 500;
   text-decoration: none;
   display: inline-flex;
@@ -142,61 +137,31 @@ main .solutions-grid .solutions-grid-tile-link:hover .solutions-grid-tile-cta a:
   transform: translateX(4px);
 }
 
-/* Focus visible on tile link */
+/* Focus visible */
 main .solutions-grid .solutions-grid-tile-link:focus-visible {
   outline: var(--focus-outline);
   outline-offset: var(--focus-outline-offset);
-  border-radius: 12px;
 }
 
-/* === Tablet (600px+) — 2 columns === */
+/* === Tablet (600px+) — 2-3 columns === */
 @media (width >= 600px) {
   main .solutions-grid .solutions-grid-tiles {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  main .solutions-grid .solutions-grid-tile-content {
-    padding: var(--spacing-l);
-  }
 }
 
-/* === Desktop (900px+) — 3 columns, last 2 span correctly === */
+/* === Desktop (900px+) — 5 equal columns in a single row === */
 @media (width >= 900px) {
   main .solutions-grid .solutions-grid-header {
     margin-bottom: var(--spacing-xl);
   }
 
   main .solutions-grid .solutions-grid-tiles {
-    grid-template-columns: repeat(6, 1fr);
-  }
-
-  /* First 3 tiles: each spans 2 of 6 columns */
-  main .solutions-grid .solutions-grid-tile-link:nth-child(1),
-  main .solutions-grid .solutions-grid-tile-link:nth-child(2),
-  main .solutions-grid .solutions-grid-tile-link:nth-child(3) {
-    grid-column: span 2;
-  }
-
-  /* Last 2 tiles: each spans 3 of 6 columns */
-  main .solutions-grid .solutions-grid-tile-link:nth-child(4),
-  main .solutions-grid .solutions-grid-tile-link:nth-child(5) {
-    grid-column: span 3;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
   }
 
   main .solutions-grid .solutions-grid-tile {
-    aspect-ratio: 1 / 1;
-  }
-
-  main .solutions-grid .solutions-grid-tile-content {
-    padding: var(--spacing-l);
-    gap: var(--spacing-xs);
-  }
-
-  main .solutions-grid .solutions-grid-tile-content h3 {
-    font-size: var(--heading-font-size-m);
-  }
-
-  main .solutions-grid .solutions-grid-tile-content p {
-    font-size: var(--body-font-size-s);
+    min-height: 427px;
   }
 }
