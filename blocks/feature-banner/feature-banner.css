@@ -100,3 +100,31 @@ main .feature-banner a:hover::after {
     font-size: var(--body-font-size-l);
   }
 }
+
+/* Teal gradient accent for HPE Services feature-banner (has h2 heading) */
+main .feature-banner:has(h2)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgb(1 169 130 / 15%) 50%,
+    rgb(1 169 130 / 30%) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+main > .section:has(.feature-banner:has(h2)) {
+  position: relative;
+  overflow: hidden;
+}
+
+main .feature-banner:has(h2) .feature-banner-inner {
+  position: relative;
+  z-index: 1;
+}

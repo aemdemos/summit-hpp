@@ -158,6 +158,7 @@ main .greenlake-promo .greenlake-promo-screenshot img {
   width: 100%;
   height: auto;
   border-radius: 8px;
+  box-shadow: 0 8px 32px rgb(0 0 0 / 30%);
 }
 
 main .greenlake-promo .greenlake-promo-heading {
