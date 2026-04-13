@@ -65,7 +65,8 @@
   --spacing-section: 80px;
 
   /* ===== LAYOUT ===== */
-  --max-width-site: 1200px;
+  --max-width-site: 1920px;
+  --content-padding: 24px;
   --nav-height: 66px;
   --content-inset: 120px;
   --header-height: var(--nav-height);
@@ -117,6 +118,7 @@
     --heading-font-size-m: 24px;
     --heading-font-size-s: 20px;
     --heading-font-size-xs: 16px;
+    --content-padding: 160px;
   }
 }
 
@@ -354,7 +356,7 @@ main > .section {
 main > .section > div:not(.bg-image) {
   max-width: var(--max-width-site);
   margin: auto;
-  padding: 0 24px;
+  padding: 0 var(--content-padding);
 }
 
 main > .section:first-of-type {
@@ -393,7 +395,7 @@ main > .section > .bg-image img {
 
 @media (width >= 900px) {
   main > .section > div:not(.bg-image) {
-    padding: 0 32px;
+    padding: 0 var(--content-padding);
   }
 
   main > .section {
