@@ -283,4 +283,10 @@ export default async function decorate(block) {
   block.append(header);
   block.append(tablist);
   block.append(panelsContainer);
+
+  // Override dark section context — original has transparent bg with dark text
+  const section = block.closest('.section');
+  if (section) {
+    section.classList.add('customer-stories-light');
+  }
 }
