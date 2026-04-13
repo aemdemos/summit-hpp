@@ -397,6 +397,13 @@ main > .section.product-cards-container {
   padding: 16px 0 24px;
 }
 
+/* Hide empty trailing section (metadata section with no visible content) */
+main > .section:last-of-type:empty,
+main > .section:last-of-type:not(:has(*:not(.section-metadata))) {
+  display: none;
+  padding: 0;
+}
+
 /* Section metadata: background image sits behind content */
 main > .section:has(> .bg-image) {
   position: relative;
