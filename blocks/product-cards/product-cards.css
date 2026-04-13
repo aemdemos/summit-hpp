@@ -1,13 +1,14 @@
-/* Product Cards — grid of product category cards matching original HPE */
+/* Product Cards — horizontal cards matching original HPE layout
+   Original: each card has image left ~42%, text right ~58% at desktop */
 
 main .product-cards {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-m);
   padding: 0;
 }
 
-/* Card */
+/* Card — vertical on mobile, horizontal at desktop */
 main .product-cards .product-card {
   display: flex;
   flex-direction: column;
@@ -15,17 +16,15 @@ main .product-cards .product-card {
   border: 1px solid var(--border-light-color);
   border-radius: 12px;
   overflow: hidden;
-  transition: box-shadow var(--transition-slow), transform var(--transition-slow);
+  transition: box-shadow var(--transition-slow);
 }
 
 main .product-cards .product-card:hover {
   box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
 }
 
-/* Card image — ensure picture and img fill properly */
+/* Card image */
 main .product-cards .product-card-image {
-  width: 100%;
   overflow: hidden;
   background-color: var(--light-color);
 }
@@ -39,14 +38,13 @@ main .product-cards .product-card-image picture {
 main .product-cards .product-card-image img {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 3 / 2;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
 }
 
 main .product-cards .product-card:hover .product-card-image img {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 /* Card content */
@@ -54,12 +52,13 @@ main .product-cards .product-card-content {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: var(--spacing-m);
-  gap: var(--spacing-xs);
+  padding: var(--spacing-l);
+  gap: var(--spacing-s);
+  justify-content: center;
 }
 
 main .product-cards .product-card-content h3 {
-  font-size: var(--heading-font-size-m);
+  font-size: var(--heading-font-size-l);
   font-weight: 500;
   color: var(--text-color);
   margin: 0;
@@ -111,29 +110,32 @@ main .product-cards .product-card-link:hover::after {
   transform: translateX(4px);
 }
 
-/* Tablet: 2 columns */
-@media (width >= 600px) {
-  main .product-cards.two-up {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  main .product-cards.three-up {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Desktop: 2 columns for two-up, 3 columns for three-up */
+/* Desktop: horizontal card layout */
 @media (width >= 900px) {
-  main .product-cards.two-up {
-    grid-template-columns: repeat(2, 1fr);
+  main .product-cards .product-card {
+    flex-direction: row;
+    min-height: 280px;
   }
 
-  main .product-cards.three-up {
-    grid-template-columns: repeat(3, 1fr);
+  main .product-cards .product-card-image {
+    flex: 0 0 42%;
+    min-height: 280px;
   }
 
   main .product-cards .product-card-content {
-    padding: var(--spacing-l);
-    gap: var(--spacing-s);
+    flex: 1;
+    padding: var(--spacing-xl);
+  }
+
+  /* Two-up variant: 2 horizontal cards in a grid row */
+  main .product-cards.two-up {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Three-up variant: 3 horizontal cards in a grid row */
+  main .product-cards.three-up {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
