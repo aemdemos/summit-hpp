@@ -33,10 +33,9 @@ export default function decorate(block) {
   slidesWrapper.setAttribute('aria-label', 'Card carousel slides');
 
   if (!isSingleSlide) {
-    const { indicatorsNav, buttonsContainer } = createSliderControls(rows.length, {
+    const { buttonsContainer } = createSliderControls(rows.length, {
       indicatorsAriaLabel: `Card Carousel Slide Controls for ${blockId}`,
     });
-    block.append(indicatorsNav);
     container.append(buttonsContainer);
   }
 
@@ -133,5 +132,17 @@ export default function decorate(block) {
       const next = e.key === 'ArrowLeft' ? current - 1 : current + 1;
       showSlide(block, next, 'smooth', sliderOpts);
     });
+
+    // Gradient edge masks — toggle based on scroll position
+    function updateGradientMasks() {
+      const { scrollLeft, scrollWidth, clientWidth } = slidesWrapper;
+      const atStart = scrollLeft <= 2;
+      const atEnd = scrollLeft + clientWidth >= scrollWidth - 2;
+      slidesWrapper.classList.toggle('at-start', atStart);
+      slidesWrapper.classList.toggle('at-end', atEnd);
+    }
+
+    slidesWrapper.addEventListener('scroll', updateGradientMasks, { passive: true });
+    updateGradientMasks();
   }
 }
