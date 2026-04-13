@@ -35,7 +35,7 @@ main .card-carousel .card-carousel-card-bg img {
   object-fit: cover;
 }
 
-/* Content — sits above background */
+/* Content — sits above background, no gradient overlay (original has none) */
 main .card-carousel .card-carousel-card-content {
   position: relative;
   z-index: 1;
@@ -43,26 +43,23 @@ main .card-carousel .card-carousel-card-content {
   flex-direction: column;
   gap: var(--spacing-xs);
   padding: 40px;
-  background: linear-gradient(
-    to top,
-    rgb(255 255 255 / 95%) 0%,
-    rgb(255 255 255 / 85%) 60%,
-    rgb(255 255 255 / 40%) 100%
-  );
+  background: transparent;
 }
 
-/* Title — dark text, 28px */
+/* Title — dark text, must override .section.dark-alt color inheritance */
+main .section.dark-alt .card-carousel .card-carousel-card-title,
 main .card-carousel .card-carousel-card-title {
-  color: var(--text-color);
+  color: #292d3a;
   font-size: var(--heading-font-size-m);
   font-weight: 500;
   line-height: 1.2;
   margin: 0;
 }
 
-/* Description — grey text */
+/* Description — grey text, must override section inheritance */
+main .section.dark-alt .card-carousel .card-carousel-card-desc,
 main .card-carousel .card-carousel-card-desc {
-  color: var(--text-secondary-color);
+  color: #67686e;
   font-size: var(--body-font-size-l);
   line-height: 1.5;
   margin: 0;
@@ -73,8 +70,9 @@ main .card-carousel .card-carousel-card-cta-wrap {
   margin-top: var(--spacing-xs);
 }
 
+main .section.dark-alt .card-carousel .card-carousel-card-cta,
 main .card-carousel .card-carousel-card-cta {
-  color: var(--color-hpe-green);
+  color: #068667;
   font-size: var(--body-font-size-l);
   font-weight: 500;
   text-decoration: none;
