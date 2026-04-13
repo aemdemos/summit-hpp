@@ -1,13 +1,15 @@
-/* === Solutions Grid Block === */
+/* === Solutions Grid Block ===
+   Matches original HPE "HPE solutions from edge to cloud" section */
 
-/* Section background */
-main .solutions-grid {
-  background-color: var(--light-color);
+/* Override section light background — original renders this as dark-alt */
+main > .section.light:has(.solutions-grid) {
+  background-color: var(--dark-alt-color);
+  color: var(--text-light-color);
 }
 
 /* Header */
 main .solutions-grid .solutions-grid-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: var(--spacing-l);
 }
 
@@ -15,14 +17,14 @@ main .solutions-grid .solutions-grid-header h2 {
   font-size: var(--heading-font-size-xl);
   font-weight: 500;
   margin-bottom: var(--spacing-s);
-  color: var(--text-color);
+  color: var(--text-light-color);
 }
 
 main .solutions-grid .solutions-grid-header p {
   font-size: var(--body-font-size-m);
-  color: var(--text-secondary-color);
+  color: rgb(255 255 255 / 70%);
   max-width: 640px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* Tiles grid */
@@ -46,7 +48,7 @@ main .solutions-grid .solutions-grid-tile-link:hover {
   text-decoration: none;
 }
 
-/* Image zooms on hover, not the whole tile */
+/* Image zooms on hover */
 main .solutions-grid .solutions-grid-tile-link:hover .solutions-grid-tile-bg img {
   transform: scale(1.08);
 }
@@ -61,11 +63,14 @@ main .solutions-grid .solutions-grid-tile {
   align-items: flex-end;
 }
 
-/* Background image */
+/* Background image — picture element needs explicit sizing */
 main .solutions-grid .solutions-grid-tile-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 main .solutions-grid .solutions-grid-tile-bg img {
