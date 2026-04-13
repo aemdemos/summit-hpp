@@ -260,10 +260,12 @@ header nav .nav-tools-lang:hover {
     align-items: center;
     gap: 0;
     max-width: var(--header-nav-max-width-desktop);
+    height: var(--nav-height);
     padding: var(--header-nav-padding-desktop);
   }
 
   header nav[aria-expanded='true'] {
+    height: var(--nav-height);
     min-height: 0;
     overflow: visible;
   }
