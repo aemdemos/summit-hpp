@@ -140,8 +140,8 @@ main .customer-stories .customer-stories-panel[aria-hidden='true'] {
   }
 }
 
-/* ===== BENTO GRID PANEL (matches original uc-cs-slide-layout) ===== */
-/* Original: 10-column, 2-row CSS Grid, gap 32px, horizontally scrollable.
+/* ===== BENTO GRID PANEL (matches original uc-cs-slide-layout) =====
+   Original: 10-column, 2-row CSS Grid, gap 32px, horizontally scrollable.
    11 tiles alternating text (dark/white bg) and image tiles.
    borderRadius: 0 on all tiles, overflow: clip. */
 

@@ -16,8 +16,8 @@ main > .section.dark-alt:has(.feature-banner:has(h3)) p {
   color: var(--text-secondary-color);
 }
 
-/* === DARK VARIANT (h2-based, e.g. "HPE Services") === */
-/* Dark-alt section keeps its background; add teal gradient accent */
+/* === DARK VARIANT (h2-based, e.g. "HPE Services") ===
+   Dark-alt section keeps its background; add teal gradient accent */
 main > .section.dark-alt:has(.feature-banner:has(h2)) {
   position: relative;
   overflow: hidden;
