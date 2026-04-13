@@ -220,13 +220,22 @@ header nav .nav-tools-search .icon {
   color: rgb(212 212 212);
 }
 
+/* Handle both inline SVG and img-based icons */
 header nav .nav-tools-search .icon svg {
   fill: currentcolor;
   stroke: currentcolor;
 }
 
+header nav .nav-tools-search .icon img {
+  filter: brightness(0) invert(0.85);
+}
+
 header nav .nav-tools-search:hover .icon {
   color: var(--text-light-color);
+}
+
+header nav .nav-tools-search:hover .icon img {
+  filter: brightness(0) invert(1);
 }
 
 header nav .nav-tools-lang {
@@ -277,6 +286,7 @@ header nav .nav-tools-lang:hover {
   }
 
   header nav[aria-expanded='true'] .nav-sections {
+    display: flex;
     align-self: unset;
     padding-top: 0;
   }
@@ -341,8 +351,16 @@ header nav .nav-tools-lang:hover {
     stroke: currentcolor;
   }
 
+  header nav .nav-tools-lang .icon img {
+    filter: brightness(0) invert(0.85);
+  }
+
   header nav .nav-tools-lang:hover .icon {
     color: var(--text-light-color);
+  }
+
+  header nav .nav-tools-lang:hover .icon img {
+    filter: brightness(0) invert(1);
   }
 
   /* Dropdown buttons */
