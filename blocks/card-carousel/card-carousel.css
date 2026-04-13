@@ -42,7 +42,7 @@ main .card-carousel .card-carousel-card-content {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  padding: 40px;
+  padding: 32px;
   background: transparent;
 }
 
@@ -119,11 +119,11 @@ main .card-carousel .card-carousel-card-cta:hover::after {
 @media (width >= 900px) {
   main .card-carousel .card-carousel-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
+    gap: 24px;
   }
 
   main .card-carousel .card-carousel-card {
-    min-height: 300px;
+    min-height: 280px;
   }
 
   main .card-carousel .card-carousel-card-title {

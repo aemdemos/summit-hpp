@@ -378,15 +378,23 @@ main > .section.feature-banner-container {
 }
 
 main > .section.section-header-container {
-  padding: 48px 0 0;
+  padding: 32px 0 0;
 }
 
 main > .section.card-carousel-container {
+  padding: 24px 0;
+}
+
+main > .section.greenlake-promo-container {
   padding: 40px 0;
 }
 
+main > .section.customer-stories-container {
+  padding: 48px 0 40px;
+}
+
 main > .section.product-cards-container {
-  padding: 24px 0 40px;
+  padding: 16px 0 24px;
 }
 
 /* Section metadata: background image sits behind content */

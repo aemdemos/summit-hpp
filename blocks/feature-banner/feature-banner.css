@@ -18,10 +18,14 @@ main > .section.feature-banner-light p {
 }
 
 /* === DARK VARIANT (.feature-banner-dark on section) ===
-   Keeps dark-alt background; adds teal gradient accent */
+   Full-bleed marquee layout matching original HPE Services section (895px).
+   Teal gradient accent simulates original background image. */
 main > .section.feature-banner-dark {
   position: relative;
   overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
 }
 
 main .section.feature-banner-dark .feature-banner-inner {
@@ -29,19 +33,15 @@ main .section.feature-banner-dark .feature-banner-inner {
   z-index: 1;
 }
 
+/* Teal gradient background simulating the original marquee bg image */
 main .section.feature-banner-dark .feature-banner::after {
   content: '';
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 40%;
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    rgb(1 169 130 / 15%) 50%,
-    rgb(1 169 130 / 30%) 100%
-  );
+  inset: 0;
+  background:
+    linear-gradient(135deg, var(--dark-alt-color) 0%, transparent 60%),
+    linear-gradient(315deg, rgb(1 169 130 / 25%) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgb(1 169 130 / 20%) 0%, transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
@@ -147,7 +147,7 @@ main .feature-banner a:hover::after {
   transform: translateX(4px);
 }
 
-/* Desktop — light variant is compact, dark variant gets more space */
+/* Desktop — light variant is compact row, dark variant stays stacked marquee */
 @media (width >= 900px) {
   main .feature-banner {
     padding: 0;
@@ -157,5 +157,18 @@ main .feature-banner a:hover::after {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+  }
+
+  /* Dark variant: keep stacked layout for marquee feel */
+  main .section.feature-banner-dark .feature-banner > div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-l);
+    max-width: 720px;
+  }
+
+  main > .section.feature-banner-dark {
+    min-height: 700px;
+    padding: 120px 0;
   }
 }
