@@ -190,8 +190,8 @@ main .hero-carousel .hero-carousel-nav {
 
 main .hero-carousel .hero-carousel-prev,
 main .hero-carousel .hero-carousel-next {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   border: none;
   border-radius: 50%;
   background: rgb(230 232 233);
