@@ -1,34 +1,35 @@
-/* Feature Banner — two variants:
-   1. "AI for every use case" (h3) — light bg, dark text, dark pill CTA
-   2. "HPE Services" (h2) — dark bg, white text, white pill CTA, teal gradient */
+/* Feature Banner — two variants determined by JS-applied section classes:
+   .feature-banner-light (h3) — "AI for every use case" — white bg, dark text, dark pill CTA
+   .feature-banner-dark (h2) — "HPE Services" — dark-alt bg, white text, white pill CTA, teal gradient
+   Note: nested :has() is invalid in CSS — variants use JS-applied classes instead. */
 
-/* === LIGHT VARIANT (h3-based, e.g. "AI for every use case") === */
-main > .section.dark-alt:has(.feature-banner:has(h3)) {
+/* === LIGHT VARIANT (.feature-banner-light on section) === */
+main > .section.feature-banner-light {
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
-main > .section.dark-alt:has(.feature-banner:has(h3)) h3 {
+main > .section.feature-banner-light h3 {
   color: var(--text-color);
 }
 
-main > .section.dark-alt:has(.feature-banner:has(h3)) p {
+main > .section.feature-banner-light p {
   color: var(--text-secondary-color);
 }
 
-/* === DARK VARIANT (h2-based, e.g. "HPE Services") ===
-   Dark-alt section keeps its background; add teal gradient accent */
-main > .section.dark-alt:has(.feature-banner:has(h2)) {
+/* === DARK VARIANT (.feature-banner-dark on section) ===
+   Keeps dark-alt background; adds teal gradient accent */
+main > .section.feature-banner-dark {
   position: relative;
   overflow: hidden;
 }
 
-main .feature-banner:has(h2) .feature-banner-inner {
+main .section.feature-banner-dark .feature-banner-inner {
   position: relative;
   z-index: 1;
 }
 
-main .feature-banner:has(h2)::after {
+main .section.feature-banner-dark .feature-banner::after {
   content: '';
   position: absolute;
   top: 0;
@@ -45,29 +46,29 @@ main .feature-banner:has(h2)::after {
   z-index: 0;
 }
 
-main .feature-banner:has(h2) h2 {
+main .section.feature-banner-dark h2 {
   color: var(--text-light-color);
 }
 
-main .feature-banner:has(h2) p {
+main .section.feature-banner-dark p {
   color: rgb(255 255 255 / 80%);
 }
 
 /* HPE Services CTA: white pill with dark text + arrow */
-main .feature-banner:has(h2) a.button,
-main .feature-banner:has(h2) a {
+main .section.feature-banner-dark .feature-banner a.button,
+main .section.feature-banner-dark .feature-banner a {
   background-color: white;
   color: var(--dark-color);
 }
 
-main .feature-banner:has(h2) a.button:hover,
-main .feature-banner:has(h2) a:hover {
+main .section.feature-banner-dark .feature-banner a.button:hover,
+main .section.feature-banner-dark .feature-banner a:hover {
   background-color: #e5e5e5;
   color: var(--dark-color);
 }
 
-main .feature-banner:has(h2) a.button::after,
-main .feature-banner:has(h2) a::after {
+main .section.feature-banner-dark .feature-banner a.button::after,
+main .section.feature-banner-dark .feature-banner a::after {
   background-color: var(--dark-color);
 }
 
@@ -83,8 +84,15 @@ main .feature-banner > div {
   gap: var(--spacing-m);
 }
 
-main .feature-banner h2,
+/* H3 (light variant): 36px — matches original devtools value.
+   H2 (dark variant): uses --heading-font-size-xl (52px). */
 main .feature-banner h3 {
+  font-size: 36px;
+  font-weight: 500;
+  margin: 0;
+}
+
+main .feature-banner h2 {
   font-size: var(--heading-font-size-xl);
   font-weight: 500;
   margin: 0;
