@@ -119,11 +119,11 @@ main .card-carousel .card-carousel-card-cta:hover::after {
 @media (width >= 900px) {
   main .card-carousel .card-carousel-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 16px;
   }
 
   main .card-carousel .card-carousel-card {
-    min-height: 280px;
+    min-height: 250px;
   }
 
   main .card-carousel .card-carousel-card-title {

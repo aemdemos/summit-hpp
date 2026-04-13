@@ -114,17 +114,17 @@ main .product-cards .product-card-link:hover::after {
 @media (width >= 900px) {
   main .product-cards .product-card {
     flex-direction: row;
-    min-height: 220px;
+    min-height: 200px;
   }
 
   main .product-cards .product-card-image {
-    flex: 0 0 42%;
-    min-height: 220px;
+    flex: 0 0 38%;
+    min-height: 200px;
   }
 
   main .product-cards .product-card-content {
     flex: 1;
-    padding: var(--spacing-l);
+    padding: var(--spacing-m);
   }
 
   /* Two-up variant: full-width stacked cards (original is NOT a 2-col grid) */
@@ -137,5 +137,16 @@ main .product-cards .product-card-link:hover::after {
   main .product-cards.three-up {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  main .product-cards.three-up .product-card {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  main .product-cards.three-up .product-card-image {
+    flex: 0 0 auto;
+    min-height: auto;
+    aspect-ratio: 3 / 2;
   }
 }

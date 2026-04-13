@@ -4,7 +4,7 @@ main .section-header {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
-  padding-bottom: var(--spacing-m);
+  padding-bottom: var(--spacing-xs);
 }
 
 main .section-header h2 {
@@ -37,10 +37,10 @@ main .section-header a:hover {
 @media (width >= 900px) {
   main .section-header {
     max-width: 900px;
-    padding-bottom: var(--spacing-l);
+    padding-bottom: var(--spacing-s);
   }
 
   main .section-header h2 {
-    margin-bottom: var(--spacing-m);
+    margin-bottom: var(--spacing-s);
   }
 }
