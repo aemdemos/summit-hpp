@@ -39,12 +39,12 @@ main .news-carousel .news-carousel-card {
   flex-direction: column;
 }
 
-/* Card image — taller aspect ratio matching original */
+/* Card image — portrait aspect ratio matching original (576:870 ≈ 2:3) */
 main .news-carousel .news-carousel-card-image {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 576 / 870;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 main .news-carousel .news-carousel-card-image picture {
@@ -136,27 +136,26 @@ main .news-carousel .news-carousel-nav {
   gap: var(--spacing-s);
 }
 
-/* Nav buttons */
+/* Nav buttons — solid light grey circles matching hero buttons */
 main .news-carousel .news-carousel-btn {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  border: 1px solid rgb(255 255 255 / 40%);
-  background-color: transparent;
-  color: var(--text-light-color);
+  border: none;
+  background-color: rgb(230 232 233);
+  color: var(--dark-color);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
   margin: 0;
-  transition: background-color var(--transition-base), border-color var(--transition-base);
+  transition: background-color var(--transition-base);
   position: relative;
 }
 
 main .news-carousel .news-carousel-btn:hover {
-  background-color: rgb(255 255 255 / 10%);
-  border-color: rgb(255 255 255 / 60%);
+  background-color: rgb(200 203 207);
 }
 
 main .news-carousel .news-carousel-btn:disabled {
@@ -164,13 +163,13 @@ main .news-carousel .news-carousel-btn:disabled {
   cursor: default;
 }
 
-/* Arrow icons via pseudo-elements */
+/* Arrow icons — dark chevrons on light bg */
 main .news-carousel .news-carousel-btn::after {
   content: '';
   display: block;
-  width: 10px;
-  height: 10px;
-  border: 2px solid var(--text-light-color);
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--dark-color);
   border-bottom: 0;
   border-left: 0;
   position: absolute;
@@ -184,20 +183,20 @@ main .news-carousel .news-carousel-btn-next::after {
   left: calc(50% - 2px);
 }
 
-/* Explore more news link */
+/* Explore more news — white pill button matching original */
 main .news-carousel .news-carousel-explore {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  padding: 14px 28px;
-  border: 2px solid var(--color-hpe-green);
-  border-radius: var(--button-border-radius);
-  color: var(--text-light-color);
-  font-size: var(--body-font-size-s);
+  padding: 20px 36px;
+  border: none;
+  border-radius: 100px;
+  color: var(--dark-color);
+  font-size: var(--body-font-size-l);
   font-weight: 500;
   text-decoration: none;
-  transition: var(--button-transition);
-  background-color: transparent;
+  transition: background-color 0.2s;
+  background-color: white;
 }
 
 main .news-carousel .news-carousel-explore::after {
@@ -205,7 +204,7 @@ main .news-carousel .news-carousel-explore::after {
   display: inline-block;
   width: 14px;
   height: 14px;
-  background-color: var(--text-light-color);
+  background-color: var(--dark-color);
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17 8l4 4m0 0l-4 4m4-4H3'/%3E%3C/svg%3E") center/contain no-repeat;
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17 8l4 4m0 0l-4 4m4-4H3'/%3E%3C/svg%3E") center/contain no-repeat;
@@ -213,8 +212,8 @@ main .news-carousel .news-carousel-explore::after {
 }
 
 main .news-carousel .news-carousel-explore:hover {
-  background-color: var(--color-hpe-green);
-  color: var(--text-light-color);
+  background-color: #e5e5e5;
+  color: var(--dark-color);
   text-decoration: none;
 }
 
@@ -244,12 +243,12 @@ main .news-carousel .news-carousel-explore:hover::after {
   }
 
   main .news-carousel .news-carousel-btn {
-    width: 44px;
-    height: 44px;
+    width: 56px;
+    height: 56px;
   }
 
   main .news-carousel .news-carousel-btn::after {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
   }
 }
