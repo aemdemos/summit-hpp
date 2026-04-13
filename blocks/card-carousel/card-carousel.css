@@ -123,7 +123,7 @@ main .card-carousel .card-carousel-card-cta:hover::after {
   }
 
   main .card-carousel .card-carousel-card {
-    min-height: 373px;
+    min-height: 300px;
   }
 
   main .card-carousel .card-carousel-card-title {

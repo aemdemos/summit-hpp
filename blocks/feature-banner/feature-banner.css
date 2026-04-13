@@ -74,7 +74,7 @@ main .section.feature-banner-dark .feature-banner a::after {
 
 /* === SHARED BASE STYLES === */
 main .feature-banner {
-  padding: var(--spacing-xl) 0;
+  padding: 0;
   text-align: left;
 }
 
@@ -147,9 +147,15 @@ main .feature-banner a:hover::after {
   transform: translateX(4px);
 }
 
-/* Desktop */
+/* Desktop — light variant is compact, dark variant gets more space */
 @media (width >= 900px) {
   main .feature-banner {
-    padding: var(--spacing-section) 0;
+    padding: 0;
+  }
+
+  main .feature-banner > div {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 }

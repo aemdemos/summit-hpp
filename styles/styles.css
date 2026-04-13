@@ -364,6 +364,31 @@ main > .section:first-of-type {
   padding-top: 0;
 }
 
+/* Per-section padding overrides — match original HPE site */
+main > .section.hero-carousel-container {
+  padding: 0;
+}
+
+main > .section.news-carousel-container {
+  padding: 48px 0 40px;
+}
+
+main > .section.feature-banner-container {
+  padding: 32px 0;
+}
+
+main > .section.section-header-container {
+  padding: 48px 0 0;
+}
+
+main > .section.card-carousel-container {
+  padding: 40px 0;
+}
+
+main > .section.product-cards-container {
+  padding: 24px 0 40px;
+}
+
 /* Section metadata: background image sits behind content */
 main > .section:has(> .bg-image) {
   position: relative;
