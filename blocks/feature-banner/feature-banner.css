@@ -1,21 +1,77 @@
-/* Feature Banner — left-aligned text section with dark pill CTA
-   Matches original HPE homepage "AI for every use case" and "HPE Services" sections */
+/* Feature Banner — two variants:
+   1. "AI for every use case" (h3) — light bg, dark text, dark pill CTA
+   2. "HPE Services" (h2) — dark bg, white text, white pill CTA, teal gradient */
 
-/* Override section dark-alt background — original renders these as light sections */
-main > .section.dark-alt:has(.feature-banner) {
+/* === LIGHT VARIANT (h3-based, e.g. "AI for every use case") === */
+main > .section.dark-alt:has(.feature-banner:has(h3)) {
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
-main > .section.dark-alt:has(.feature-banner) h2,
-main > .section.dark-alt:has(.feature-banner) h3 {
+main > .section.dark-alt:has(.feature-banner:has(h3)) h3 {
   color: var(--text-color);
 }
 
-main > .section.dark-alt:has(.feature-banner) p {
+main > .section.dark-alt:has(.feature-banner:has(h3)) p {
   color: var(--text-secondary-color);
 }
 
+/* === DARK VARIANT (h2-based, e.g. "HPE Services") === */
+/* Dark-alt section keeps its background; add teal gradient accent */
+main > .section.dark-alt:has(.feature-banner:has(h2)) {
+  position: relative;
+  overflow: hidden;
+}
+
+main .feature-banner:has(h2) .feature-banner-inner {
+  position: relative;
+  z-index: 1;
+}
+
+main .feature-banner:has(h2)::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgb(1 169 130 / 15%) 50%,
+    rgb(1 169 130 / 30%) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+main .feature-banner:has(h2) h2 {
+  color: var(--text-light-color);
+}
+
+main .feature-banner:has(h2) p {
+  color: rgb(255 255 255 / 80%);
+}
+
+/* HPE Services CTA: white pill with dark text + arrow */
+main .feature-banner:has(h2) a.button,
+main .feature-banner:has(h2) a {
+  background-color: white;
+  color: var(--dark-color);
+}
+
+main .feature-banner:has(h2) a.button:hover,
+main .feature-banner:has(h2) a:hover {
+  background-color: #e5e5e5;
+  color: var(--dark-color);
+}
+
+main .feature-banner:has(h2) a.button::after,
+main .feature-banner:has(h2) a::after {
+  background-color: var(--dark-color);
+}
+
+/* === SHARED BASE STYLES === */
 main .feature-banner {
   padding: var(--spacing-xl) 0;
   text-align: left;
@@ -29,20 +85,18 @@ main .feature-banner > div {
 
 main .feature-banner h2,
 main .feature-banner h3 {
-  color: var(--text-color);
   font-size: var(--heading-font-size-xl);
   font-weight: 500;
   margin: 0;
 }
 
 main .feature-banner p {
-  color: var(--text-secondary-color);
   font-size: var(--body-font-size-l);
   line-height: 1.5;
   margin: 0;
 }
 
-/* CTA: dark pill button with arrow — matches original */
+/* CTA: default dark pill with white text + arrow */
 main .feature-banner a.button,
 main .feature-banner a {
   display: inline-flex;
@@ -90,41 +144,4 @@ main .feature-banner a:hover::after {
   main .feature-banner {
     padding: var(--spacing-section) 0;
   }
-
-  main .feature-banner h2,
-  main .feature-banner h3 {
-    font-size: 36px;
-  }
-
-  main .feature-banner p {
-    font-size: var(--body-font-size-l);
-  }
-}
-
-/* Teal gradient accent for HPE Services feature-banner (has h2 heading) */
-main .feature-banner:has(h2)::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 40%;
-  background: linear-gradient(
-    135deg,
-    transparent 0%,
-    rgb(1 169 130 / 15%) 50%,
-    rgb(1 169 130 / 30%) 100%
-  );
-  pointer-events: none;
-  z-index: 0;
-}
-
-main > .section:has(.feature-banner:has(h2)) {
-  position: relative;
-  overflow: hidden;
-}
-
-main .feature-banner:has(h2) .feature-banner-inner {
-  position: relative;
-  z-index: 1;
 }
