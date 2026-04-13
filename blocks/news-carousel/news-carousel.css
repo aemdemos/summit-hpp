@@ -183,7 +183,9 @@ main .news-carousel .news-carousel-btn-next::after {
   left: calc(50% - 2px);
 }
 
-/* Explore more news — white pill button matching original */
+/* Explore more news — white pill button matching original.
+   Specificity must beat .section.dark a { color: white } */
+main .section.dark .news-carousel .news-carousel-explore,
 main .news-carousel .news-carousel-explore {
   display: inline-flex;
   align-items: center;
@@ -211,6 +213,7 @@ main .news-carousel .news-carousel-explore::after {
   transition: transform 0.2s;
 }
 
+main .section.dark .news-carousel .news-carousel-explore:hover,
 main .news-carousel .news-carousel-explore:hover {
   background-color: #e5e5e5;
   color: var(--dark-color);
@@ -239,7 +242,7 @@ main .news-carousel .news-carousel-explore:hover::after {
 @media (width >= 900px) {
   main .news-carousel .news-carousel-card {
     flex: 0 0 calc((100% - 4 * var(--spacing-m)) / 5);
-    min-width: 280px;
+    min-width: 0;
   }
 
   main .news-carousel .news-carousel-btn {
