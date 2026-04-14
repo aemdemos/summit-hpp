@@ -114,12 +114,12 @@ main .product-cards .product-card-link:hover::after {
 @media (width >= 900px) {
   main .product-cards .product-card {
     flex-direction: row;
-    min-height: 200px;
+    min-height: 190px;
   }
 
   main .product-cards .product-card-image {
     flex: 0 0 38%;
-    min-height: 200px;
+    min-height: 190px;
   }
 
   main .product-cards .product-card-content {
@@ -133,9 +133,37 @@ main .product-cards .product-card-link:hover::after {
     flex-direction: column;
   }
 
-  /* Three-up variant: full-width stacked like two-up (original layout) */
+  /* Three-up variant: compact stacked cards (original ~161px per card) */
   main .product-cards.three-up {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  main .product-cards.three-up .product-card {
+    min-height: 130px;
+  }
+
+  main .product-cards.three-up .product-card-image {
+    flex: 0 0 28%;
+    min-height: 130px;
+  }
+
+  main .product-cards.three-up .product-card-content {
+    padding: var(--spacing-s) var(--spacing-m);
+    gap: var(--spacing-xs);
+  }
+
+  main .product-cards.three-up .product-card-content h3 {
+    font-size: 28px;
+  }
+
+  main .product-cards.three-up .product-card-content p {
+    font-size: var(--body-font-size-xs);
+    line-height: 1.4;
+  }
+
+  main .product-cards.three-up .product-card-cta {
+    padding-top: var(--spacing-xs);
   }
 }
