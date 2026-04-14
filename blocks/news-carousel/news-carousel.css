@@ -6,6 +6,26 @@ main .news-carousel {
   position: relative;
 }
 
+/* Hero image — full-width above card track */
+main .news-carousel .news-carousel-hero {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: var(--spacing-l);
+}
+
+main .news-carousel .news-carousel-hero picture {
+  display: block;
+  width: 100%;
+}
+
+main .news-carousel .news-carousel-hero img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 500px;
+}
+
 /* Heading */
 main .news-carousel .news-carousel-heading {
   color: var(--text-light-color);

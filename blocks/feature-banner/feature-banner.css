@@ -33,15 +33,14 @@ main .section.feature-banner-dark .feature-banner-inner {
   z-index: 1;
 }
 
-/* Teal gradient background simulating the original marquee bg image */
+/* Dark overlay on bg-image for readability + teal accent */
 main .section.feature-banner-dark .feature-banner::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(135deg, var(--dark-alt-color) 0%, transparent 60%),
-    linear-gradient(315deg, rgb(1 169 130 / 25%) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 50%, rgb(1 169 130 / 20%) 0%, transparent 60%);
+    linear-gradient(135deg, rgb(41 45 58 / 85%) 0%, rgb(41 45 58 / 50%) 60%),
+    linear-gradient(315deg, rgb(1 169 130 / 15%) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
