@@ -10,16 +10,27 @@ main > .section.light:has(.solutions-grid) {
   color: var(--text-light-color);
 }
 
-/* Section header (default content above block) */
+/* Header — works both inside block (legacy) and as section default content */
+main .solutions-grid .solutions-grid-header,
+main > .section.light:has(.solutions-grid) > .default-content-wrapper {
+  text-align: left;
+  margin-bottom: var(--spacing-l);
+}
+
+main .solutions-grid .solutions-grid-header h2,
 main > .section.light:has(.solutions-grid) h2 {
+  font-size: var(--heading-font-size-xl);
+  font-weight: 500;
   color: var(--text-light-color);
   margin-bottom: var(--spacing-s);
 }
 
-main > .section.light:has(.solutions-grid) p {
+main .solutions-grid .solutions-grid-header p,
+main > .section.light:has(.solutions-grid) > .default-content-wrapper p {
+  font-size: var(--body-font-size-l);
   color: rgb(229 229 229);
   max-width: 640px;
-  margin-bottom: var(--spacing-l);
+  margin: 0;
 }
 
 /* Tiles — horizontal row of equal cards */
