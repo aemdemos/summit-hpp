@@ -133,32 +133,9 @@ main .product-cards .product-card-link:hover::after {
     flex-direction: column;
   }
 
-  /* Three-up variant: 3 compact horizontal cards in a grid row */
+  /* Three-up variant: full-width stacked like two-up (original layout) */
   main .product-cards.three-up {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-s);
-  }
-
-  main .product-cards.three-up .product-card {
-    flex-direction: row;
-    min-height: 240px;
-  }
-
-  main .product-cards.three-up .product-card-image {
-    flex: 0 0 40%;
-    min-height: 240px;
-  }
-
-  main .product-cards.three-up .product-card-content {
-    padding: var(--spacing-s);
-  }
-
-  main .product-cards.three-up .product-card-content h3 {
-    font-size: 24px;
-  }
-
-  main .product-cards.three-up .product-card-content p {
-    font-size: var(--body-font-size-xs);
+    display: flex;
+    flex-direction: column;
   }
 }
