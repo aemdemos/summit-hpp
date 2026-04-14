@@ -8,14 +8,14 @@ main .section-header {
 }
 
 main .section-header h2 {
-  margin-bottom: var(--spacing-s);
+  margin-bottom: var(--spacing-xs);
 }
 
 main .section-header p {
   color: var(--text-secondary-color);
   font-size: var(--body-font-size-m);
   line-height: 1.5;
-  margin-bottom: var(--spacing-s);
+  margin-bottom: var(--spacing-xs);
 }
 
 main .section-header p:last-child {
