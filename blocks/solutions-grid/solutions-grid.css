@@ -10,24 +10,16 @@ main > .section.light:has(.solutions-grid) {
   color: var(--text-light-color);
 }
 
-/* Header */
-main .solutions-grid .solutions-grid-header {
-  text-align: left;
-  margin-bottom: var(--spacing-l);
-}
-
-main .solutions-grid .solutions-grid-header h2 {
-  font-size: var(--heading-font-size-xl);
-  font-weight: 500;
-  margin-bottom: var(--spacing-s);
+/* Section header (default content above block) */
+main > .section.light:has(.solutions-grid) h2 {
   color: var(--text-light-color);
+  margin-bottom: var(--spacing-s);
 }
 
-main .solutions-grid .solutions-grid-header p {
-  font-size: var(--body-font-size-l);
+main > .section.light:has(.solutions-grid) p {
   color: rgb(229 229 229);
   max-width: 640px;
-  margin: 0;
+  margin-bottom: var(--spacing-l);
 }
 
 /* Tiles — horizontal row of equal cards */
@@ -152,10 +144,6 @@ main .solutions-grid .solutions-grid-tile-link:focus-visible {
 
 /* === Desktop (900px+) — 5 equal columns in a single row === */
 @media (width >= 900px) {
-  main .solutions-grid .solutions-grid-header {
-    margin-bottom: var(--spacing-xl);
-  }
-
   main .solutions-grid .solutions-grid-tiles {
     grid-template-columns: repeat(5, 1fr);
     gap: 0;
