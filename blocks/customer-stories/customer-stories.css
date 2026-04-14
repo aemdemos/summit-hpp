@@ -12,8 +12,49 @@ main .customer-stories {
   padding: 0;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER (inside block or as section default content) ===== */
 
+/* Section default content header (when header is outside block) */
+main > .section.customer-stories-light > .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+  padding: 0 var(--spacing-m);
+  margin-bottom: var(--spacing-l);
+}
+
+main > .section.customer-stories-light > .default-content-wrapper h2 {
+  color: #292d3a;
+  font-size: var(--heading-font-size-xl);
+  margin-bottom: var(--spacing-xs);
+}
+
+main > .section.customer-stories-light > .default-content-wrapper p {
+  color: var(--text-secondary-color);
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+}
+
+main > .section.customer-stories-light > .default-content-wrapper a.button {
+  background-color: #292d3a;
+  border: none;
+  color: var(--text-light-color);
+  font-size: var(--body-font-size-l);
+  padding: 20px 36px;
+  white-space: nowrap;
+  border-radius: 100px;
+}
+
+@media (width >= 900px) {
+  main > .section.customer-stories-light > .default-content-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0;
+  }
+}
+
+/* In-block header */
 main .customer-stories .customer-stories-header {
   display: flex;
   flex-direction: column;
