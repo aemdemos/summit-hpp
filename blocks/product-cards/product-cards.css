@@ -141,12 +141,12 @@ main .product-cards .product-card-link:hover::after {
   }
 
   main .product-cards.three-up .product-card {
-    min-height: 130px;
+    min-height: 120px;
   }
 
   main .product-cards.three-up .product-card-image {
-    flex: 0 0 28%;
-    min-height: 130px;
+    flex: 0 0 24%;
+    min-height: 120px;
   }
 
   main .product-cards.three-up .product-card-content {
