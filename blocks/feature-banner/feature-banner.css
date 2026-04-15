@@ -3,18 +3,9 @@
    .feature-banner-dark (h2) — "HPE Services" — dark-alt bg, white text, white pill CTA, teal gradient
    Note: nested :has() is invalid in CSS — variants use JS-applied classes instead. */
 
-/* === LIGHT VARIANT (.feature-banner-light on section) === */
+/* === LIGHT VARIANT — deprecated / hidden === */
 main > .section.feature-banner-light {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
-
-main > .section.feature-banner-light h3 {
-  color: var(--text-color);
-}
-
-main > .section.feature-banner-light p {
-  color: var(--text-secondary-color);
+  display: none;
 }
 
 /* === DARK VARIANT (.feature-banner-dark on section) ===
