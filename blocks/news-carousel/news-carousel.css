@@ -32,7 +32,7 @@ main .news-carousel .news-carousel-heading {
   font-size: var(--heading-font-size-xl);
   font-weight: 500;
   letter-spacing: -1.04px;
-  margin-bottom: var(--spacing-l);
+  margin-bottom: 68px;
 }
 
 /* Scrolling card track */
@@ -88,39 +88,52 @@ main .news-carousel .news-carousel-track-wrapper.at-end::after {
   opacity: 0;
 }
 
-/* Individual card — text-only dark tile matching original (720×398) */
+/* Individual card — portrait tile with image top, text below (249×693 original) */
 main .news-carousel .news-carousel-card {
-  flex: 0 0 720px;
-  min-width: 720px;
-  min-height: 398px;
-  background-color: var(--dark-alt-color);
+  flex: 0 0 280px;
+  min-width: 280px;
+  background-color: transparent;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  overflow: clip;
 }
 
-/* Card image — hidden (original has no images in cards, just text tiles) */
+/* Card image — portrait aspect ratio (251×377 ≈ 2:3) */
 main .news-carousel .news-carousel-card-image {
-  display: none;
+  width: 100%;
+  aspect-ratio: 576 / 870;
+  overflow: hidden;
+  border-radius: 0;
 }
 
-/* Card content — fills full card */
+main .news-carousel .news-carousel-card-image picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+main .news-carousel .news-carousel-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Card content */
 main .news-carousel .news-carousel-card-content {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: var(--spacing-xl) var(--spacing-l);
-  gap: var(--spacing-s);
-  justify-content: space-between;
+  padding: 40px 0 var(--spacing-m);
+  gap: var(--spacing-xs);
 }
 
-/* Card title — large heading matching original 36px */
+/* Card title — 16px matching original h6 */
 main .news-carousel .news-carousel-card-title {
   color: var(--text-light-color);
-  font-size: 36px;
+  font-size: var(--body-font-size-s);
   font-weight: 500;
-  line-height: 1.17;
+  line-height: 1.4;
   margin: 0;
 }
 
@@ -131,15 +144,16 @@ main .news-carousel .news-carousel-card-description {
   line-height: 1.4;
 }
 
-/* Card CTA link — white text with green arrow matching original dark card style */
+/* Card CTA link — green with arrow matching original */
 main .news-carousel .news-carousel-card-cta-wrap {
   margin-top: auto;
   padding-top: var(--spacing-xs);
 }
 
+main .section.dark .news-carousel .news-carousel-card-cta,
 main .news-carousel .news-carousel-card-cta {
-  color: var(--text-light-color);
-  font-size: var(--body-font-size-m);
+  color: var(--color-hpe-green);
+  font-size: var(--body-font-size-s);
   font-weight: 500;
   text-decoration: none;
   display: inline-flex;
@@ -160,7 +174,7 @@ main .news-carousel .news-carousel-card-cta::after {
 }
 
 main .news-carousel .news-carousel-card-cta:hover {
-  color: var(--color-hpe-green);
+  color: var(--color-hpe-green-hover);
 }
 
 main .news-carousel .news-carousel-card-cta:hover::after {
@@ -172,7 +186,7 @@ main .news-carousel .news-carousel-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: var(--spacing-l);
+  margin-top: 80px;
   gap: var(--spacing-m);
 }
 
@@ -304,8 +318,7 @@ main .news-carousel .news-carousel-explore:hover::after {
 /* === Desktop (900px+) === */
 @media (width >= 900px) {
   main .news-carousel .news-carousel-card {
-    flex: 0 0 720px;
-    min-width: 720px;
-    min-height: 398px;
+    flex: 0 0 calc((100% - 4 * 40px) / 5);
+    min-width: 0;
   }
 }
