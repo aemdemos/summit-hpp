@@ -264,6 +264,18 @@ header nav .nav-tools-lang:hover {
     padding: var(--header-nav-padding-desktop);
   }
 
+  /* Ultra-wide: group nav elements together instead of spreading to edges */
+  @media (width >= 1920px) {
+    header nav {
+      justify-content: flex-start;
+      gap: var(--spacing-xl);
+    }
+
+    header nav .nav-sections {
+      justify-content: flex-start;
+    }
+  }
+
   header nav[aria-expanded='true'] {
     height: var(--nav-height);
     min-height: 0;

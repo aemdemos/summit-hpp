@@ -6,10 +6,29 @@ export default async function decorate(block) {
   const rows = [...block.children];
   if (rows.length < 2) return;
 
-  // First row = heading, last row = footer CTA, middle rows = cards
-  const headingRow = rows[0];
+  // Find heading row (the one with h2), hero image row (before heading), footer CTA (last), cards (rest)
   const footerRow = rows[rows.length - 1];
-  const cardRows = rows.slice(1, rows.length - 1);
+  const headingIndex = rows.findIndex((r) => r.querySelector('h2'));
+  const headingRow = headingIndex >= 0 ? rows[headingIndex] : rows[0];
+  const heroRow = headingIndex > 0
+    && rows[headingIndex - 1].querySelector('img')
+    && !rows[headingIndex - 1].querySelector('h2, h6')
+    ? rows[headingIndex - 1]
+    : null;
+  const cardStartIndex = headingIndex >= 0 ? headingIndex + 1 : 1;
+  const cardRows = rows.slice(cardStartIndex, rows.length - 1);
+
+  // --- Hero image (optional full-width image above cards) ---
+  let heroImage = null;
+  if (heroRow) {
+    const picture = heroRow.querySelector('picture');
+    if (picture) {
+      heroImage = document.createElement('div');
+      heroImage.classList.add('news-carousel-hero');
+      heroImage.append(picture);
+    }
+    heroRow.remove();
+  }
 
   // --- Heading ---
   const heading = headingRow.querySelector('h2');
@@ -119,6 +138,11 @@ export default async function decorate(block) {
   // Reinsert heading at top
   if (heading) {
     block.prepend(heading);
+  }
+
+  // Insert hero image above heading if present
+  if (heroImage) {
+    block.prepend(heroImage);
   }
 
   // --- Scroll behaviour with gradient state ---

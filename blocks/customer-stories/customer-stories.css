@@ -9,11 +9,52 @@ main > .section.customer-stories-light {
 
 /* Block container */
 main .customer-stories {
-  padding: var(--spacing-xl) 0;
+  padding: 0;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER (inside block or as section default content) ===== */
 
+/* Section default content header (when header is outside block) */
+main > .section.customer-stories-light > .default-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+  padding: 0 var(--spacing-m);
+  margin-bottom: var(--spacing-l);
+}
+
+main > .section.customer-stories-light > .default-content-wrapper h2 {
+  color: #292d3a;
+  font-size: var(--heading-font-size-xl);
+  margin-bottom: var(--spacing-xs);
+}
+
+main > .section.customer-stories-light > .default-content-wrapper p {
+  color: var(--text-secondary-color);
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+}
+
+main > .section.customer-stories-light > .default-content-wrapper a.button {
+  background-color: #292d3a;
+  border: none;
+  color: var(--text-light-color);
+  font-size: var(--body-font-size-l);
+  padding: 20px 36px;
+  white-space: nowrap;
+  border-radius: 100px;
+}
+
+@media (width >= 900px) {
+  main > .section.customer-stories-light > .default-content-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0;
+  }
+}
+
+/* In-block header */
 main .customer-stories .customer-stories-header {
   display: flex;
   flex-direction: column;
@@ -320,39 +361,58 @@ main .customer-stories .customer-stories-solution {
   display: flex;
 }
 
-/* ===== DESKTOP BENTO GRID (900px+) ===== */
+/* ===== DESKTOP HORIZONTAL MASONRY (900px+) ===== */
 
 @media (width >= 900px) {
-  main .customer-stories .customer-stories-grid {
+  /* Make the entire panel a horizontal scrolling grid */
+  main .customer-stories .customer-stories-panel {
     display: grid;
     grid-template-columns: 2fr 2fr 1fr;
-    grid-template-rows: 398px 428px;
-    gap: 32px;
+    grid-template-rows: 398px 398px;
+    gap: 24px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-top: var(--spacing-m);
   }
 
-  /* Row 1: intro (text), image, objectives (text) */
+  main .customer-stories .customer-stories-panel::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* The inner grid dissolves into the panel grid */
+  main .customer-stories .customer-stories-grid {
+    display: contents;
+  }
+
+  /* Row 1: intro, objectives, outcomes */
   main .customer-stories .customer-stories-intro {
+    grid-column: 1;
     grid-row: 1;
   }
 
   main .customer-stories .customer-stories-objectives {
+    grid-column: 2;
     grid-row: 1;
   }
 
   main .customer-stories .customer-stories-outcomes {
+    grid-column: 3;
     grid-row: 1;
   }
 
-  /* Row 2: quote, solution */
+  /* Row 2: quote spans 2 cols, solution 1 col */
   main .customer-stories .customer-stories-quote {
+    grid-column: 1 / 3;
     grid-row: 2;
   }
 
   main .customer-stories .customer-stories-solution {
+    grid-column: 3;
     grid-row: 2;
   }
 
-  /* All tiles same min-height */
+  /* All tiles fill their grid areas */
   main .customer-stories .customer-stories-intro,
   main .customer-stories .customer-stories-objectives,
   main .customer-stories .customer-stories-outcomes,
@@ -360,6 +420,27 @@ main .customer-stories .customer-stories-solution {
   main .customer-stories .customer-stories-solution {
     min-height: 0;
   }
+}
+
+/* ===== SCROLL INDICATORS ===== */
+
+main .customer-stories .customer-stories-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: var(--spacing-m) 0;
+}
+
+main .customer-stories .customer-stories-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgb(0 0 0 / 20%);
+  transition: background-color var(--transition-base);
+}
+
+main .customer-stories .customer-stories-dot.active {
+  background-color: var(--color-hpe-green);
 }
 
 /* ===== SIMPLE PANEL ===== */
