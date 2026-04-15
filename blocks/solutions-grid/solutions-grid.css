@@ -1,12 +1,11 @@
 /* === Solutions Grid Block ===
    Original HPE: 5 equal solid-dark cards in a horizontal row.
-   Verified via devtools: tiles are ~274×427px, bg: rgb(41,45,58),
-   borderRadius: 0, no background images, white text + green CTA.
-   Section is full-width on a dark background. */
+   Section bg: --dark-color, Card bg: --dark-alt-color (lighter).
+   Cards have rounded corners, small gaps, text at top, CTA at bottom. */
 
-/* Override section light background — original context is dark */
+/* Override section light background — original uses darker bg than cards */
 main > .section.light:has(.solutions-grid) {
-  background-color: var(--dark-alt-color);
+  background-color: var(--dark-color);
   color: var(--text-light-color);
 }
 
@@ -14,7 +13,7 @@ main > .section.light:has(.solutions-grid) {
 main .solutions-grid .solutions-grid-header,
 main > .section.light:has(.solutions-grid) > .default-content-wrapper {
   text-align: left;
-  margin-bottom: var(--spacing-l);
+  margin-bottom: var(--spacing-xl);
 }
 
 main .solutions-grid .solutions-grid-header h2,
@@ -28,8 +27,8 @@ main > .section.light:has(.solutions-grid) h2 {
 main .solutions-grid .solutions-grid-header p,
 main > .section.light:has(.solutions-grid) > .default-content-wrapper p {
   font-size: var(--body-font-size-l);
-  color: rgb(229 229 229);
-  max-width: 640px;
+  color: #e5e5e5;
+  letter-spacing: -0.2px;
   margin: 0;
 }
 
@@ -37,14 +36,14 @@ main > .section.light:has(.solutions-grid) > .default-content-wrapper p {
 main .solutions-grid .solutions-grid-tiles {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0;
+  gap: 8px;
 }
 
 /* Tile link wrapper — full clickable area */
 main .solutions-grid .solutions-grid-tile-link {
-  display: block;
+  display: flex;
   text-decoration: none;
-  overflow: hidden;
+  border-radius: 0;
   transition: box-shadow var(--transition-slow);
 }
 
@@ -53,34 +52,21 @@ main .solutions-grid .solutions-grid-tile-link:hover {
   text-decoration: none;
 }
 
-/* Tile — solid dark card, no background image */
+/* Tile — solid dark card with rounded corners */
 main .solutions-grid .solutions-grid-tile {
   position: relative;
   border-radius: 0;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   background-color: var(--dark-alt-color);
   min-height: 300px;
+  width: 100%;
 }
 
-/* Background image — hidden by default (original has none visible) */
+/* Background image — hidden (original has no visible images in tiles) */
 main .solutions-grid .solutions-grid-tile-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  opacity: 0.15;
-}
-
-main .solutions-grid .solutions-grid-tile-bg img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: none;
 }
 
 /* No overlay needed — tiles are solid dark */
@@ -88,35 +74,44 @@ main .solutions-grid .solutions-grid-tile-overlay {
   display: none;
 }
 
-/* Content layer */
+/* Content layer — text at top, CTA pushed to bottom */
 main .solutions-grid .solutions-grid-tile-content {
   position: relative;
   z-index: 1;
-  padding: var(--spacing-l);
+  padding: 40px;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  width: 100%;
+  flex: 1;
+}
+
+/* Push CTA to bottom of card */
+main .solutions-grid .solutions-grid-tile-cta {
+  margin-top: auto;
+  padding-top: var(--spacing-l);
 }
 
 main .solutions-grid .solutions-grid-tile-content h3 {
   font-size: 28px;
   font-weight: 500;
   color: var(--text-light-color);
+  letter-spacing: -0.28px;
+  line-height: 1.21;
   margin: 0;
 }
 
 main .solutions-grid .solutions-grid-tile-content p {
-  font-size: var(--body-font-size-s);
-  color: rgb(255 255 255 / 80%);
-  line-height: 1.4;
-  margin: 0;
+  font-size: var(--body-font-size-l);
+  color: #e5e5e5;
+  line-height: 1.5;
+  letter-spacing: -0.2px;
+  margin: 0 0 10px;
 }
 
-/* CTA — white text with green arrow (original: white CTA) */
+/* CTA — teal green with arrow matching original */
 main .solutions-grid .solutions-grid-tile-cta a {
-  color: var(--text-light-color);
-  font-size: var(--body-font-size-s);
+  color: #00e0af;
+  font-size: var(--body-font-size-l);
   font-weight: 500;
   text-decoration: none;
   display: inline-flex;
@@ -129,7 +124,7 @@ main .solutions-grid .solutions-grid-tile-cta a::after {
   display: inline-block;
   width: 12px;
   height: 12px;
-  background-color: var(--color-hpe-green);
+  background-color: #00e0af;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17 8l4 4m0 0l-4 4m4-4H3'/%3E%3C/svg%3E") center/contain no-repeat;
   /* stylelint-disable-next-line property-no-vendor-prefix */
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17 8l4 4m0 0l-4 4m4-4H3'/%3E%3C/svg%3E") center/contain no-repeat;
@@ -157,10 +152,10 @@ main .solutions-grid .solutions-grid-tile-link:focus-visible {
 @media (width >= 900px) {
   main .solutions-grid .solutions-grid-tiles {
     grid-template-columns: repeat(5, 1fr);
-    gap: 0;
+    gap: 8px;
   }
 
   main .solutions-grid .solutions-grid-tile {
-    min-height: 480px;
+    min-height: 470px;
   }
 }
