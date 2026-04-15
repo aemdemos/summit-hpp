@@ -1,8 +1,7 @@
 /* === Solutions Grid Block ===
    Original HPE: 5 equal solid-dark cards in a horizontal row.
-   Verified via devtools: tiles are ~274×427px, bg: rgb(41,45,58),
-   borderRadius: 0, no background images, white text + green CTA.
-   Section is full-width on a dark background. */
+   Section bg: --dark-color, Card bg: --dark-alt-color (lighter).
+   Cards have rounded corners, small gaps, text at top, CTA at bottom. */
 
 /* Override section light background — original uses darker bg than cards */
 main > .section.light:has(.solutions-grid) {
@@ -37,14 +36,14 @@ main > .section.light:has(.solutions-grid) > .default-content-wrapper p {
 main .solutions-grid .solutions-grid-tiles {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0;
+  gap: 8px;
 }
 
 /* Tile link wrapper — full clickable area */
 main .solutions-grid .solutions-grid-tile-link {
-  display: block;
+  display: flex;
   text-decoration: none;
-  overflow: hidden;
+  border-radius: 12px;
   transition: box-shadow var(--transition-slow);
 }
 
@@ -53,22 +52,16 @@ main .solutions-grid .solutions-grid-tile-link:hover {
   text-decoration: none;
 }
 
-/* Tile — solid dark card, no background image */
+/* Tile — solid dark card with rounded corners */
 main .solutions-grid .solutions-grid-tile {
   position: relative;
-  border-radius: 0;
-  overflow: hidden;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   background-color: var(--dark-alt-color);
   min-height: 300px;
-  border-right: 1px solid rgb(255 255 255 / 10%);
-}
-
-/* Remove border on last card */
-main .solutions-grid .solutions-grid-tile-link:last-child .solutions-grid-tile {
-  border-right: none;
+  width: 100%;
 }
 
 /* Background image — hidden (original has no visible images in tiles) */
@@ -89,7 +82,6 @@ main .solutions-grid .solutions-grid-tile-content {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
-  width: 100%;
   flex: 1;
 }
 
@@ -160,7 +152,7 @@ main .solutions-grid .solutions-grid-tile-link:focus-visible {
 @media (width >= 900px) {
   main .solutions-grid .solutions-grid-tiles {
     grid-template-columns: repeat(5, 1fr);
-    gap: 0;
+    gap: 8px;
   }
 
   main .solutions-grid .solutions-grid-tile {
