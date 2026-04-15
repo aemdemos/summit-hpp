@@ -41,7 +41,7 @@ main .card-carousel .card-carousel-grid {
   gap: var(--spacing-m);
 }
 
-/* Individual card */
+/* Individual card — dark background matches original bb-bg */
 main .card-carousel .card-carousel-card {
   position: relative;
   overflow: hidden;
@@ -50,6 +50,7 @@ main .card-carousel .card-carousel-card {
   flex-direction: column;
   justify-content: space-between;
   min-height: 320px;
+  background-color: var(--dark-alt-color);
 }
 
 /* Background image — fills entire card */
