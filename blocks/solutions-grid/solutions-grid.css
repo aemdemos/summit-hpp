@@ -14,7 +14,7 @@ main > .section.light:has(.solutions-grid) {
 main .solutions-grid .solutions-grid-header,
 main > .section.light:has(.solutions-grid) > .default-content-wrapper {
   text-align: left;
-  margin-bottom: var(--spacing-l);
+  margin-bottom: var(--spacing-xl);
 }
 
 main .solutions-grid .solutions-grid-header h2,
@@ -60,9 +60,15 @@ main .solutions-grid .solutions-grid-tile {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   background-color: var(--dark-alt-color);
   min-height: 300px;
+  border-right: 1px solid rgb(255 255 255 / 10%);
+}
+
+/* Remove border on last card */
+main .solutions-grid .solutions-grid-tile-link:last-child .solutions-grid-tile {
+  border-right: none;
 }
 
 /* Background image — hidden (original has no visible images in tiles) */
@@ -75,15 +81,22 @@ main .solutions-grid .solutions-grid-tile-overlay {
   display: none;
 }
 
-/* Content layer */
+/* Content layer — text at top, CTA pushed to bottom */
 main .solutions-grid .solutions-grid-tile-content {
   position: relative;
   z-index: 1;
-  padding: var(--spacing-l);
+  padding: 40px;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
   width: 100%;
+  flex: 1;
+}
+
+/* Push CTA to bottom of card */
+main .solutions-grid .solutions-grid-tile-cta {
+  margin-top: auto;
+  padding-top: var(--spacing-l);
 }
 
 main .solutions-grid .solutions-grid-tile-content h3 {
