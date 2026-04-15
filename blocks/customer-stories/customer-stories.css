@@ -422,6 +422,27 @@ main .customer-stories .customer-stories-solution {
   }
 }
 
+/* ===== SCROLL INDICATORS ===== */
+
+main .customer-stories .customer-stories-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: var(--spacing-m) 0;
+}
+
+main .customer-stories .customer-stories-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgb(0 0 0 / 20%);
+  transition: background-color var(--transition-base);
+}
+
+main .customer-stories .customer-stories-dot.active {
+  background-color: var(--color-hpe-green);
+}
+
 /* ===== SIMPLE PANEL ===== */
 
 main .customer-stories .customer-stories-simple {

@@ -287,6 +287,35 @@ export default async function decorate(block) {
   block.append(tablist);
   block.append(panelsContainer);
 
+  // Add scroll indicators to panels with horizontal overflow
+  panelsContainer.querySelectorAll('.customer-stories-panel').forEach((panel) => {
+    const dots = document.createElement('div');
+    dots.className = 'customer-stories-indicators';
+    // Create 3 dots (matching typical masonry page count)
+    for (let d = 0; d < 3; d += 1) {
+      const dot = document.createElement('span');
+      dot.className = 'customer-stories-dot';
+      if (d === 0) dot.classList.add('active');
+      dots.append(dot);
+    }
+    panel.after(dots);
+    // Hide indicators for non-active panels
+    if (panel.getAttribute('aria-hidden') === 'true') {
+      dots.style.display = 'none';
+    }
+  });
+
+  // Show/hide indicators on tab switch
+  tablist.addEventListener('click', () => {
+    panelsContainer.querySelectorAll('.customer-stories-indicators').forEach((ind) => {
+      ind.style.display = 'none';
+    });
+    const activePanel = panelsContainer.querySelector('.customer-stories-panel[aria-hidden="false"]');
+    if (activePanel?.nextElementSibling?.classList.contains('customer-stories-indicators')) {
+      activePanel.nextElementSibling.style.display = '';
+    }
+  });
+
   // Override dark section context — original has transparent bg with dark text
   const section = block.closest('.section');
   if (section) {
