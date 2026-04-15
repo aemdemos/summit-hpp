@@ -2,6 +2,16 @@
    Grid: 5 cards in asymmetric 2-row bento arrangement
    Card 5 (tall) spans both rows on the right side */
 
+/* Force light background — override any dark-alt section metadata */
+main > .section.card-carousel-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+main > .section.card-carousel-container h3 {
+  color: var(--text-color);
+}
+
 /* Section header — "The quantum era is here" sits above the block */
 main > .section.card-carousel-container .default-content-wrapper h3 {
   font-size: 36px;
@@ -12,6 +22,7 @@ main > .section.card-carousel-container .default-content-wrapper h3 {
 }
 
 main > .section.card-carousel-container .default-content-wrapper p {
+  color: var(--text-secondary-color);
   font-size: var(--body-font-size-l);
   line-height: 1.5;
   letter-spacing: -0.2px;
