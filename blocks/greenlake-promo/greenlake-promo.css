@@ -187,6 +187,8 @@ main .greenlake-promo .greenlake-promo-cta {
   margin: 0;
 }
 
+main .section.dark .greenlake-promo .greenlake-promo-cta .button,
+main .section.dark .greenlake-promo .greenlake-promo-cta a,
 main .greenlake-promo .greenlake-promo-cta .button,
 main .greenlake-promo .greenlake-promo-cta a {
   display: inline-flex;
@@ -204,6 +206,8 @@ main .greenlake-promo .greenlake-promo-cta a {
   transition: background-color 0.2s;
 }
 
+main .section.dark .greenlake-promo .greenlake-promo-cta .button:hover,
+main .section.dark .greenlake-promo .greenlake-promo-cta a:hover,
 main .greenlake-promo .greenlake-promo-cta .button:hover,
 main .greenlake-promo .greenlake-promo-cta a:hover {
   background-color: var(--text-color);
@@ -253,6 +257,7 @@ main .greenlake-promo .greenlake-promo-cta a:hover::after {
 
   main .greenlake-promo .greenlake-promo-right {
     justify-content: flex-start;
+    padding: 100px 0;
   }
 
   main .greenlake-promo .greenlake-promo-logo {
