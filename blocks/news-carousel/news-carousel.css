@@ -63,7 +63,7 @@ main .news-carousel .news-carousel-track-wrapper::after {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 80px;
+  width: 100px;
   z-index: 2;
   pointer-events: none;
   transition: opacity 0.3s;
