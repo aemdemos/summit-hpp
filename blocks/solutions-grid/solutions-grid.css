@@ -43,7 +43,7 @@ main .solutions-grid .solutions-grid-tiles {
 main .solutions-grid .solutions-grid-tile-link {
   display: flex;
   text-decoration: none;
-  border-radius: 12px;
+  border-radius: 0;
   transition: box-shadow var(--transition-slow);
 }
 
@@ -55,7 +55,7 @@ main .solutions-grid .solutions-grid-tile-link:hover {
 /* Tile — solid dark card with rounded corners */
 main .solutions-grid .solutions-grid-tile {
   position: relative;
-  border-radius: 12px;
+  border-radius: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
