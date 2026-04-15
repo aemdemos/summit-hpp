@@ -373,6 +373,12 @@ main > .section.news-carousel-container {
   padding: 48px 0 40px;
 }
 
+/* News carousel spans full viewport width */
+main > .section.news-carousel-container > .news-carousel-wrapper {
+  max-width: unset;
+  padding: 0 var(--content-padding);
+}
+
 main > .section.feature-banner-container {
   padding: 20px 0;
 }
