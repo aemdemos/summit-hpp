@@ -374,19 +374,34 @@ main > .section.news-carousel-container {
 }
 
 main > .section.feature-banner-container {
-  padding: 32px 0;
+  padding: 20px 0;
 }
 
 main > .section.section-header-container {
-  padding: 48px 0 0;
+  padding: 12px 0 0;
 }
 
 main > .section.card-carousel-container {
+  padding: 24px 0;
+}
+
+main > .section.greenlake-promo-container {
   padding: 40px 0;
 }
 
+main > .section.customer-stories-container {
+  padding: 48px 0 40px;
+}
+
 main > .section.product-cards-container {
-  padding: 24px 0 40px;
+  padding: 8px 0 16px;
+}
+
+/* Hide empty trailing section (metadata section with no visible content) */
+main > .section:last-of-type:empty,
+main > .section:last-of-type:not(:has(*:not(.section-metadata))) {
+  display: none;
+  padding: 0;
 }
 
 /* Section metadata: background image sits behind content */

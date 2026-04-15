@@ -175,40 +175,43 @@ export default async function decorate(block) {
   const rows = [...block.children];
   if (rows.length < 2) return;
 
-  // Row 0 = header
-  const headerRow = rows[0];
-  const headerContent = headerRow.querySelector(':scope > div');
+  // Detect if row 0 is a header (has H2) or a story tab (has 2 cells with tab label)
+  const firstRowHasHeader = rows[0].querySelector('h2');
+  let header = null;
+  const storyStartIndex = firstRowHasHeader ? 1 : 0;
 
-  // Build header
-  const header = document.createElement('div');
-  header.className = 'customer-stories-header';
+  if (firstRowHasHeader) {
+    const headerRow = rows[0];
+    const headerContent = headerRow.querySelector(':scope > div');
 
-  const headerText = document.createElement('div');
-  headerText.className = 'customer-stories-header-text';
+    header = document.createElement('div');
+    header.className = 'customer-stories-header';
 
-  const headerCta = document.createElement('div');
-  headerCta.className = 'customer-stories-header-cta';
+    const headerText = document.createElement('div');
+    headerText.className = 'customer-stories-header-text';
 
-  if (headerContent) {
-    const headerChildren = [...headerContent.children];
-    headerChildren.forEach((child) => {
-      // The last <p> with an <a> is the CTA
-      if (child.tagName === 'P' && child.querySelector('a')) {
-        const link = child.querySelector('a');
-        link.classList.add('button');
-        headerCta.append(child);
-      } else {
-        headerText.append(child);
-      }
-    });
+    const headerCta = document.createElement('div');
+    headerCta.className = 'customer-stories-header-cta';
+
+    if (headerContent) {
+      [...headerContent.children].forEach((child) => {
+        if (child.tagName === 'P' && child.querySelector('a')) {
+          const link = child.querySelector('a');
+          link.classList.add('button');
+          headerCta.append(child);
+        } else {
+          headerText.append(child);
+        }
+      });
+    }
+
+    header.append(headerText);
+    header.append(headerCta);
   }
 
-  header.append(headerText);
-  header.append(headerCta);
-
-  // Rows 1..N = stories (cell[0] = tab label, cell[1] = content)
+  // Story rows (cell[0] = tab label, cell[1] = content)
   const stories = [];
-  for (let i = 1; i < rows.length; i += 1) {
+  for (let i = storyStartIndex; i < rows.length; i += 1) {
     const cells = [...rows[i].children];
     if (cells.length >= 2) {
       stories.push({
@@ -280,7 +283,7 @@ export default async function decorate(block) {
 
   // Replace block content
   block.textContent = '';
-  block.append(header);
+  if (header) block.append(header);
   block.append(tablist);
   block.append(panelsContainer);
 

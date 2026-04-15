@@ -10,20 +10,23 @@ main > .section.light:has(.solutions-grid) {
   color: var(--text-light-color);
 }
 
-/* Header */
-main .solutions-grid .solutions-grid-header {
+/* Header — works both inside block (legacy) and as section default content */
+main .solutions-grid .solutions-grid-header,
+main > .section.light:has(.solutions-grid) > .default-content-wrapper {
   text-align: left;
   margin-bottom: var(--spacing-l);
 }
 
-main .solutions-grid .solutions-grid-header h2 {
+main .solutions-grid .solutions-grid-header h2,
+main > .section.light:has(.solutions-grid) h2 {
   font-size: var(--heading-font-size-xl);
   font-weight: 500;
-  margin-bottom: var(--spacing-s);
   color: var(--text-light-color);
+  margin-bottom: var(--spacing-s);
 }
 
-main .solutions-grid .solutions-grid-header p {
+main .solutions-grid .solutions-grid-header p,
+main > .section.light:has(.solutions-grid) > .default-content-wrapper p {
   font-size: var(--body-font-size-l);
   color: rgb(229 229 229);
   max-width: 640px;
@@ -152,16 +155,12 @@ main .solutions-grid .solutions-grid-tile-link:focus-visible {
 
 /* === Desktop (900px+) — 5 equal columns in a single row === */
 @media (width >= 900px) {
-  main .solutions-grid .solutions-grid-header {
-    margin-bottom: var(--spacing-xl);
-  }
-
   main .solutions-grid .solutions-grid-tiles {
     grid-template-columns: repeat(5, 1fr);
     gap: 0;
   }
 
   main .solutions-grid .solutions-grid-tile {
-    min-height: 427px;
+    min-height: 480px;
   }
 }

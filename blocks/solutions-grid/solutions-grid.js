@@ -1,9 +1,9 @@
 /**
- * Solutions Grid block — displays solution tiles in a 3+2 grid layout.
+ * Solutions Grid block — displays solution tiles in a 5-column grid layout.
  *
- * Content structure (authored rows):
- *   Row 0: header — single cell with H2 + optional intro paragraph
- *   Rows 1–N: tiles — cell 0 = background image, cell 1 = text content (H3, p, CTA link)
+ * Supports two content structures:
+ *   1. Header inside block: Row 0 has H2 (legacy) — extracted as header above tiles
+ *   2. Header outside block: All rows are tiles — header is section default content
  *
  * @param {Element} block The solutions-grid block element
  */
@@ -11,9 +11,12 @@ export default async function decorate(block) {
   const rows = [...block.children];
   if (!rows.length) return;
 
-  // --- Header row (first row) ---
-  const headerRow = rows.shift();
-  headerRow.classList.add('solutions-grid-header');
+  // --- Optional header row (first row with H2) ---
+  let headerRow = null;
+  if (rows[0].querySelector('h2')) {
+    headerRow = rows.shift();
+    headerRow.classList.add('solutions-grid-header');
+  }
 
   // --- Tile rows ---
   const tilesGrid = document.createElement('div');
@@ -78,5 +81,6 @@ export default async function decorate(block) {
 
   // Replace original rows with structured markup
   block.textContent = '';
-  block.append(headerRow, tilesGrid);
+  if (headerRow) block.append(headerRow);
+  block.append(tilesGrid);
 }

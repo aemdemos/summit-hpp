@@ -4,18 +4,18 @@ main .section-header {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
-  padding-bottom: var(--spacing-xl);
+  padding-bottom: 0;
 }
 
 main .section-header h2 {
-  margin-bottom: var(--spacing-s);
+  margin-bottom: 4px;
 }
 
 main .section-header p {
   color: var(--text-secondary-color);
   font-size: var(--body-font-size-m);
-  line-height: 1.5;
-  margin-bottom: var(--spacing-s);
+  line-height: 1.4;
+  margin-bottom: 4px;
 }
 
 main .section-header p:last-child {
@@ -37,10 +37,10 @@ main .section-header a:hover {
 @media (width >= 900px) {
   main .section-header {
     max-width: 900px;
-    padding-bottom: var(--spacing-xxl);
+    padding-bottom: 0;
   }
 
   main .section-header h2 {
-    margin-bottom: var(--spacing-m);
+    margin-bottom: var(--spacing-xs);
   }
 }
