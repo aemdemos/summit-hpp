@@ -4,9 +4,9 @@
    borderRadius: 0, no background images, white text + green CTA.
    Section is full-width on a dark background. */
 
-/* Override section light background — original context is dark */
+/* Override section light background — original uses darker bg than cards */
 main > .section.light:has(.solutions-grid) {
-  background-color: var(--dark-alt-color);
+  background-color: var(--dark-color);
   color: var(--text-light-color);
 }
 
