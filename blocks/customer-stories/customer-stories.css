@@ -405,92 +405,110 @@ main .customer-stories .customer-stories-solution {
   display: flex;
 }
 
-/* ===== DESKTOP GRID (900px+) ===== */
+/* ===== DESKTOP SCROLLABLE BENTO GRID (900px+) =====
+   Matches original: 10-column grid, 2 rows, 11 tiles (text+image alternating).
+   scrollWidth ~3545px > viewport, overflow-x: auto. */
 
 @media (width >= 900px) {
+  /* Panel IS the scrollable grid — tiles are direct children */
   main .customer-stories .customer-stories-panel {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-columns: 558px 130px 558px 130px 263px 130px 263px 425px 263px 425px;
     grid-template-rows: 398px 428px;
     gap: 32px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    padding: 0 56px;
   }
 
   main .customer-stories .customer-stories-panel::-webkit-scrollbar {
     display: none;
   }
 
-  /* The inner grid dissolves into the panel grid */
-  main .customer-stories .customer-stories-grid {
-    display: contents;
-  }
-
-  /* Row 1: intro, objectives, outcomes */
-  main .customer-stories .customer-stories-intro {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
-  main .customer-stories .customer-stories-objectives {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  main .customer-stories .customer-stories-outcomes {
-    grid-column: 3;
-    grid-row: 1;
-  }
-
-  /* Row 2: quote spans 2 cols, solution 1 col */
-  main .customer-stories .customer-stories-quote {
-    grid-column: 1 / 3;
-    grid-row: 2;
-  }
-
-  main .customer-stories .customer-stories-solution {
-    grid-column: 3;
-    grid-row: 2;
-  }
-
-  /* All tiles fill their grid areas */
-  main .customer-stories .customer-stories-intro,
-  main .customer-stories .customer-stories-objectives,
-  main .customer-stories .customer-stories-outcomes,
-  main .customer-stories .customer-stories-quote,
-  main .customer-stories .customer-stories-solution {
+  /* All tiles: span 2 columns by default (fills 558+130+32gap = 720px or similar) */
+  main .customer-stories .customer-stories-tile {
+    grid-column: span 2;
     min-height: 0;
+    overflow: clip;
+  }
+
+  /* Row 1 tiles */
+  main .customer-stories .customer-stories-intro { grid-row: 1; }
+
+  main .customer-stories .customer-stories-tile-img:nth-of-type(1) { grid-row: 1; }
+
+  main .customer-stories .customer-stories-objectives { grid-row: 1; }
+
+  main .customer-stories .customer-stories-tile-img:nth-of-type(2) { grid-row: 1; }
+
+  main .customer-stories .customer-stories-outcomes { grid-row: 1; }
+
+  /* Row 2 tiles */
+  main .customer-stories .customer-stories-tile-logo {
+    grid-column: auto;
+    grid-row: 2;
+  }
+
+  main .customer-stories .customer-stories-quote { grid-row: 2; }
+
+  main .customer-stories .customer-stories-tile-img:nth-of-type(3) { grid-row: 2; }
+
+  main .customer-stories .customer-stories-solution { grid-row: 2; }
+
+  main .customer-stories .customer-stories-tile-img:nth-of-type(4) { grid-row: 2; }
+
+  /* Image tiles fill their grid area */
+  main .customer-stories .customer-stories-tile-img {
+    overflow: clip;
+    border-radius: 0;
+    background-color: #ccc;
+  }
+
+  main .customer-stories .customer-stories-tile-img picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  main .customer-stories .customer-stories-tile-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Logo image (KDDI) — contain, not cover */
+  main .customer-stories .customer-stories-tile-logo img {
+    object-fit: contain;
+  }
+
+  /* Panels wrapper breaks out of section padding */
+  main .customer-stories .customer-stories-panels {
+    margin: 0 calc(-1 * var(--content-padding));
+    padding: 0;
   }
 }
 
-/* ===== SCROLL INDICATORS ===== */
+/* ===== SCROLL PROGRESS BAR ===== */
 
-main .customer-stories .customer-stories-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  padding: var(--spacing-m) 0;
+main .customer-stories .customer-stories-progress {
+  height: 6px;
+  background-color: rgb(0 0 0 / 10%);
+  margin: var(--spacing-l) 56px 0;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
-main .customer-stories .customer-stories-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: rgb(0 0 0 / 20%);
-  transition: background-color var(--transition-base);
-}
-
-main .customer-stories .customer-stories-dot.active {
+main .customer-stories .customer-stories-progress-bar {
+  height: 100%;
+  width: 20%;
   background-color: var(--color-hpe-green);
+  border-radius: 3px;
+  transition: width 0.15s ease-out;
 }
 
-/* ===== SIMPLE PANEL ===== */
-
-main .customer-stories .customer-stories-simple {
-  max-width: 700px;
-  padding: var(--spacing-l) 0;
-}
+/* ===== SIMPLE PANEL (now also uses bento grid) ===== */
 
 main .customer-stories .customer-stories-simple h3 {
   color: var(--text-light-color);

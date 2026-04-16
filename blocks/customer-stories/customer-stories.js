@@ -1,12 +1,48 @@
 import { getBlockId } from '../../scripts/scripts.js';
 
 /**
- * Build a rich panel with grid layout (KDDI-style).
+ * Create an image tile for the scrollable grid.
+ * @param {Element} imgEl — a <p> containing <picture>/<img>, or <picture> directly
+ * @param {string} extraClass — optional extra CSS class
+ * @returns {HTMLElement}
+ */
+function createImageTile(imgEl, extraClass = '') {
+  const tile = document.createElement('div');
+  tile.className = `customer-stories-tile customer-stories-tile-img ${extraClass}`.trim();
+  if (imgEl.tagName === 'PICTURE' || imgEl.tagName === 'IMG') {
+    tile.append(imgEl);
+  } else {
+    const pic = imgEl.querySelector('picture') || imgEl.querySelector('img');
+    if (pic) tile.append(pic);
+  }
+  return tile;
+}
+
+/**
+ * Create a text tile for the scrollable grid.
+ * @param {string} className
+ * @param {Element[]} elements — heading, paragraphs, lists to put inside
+ * @returns {HTMLElement}
+ */
+function createTextTile(className, elements) {
+  const tile = document.createElement('div');
+  tile.className = `customer-stories-tile ${className}`;
+  elements.forEach((el) => tile.append(el));
+  return tile;
+}
+
+/**
+ * Build a rich panel with horizontally scrollable bento grid (KDDI-style).
+ * Images are extracted from sections and placed as separate sibling tiles,
+ * matching the original's 11-tile alternating text/image pattern.
+ *
+ * Row 1: [Intro-text] [Intro-img] [Objectives-text] [Objectives-img] [Outcomes-text]
+ * Row 2: [Logo-img] [Quote-text] [Quote-img] [Solution-text] [Solution-img]
+ *
  * @param {HTMLElement} panel
  * @param {Array<Element>} children
  */
 function buildRichPanel(panel, children) {
-  // Parse content into sections based on h3/h4 boundaries
   const sections = [];
   let current = null;
 
@@ -26,7 +62,6 @@ function buildRichPanel(panel, children) {
   });
   if (current) sections.push(current);
 
-  // Find intro (first h3 + description before Objectives)
   const introSection = sections.find((s) => s.heading?.tagName === 'H3'
     && !['Objectives', 'Outcomes', 'Solution'].includes(s.heading.textContent.trim()));
   const objectivesSection = sections.find((s) => s.heading?.textContent.trim() === 'Objectives');
@@ -34,82 +69,124 @@ function buildRichPanel(panel, children) {
   const quoteSection = sections.find((s) => s.heading?.tagName === 'H4');
   const solutionSection = sections.find((s) => s.heading?.textContent.trim() === 'Solution');
 
-  // Build grid
-  const grid = document.createElement('div');
-  grid.className = 'customer-stories-grid';
+  // Helper: separate images from text elements in a section
+  const splitImages = (sec) => {
+    if (!sec) return { textEls: [], imgEls: [] };
+    const allEls = [sec.heading, ...sec.elements].filter(Boolean);
+    const textEls = [];
+    const imgEls = [];
+    allEls.forEach((el) => {
+      const hasPicture = el.querySelector?.('picture') || el.querySelector?.('img:not([class])');
+      const isPicture = el.tagName === 'PICTURE' || el.tagName === 'IMG';
+      if ((hasPicture || isPicture) && !el.querySelector?.('h3, h4, ul, strong')) {
+        imgEls.push(el);
+      } else {
+        textEls.push(el);
+      }
+    });
+    return { textEls, imgEls };
+  };
 
-  // Story intro (left column, spans 2 rows on desktop)
-  if (introSection) {
-    const intro = document.createElement('div');
-    intro.className = 'customer-stories-intro';
-    intro.append(introSection.heading);
-    introSection.elements.forEach((el) => intro.append(el));
+  // Split each section into text and images
+  const intro = splitImages(introSection);
+  const preIntro = sections.find((s) => s.isIntro);
+  if (preIntro) {
+    preIntro.elements.forEach((el) => {
+      const hasImg = el.querySelector?.('picture') || el.querySelector?.('img');
+      if (!hasImg) intro.textEls.push(el);
+    });
+  }
+  const objectives = splitImages(objectivesSection);
+  const outcomes = splitImages(outcomesSection);
+  const quote = splitImages(quoteSection);
+  const solution = splitImages(solutionSection);
 
-    // Gather any pre-heading intro elements
-    const preIntro = sections.find((s) => s.isIntro);
-    if (preIntro) {
-      preIntro.elements.forEach((el) => intro.append(el));
-    }
+  // Build the flat grid with alternating text/image tiles
+  // Row 1: intro-text, intro-img, objectives-text, objectives-img, outcomes-text
+  const introText = createTextTile('customer-stories-intro', intro.textEls);
+  panel.append(introText);
 
-    grid.append(intro);
+  if (intro.imgEls.length > 0) {
+    panel.append(createImageTile(intro.imgEls[0], 'customer-stories-tile-wide'));
   }
 
-  // Objectives (right column, top)
-  if (objectivesSection) {
-    const obj = document.createElement('div');
-    obj.className = 'customer-stories-objectives';
-    obj.append(objectivesSection.heading);
-    objectivesSection.elements.forEach((el) => obj.append(el));
-    grid.append(obj);
+  const objText = createTextTile('customer-stories-objectives', objectives.textEls);
+  panel.append(objText);
+
+  if (objectives.imgEls.length > 0) {
+    panel.append(createImageTile(objectives.imgEls[0], 'customer-stories-tile-wide'));
   }
 
-  // Outcomes (right column, bottom)
-  if (outcomesSection) {
-    const out = document.createElement('div');
-    out.className = 'customer-stories-outcomes';
-    out.append(outcomesSection.heading);
-    outcomesSection.elements.forEach((el) => out.append(el));
-    grid.append(out);
+  const outText = createTextTile('customer-stories-outcomes', outcomes.textEls);
+  panel.append(outText);
+
+  // Row 2: logo-img (from outcomes), quote-text, quote-img, solution-text, solution-img
+  if (outcomes.imgEls.length > 0) {
+    panel.append(createImageTile(outcomes.imgEls[0], 'customer-stories-tile-logo'));
   }
 
-  panel.append(grid);
+  const quoteText = createTextTile('customer-stories-quote', quote.textEls);
+  panel.append(quoteText);
 
-  // Quote (full width)
-  if (quoteSection) {
-    const quote = document.createElement('div');
-    quote.className = 'customer-stories-quote';
-    quote.append(quoteSection.heading);
-    quoteSection.elements.forEach((el) => quote.append(el));
-    panel.append(quote);
+  if (quote.imgEls.length > 0) {
+    panel.append(createImageTile(quote.imgEls[0]));
   }
 
-  // Solution (small panel)
-  if (solutionSection) {
-    const sol = document.createElement('div');
-    sol.className = 'customer-stories-solution';
-    sol.append(solutionSection.heading);
-    solutionSection.elements.forEach((el) => sol.append(el));
-    panel.append(sol);
+  const solText = createTextTile('customer-stories-solution', solution.textEls);
+  panel.append(solText);
+
+  if (solution.imgEls.length > 0) {
+    panel.append(createImageTile(solution.imgEls[0], 'customer-stories-tile-wide'));
   }
 }
 
 /**
- * Build a simple panel for non-KDDI stories.
+ * Build a simple panel as a scrollable bento grid.
+ * Simple stories have: h3 + p description + multiple images.
+ * Layout: [intro-text] [img1] [img2] [img3] [img4] [img5] as a
+ * horizontally scrollable grid matching the rich panel pattern.
+ *
  * @param {HTMLElement} panel
  * @param {Array<Element>} children
  */
 function buildSimplePanel(panel, children) {
-  const simple = document.createElement('div');
-  simple.className = 'customer-stories-simple';
-  children.forEach((child) => simple.append(child));
-  panel.append(simple);
+  const textEls = [];
+  const imgEls = [];
+
+  children.forEach((child) => {
+    const hasPic = child.querySelector?.('picture') || child.querySelector?.('img');
+    const isPic = child.tagName === 'PICTURE' || child.tagName === 'IMG';
+    const isTextWithImg = child.tagName === 'P' && hasPic && !child.querySelector('a, strong');
+    if ((isPic || isTextWithImg) && !child.querySelector?.('h3, h4, ul')) {
+      imgEls.push(child);
+    } else {
+      textEls.push(child);
+    }
+  });
+
+  // Create intro text tile (dark bg)
+  if (textEls.length > 0) {
+    const intro = createTextTile('customer-stories-intro', textEls);
+    panel.append(intro);
+  }
+
+  // Create image tiles alternating across grid
+  const imgClasses = [
+    'customer-stories-tile-wide',
+    'customer-stories-tile-wide',
+    'customer-stories-tile-logo',
+    '',
+    'customer-stories-tile-wide',
+  ];
+
+  imgEls.forEach((img, i) => {
+    const cls = imgClasses[i] || '';
+    panel.append(createImageTile(img, cls));
+  });
 }
 
 /**
  * Builds the tab bar from story labels.
- * @param {string} blockId
- * @param {Array<{label: string, content: Element}>} stories
- * @returns {HTMLElement}
  */
 function buildTabList(blockId, stories) {
   const tablist = document.createElement('div');
@@ -132,11 +209,7 @@ function buildTabList(blockId, stories) {
 }
 
 /**
- * Wraps a content element in a panel div with proper ARIA.
- * @param {string} blockId
- * @param {number} index
- * @param {Element} content
- * @returns {HTMLElement}
+ * Wraps content in a panel div with proper ARIA.
  */
 function buildPanel(blockId, index, content) {
   const panel = document.createElement('div');
@@ -146,19 +219,16 @@ function buildPanel(blockId, index, content) {
   panel.setAttribute('aria-labelledby', `tab-${blockId}-${index}`);
   panel.setAttribute('aria-hidden', String(index !== 0));
 
-  // Structure the panel content into a grid layout
-  const children = [...content.children];
-
-  // Detect if this is a rich panel (has multiple h3s, ul, h4 quote)
+  const contentChildren = [...content.children];
   const headings3 = content.querySelectorAll('h3');
   const hasQuote = content.querySelector('h4');
   const hasLists = content.querySelectorAll('ul');
   const isRich = headings3.length >= 3 && hasQuote && hasLists.length >= 1;
 
   if (isRich) {
-    buildRichPanel(panel, children);
+    buildRichPanel(panel, contentChildren);
   } else {
-    buildSimplePanel(panel, children);
+    buildSimplePanel(panel, contentChildren);
   }
 
   return panel;
@@ -175,7 +245,6 @@ export default async function decorate(block) {
   const rows = [...block.children];
   if (rows.length < 2) return;
 
-  // Detect if row 0 is a header (has H2) or a story tab (has 2 cells with tab label)
   const firstRowHasHeader = rows[0].querySelector('h2');
   let header = null;
   const storyStartIndex = firstRowHasHeader ? 1 : 0;
@@ -209,7 +278,6 @@ export default async function decorate(block) {
     header.append(headerCta);
   }
 
-  // Story rows (cell[0] = tab label, cell[1] = content)
   const stories = [];
   for (let i = storyStartIndex; i < rows.length; i += 1) {
     const cells = [...rows[i].children];
@@ -221,10 +289,8 @@ export default async function decorate(block) {
     }
   }
 
-  // Build tab list
   const tablist = buildTabList(blockId, stories);
 
-  // Build panels
   const panelsContainer = document.createElement('div');
   panelsContainer.className = 'customer-stories-panels';
 
@@ -244,7 +310,6 @@ export default async function decorate(block) {
     const targetPanel = document.getElementById(panelId);
     if (!targetPanel) return;
 
-    // Deselect all tabs and hide all panels
     tablist.querySelectorAll('button.customer-stories-tab').forEach((tab) => {
       tab.setAttribute('aria-selected', 'false');
     });
@@ -252,7 +317,6 @@ export default async function decorate(block) {
       p.setAttribute('aria-hidden', 'true');
     });
 
-    // Select clicked tab and show panel
     btn.setAttribute('aria-selected', 'true');
     targetPanel.setAttribute('aria-hidden', 'false');
   });
@@ -287,36 +351,38 @@ export default async function decorate(block) {
   block.append(tablist);
   block.append(panelsContainer);
 
-  // Add scroll indicators to panels with horizontal overflow
-  panelsContainer.querySelectorAll('.customer-stories-panel').forEach((panel) => {
-    const dots = document.createElement('div');
-    dots.className = 'customer-stories-indicators';
-    // Create 3 dots (matching typical masonry page count)
-    for (let d = 0; d < 3; d += 1) {
-      const dot = document.createElement('span');
-      dot.className = 'customer-stories-dot';
-      if (d === 0) dot.classList.add('active');
-      dots.append(dot);
-    }
-    panel.after(dots);
-    // Hide indicators for non-active panels
-    if (panel.getAttribute('aria-hidden') === 'true') {
-      dots.style.display = 'none';
-    }
-  });
+  // Scroll progress indicator bar
+  const progressWrap = document.createElement('div');
+  progressWrap.className = 'customer-stories-progress';
+  const progressBar = document.createElement('div');
+  progressBar.className = 'customer-stories-progress-bar';
+  progressWrap.append(progressBar);
+  panelsContainer.append(progressWrap);
 
-  // Show/hide indicators on tab switch
-  tablist.addEventListener('click', () => {
-    panelsContainer.querySelectorAll('.customer-stories-indicators').forEach((ind) => {
-      ind.style.display = 'none';
-    });
+  // Update progress bar on scroll
+  function updateProgress() {
     const activePanel = panelsContainer.querySelector('.customer-stories-panel[aria-hidden="false"]');
-    if (activePanel?.nextElementSibling?.classList.contains('customer-stories-indicators')) {
-      activePanel.nextElementSibling.style.display = '';
-    }
+    if (!activePanel) return;
+    const { scrollLeft, scrollWidth, clientWidth } = activePanel;
+    const maxScroll = scrollWidth - clientWidth;
+    const pct = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
+    progressBar.style.width = `${Math.max(20, pct)}%`;
+  }
+
+  // Attach scroll listeners to all panels
+  panelsContainer.querySelectorAll('.customer-stories-panel').forEach((p) => {
+    p.addEventListener('scroll', updateProgress);
   });
 
-  // Override dark section context — original has transparent bg with dark text
+  // Re-attach on tab switch
+  tablist.addEventListener('click', () => {
+    requestAnimationFrame(updateProgress);
+  });
+
+  // Initial update
+  requestAnimationFrame(updateProgress);
+
+  // Override dark section context
   const section = block.closest('.section');
   if (section) {
     section.classList.add('customer-stories-light');
