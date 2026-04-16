@@ -400,7 +400,7 @@ main > .section.customer-stories-container {
 }
 
 main > .section.product-cards-container {
-  padding: 24px 0;
+  padding: 24px 0 80px;
 }
 
 /* Hide empty trailing section (metadata section with no visible content) */

@@ -139,13 +139,16 @@ main .feature-banner p {
     max-width: 940px;
   }
 
-  /* CTA gets 32px top margin (separate from the 40px gap above) */
+  /* CTA nudged down from text */
   main .section.feature-banner-dark .feature-banner > div > p:last-child {
-    margin-top: -8px;
+    margin-top: 16px;
   }
 
+  /* Content shifted up via asymmetric padding */
   main > .section.feature-banner-dark {
     min-height: 895px;
-    padding: 60px 0;
+    padding: 0;
+    align-items: flex-start;
+    padding-top: 180px;
   }
 }
