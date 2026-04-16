@@ -33,7 +33,7 @@ main .greenlake-promo {
 main .greenlake-promo .greenlake-promo-left {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-m);
+  gap: 40px;
 }
 
 main .greenlake-promo .greenlake-promo-logo {
@@ -55,51 +55,45 @@ main .greenlake-promo .greenlake-promo-description {
 /* Video thumbnail card */
 
 main .greenlake-promo .greenlake-promo-video {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-s);
+  position: relative;
   margin-top: auto;
 }
 
 main .greenlake-promo .greenlake-promo-video-thumb {
   position: relative;
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
   cursor: pointer;
-  max-width: 320px;
 }
 
 main .greenlake-promo .greenlake-promo-video-thumb img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 8px;
 }
 
 main .greenlake-promo .greenlake-promo-video-thumb::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgb(0 0 0 / 25%);
-  border-radius: 8px;
+  background: linear-gradient(to top, rgb(0 0 0 / 60%) 0%, transparent 50%);
   pointer-events: none;
   transition: background var(--transition-base);
 }
 
 main .greenlake-promo .greenlake-promo-video-thumb:hover::after {
-  background: rgb(0 0 0 / 15%);
+  background: linear-gradient(to top, rgb(0 0 0 / 40%) 0%, transparent 50%);
 }
 
-/* Play button */
+/* Play button — bottom-left of thumbnail */
 
 main .greenlake-promo .greenlake-promo-play {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 32px;
+  left: 28px;
   z-index: 1;
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background-color: var(--color-hpe-green);
   border: none;
@@ -131,29 +125,35 @@ main .greenlake-promo .greenlake-promo-play-icon {
   border-color: transparent transparent transparent var(--text-light-color);
 }
 
-/* Video info */
+/* Video info — overlays bottom of thumbnail next to play button */
 
 main .greenlake-promo .greenlake-promo-video-info {
+  position: absolute;
+  bottom: 32px;
+  left: 112px;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
 main .greenlake-promo .greenlake-promo-video-title {
-  color: var(--text-color);
-  font-size: var(--body-font-size-s);
-  font-weight: 500;
+  color: var(--text-light-color);
+  font-size: var(--body-font-size-l);
+  font-weight: 700;
+  line-height: 1.5;
 }
 
 main .greenlake-promo .greenlake-promo-video-subtitle {
-  color: var(--text-secondary-color);
-  font-size: var(--body-font-size-xs);
-  line-height: 1.4;
+  color: var(--text-light-color);
+  font-size: var(--body-font-size-l);
+  font-weight: 700;
+  line-height: 1.5;
 }
 
 main .greenlake-promo .greenlake-promo-video-duration {
-  color: var(--text-muted-color);
-  font-size: var(--body-font-size-xs);
+  color: var(--text-light-color);
+  font-size: var(--body-font-size-s);
 }
 
 /* --- Right Panel --- */
