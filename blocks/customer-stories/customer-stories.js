@@ -141,15 +141,48 @@ function buildRichPanel(panel, children) {
 }
 
 /**
- * Build a simple panel for non-KDDI stories.
+ * Build a simple panel as a scrollable bento grid.
+ * Simple stories have: h3 + p description + multiple images.
+ * Layout: [intro-text] [img1] [img2] [img3] [img4] [img5] as a
+ * horizontally scrollable grid matching the rich panel pattern.
+ *
  * @param {HTMLElement} panel
  * @param {Array<Element>} children
  */
 function buildSimplePanel(panel, children) {
-  const simple = document.createElement('div');
-  simple.className = 'customer-stories-simple';
-  children.forEach((child) => simple.append(child));
-  panel.append(simple);
+  const textEls = [];
+  const imgEls = [];
+
+  children.forEach((child) => {
+    const hasPic = child.querySelector?.('picture') || child.querySelector?.('img');
+    const isPic = child.tagName === 'PICTURE' || child.tagName === 'IMG';
+    const isTextWithImg = child.tagName === 'P' && hasPic && !child.querySelector('a, strong');
+    if ((isPic || isTextWithImg) && !child.querySelector?.('h3, h4, ul')) {
+      imgEls.push(child);
+    } else {
+      textEls.push(child);
+    }
+  });
+
+  // Create intro text tile (dark bg)
+  if (textEls.length > 0) {
+    const intro = createTextTile('customer-stories-intro', textEls);
+    panel.append(intro);
+  }
+
+  // Create image tiles alternating across grid
+  const imgClasses = [
+    'customer-stories-tile-wide',
+    'customer-stories-tile-wide',
+    'customer-stories-tile-logo',
+    '',
+    'customer-stories-tile-wide',
+  ];
+
+  imgEls.forEach((img, i) => {
+    const cls = imgClasses[i] || '';
+    panel.append(createImageTile(img, cls));
+  });
 }
 
 /**
@@ -317,6 +350,37 @@ export default async function decorate(block) {
   if (header) block.append(header);
   block.append(tablist);
   block.append(panelsContainer);
+
+  // Scroll progress indicator bar
+  const progressWrap = document.createElement('div');
+  progressWrap.className = 'customer-stories-progress';
+  const progressBar = document.createElement('div');
+  progressBar.className = 'customer-stories-progress-bar';
+  progressWrap.append(progressBar);
+  panelsContainer.append(progressWrap);
+
+  // Update progress bar on scroll
+  function updateProgress() {
+    const activePanel = panelsContainer.querySelector('.customer-stories-panel[aria-hidden="false"]');
+    if (!activePanel) return;
+    const { scrollLeft, scrollWidth, clientWidth } = activePanel;
+    const maxScroll = scrollWidth - clientWidth;
+    const pct = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
+    progressBar.style.width = `${Math.max(20, pct)}%`;
+  }
+
+  // Attach scroll listeners to all panels
+  panelsContainer.querySelectorAll('.customer-stories-panel').forEach((p) => {
+    p.addEventListener('scroll', updateProgress);
+  });
+
+  // Re-attach on tab switch
+  tablist.addEventListener('click', () => {
+    requestAnimationFrame(updateProgress);
+  });
+
+  // Initial update
+  requestAnimationFrame(updateProgress);
 
   // Override dark section context
   const section = block.closest('.section');

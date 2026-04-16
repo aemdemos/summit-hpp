@@ -490,33 +490,25 @@ main .customer-stories .customer-stories-solution {
   }
 }
 
-/* ===== SCROLL INDICATORS ===== */
+/* ===== SCROLL PROGRESS BAR ===== */
 
-main .customer-stories .customer-stories-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  padding: var(--spacing-m) 0;
+main .customer-stories .customer-stories-progress {
+  height: 6px;
+  background-color: rgb(0 0 0 / 10%);
+  margin: var(--spacing-l) 56px 0;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
-main .customer-stories .customer-stories-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: rgb(0 0 0 / 20%);
-  transition: background-color var(--transition-base);
-}
-
-main .customer-stories .customer-stories-dot.active {
+main .customer-stories .customer-stories-progress-bar {
+  height: 100%;
+  width: 20%;
   background-color: var(--color-hpe-green);
+  border-radius: 3px;
+  transition: width 0.15s ease-out;
 }
 
-/* ===== SIMPLE PANEL ===== */
-
-main .customer-stories .customer-stories-simple {
-  max-width: 700px;
-  padding: var(--spacing-l) 0;
-}
+/* ===== SIMPLE PANEL (now also uses bento grid) ===== */
 
 main .customer-stories .customer-stories-simple h3 {
   color: var(--text-light-color);
