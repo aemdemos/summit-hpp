@@ -1,9 +1,7 @@
 /* Section Header — centered heading with description text */
 
 main .section-header {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
+  text-align: left;
   padding-bottom: 0;
 }
 
@@ -13,8 +11,9 @@ main .section-header h2 {
 
 main .section-header p {
   color: var(--text-secondary-color);
-  font-size: var(--body-font-size-m);
-  line-height: 1.4;
+  font-size: var(--body-font-size-l);
+  line-height: 1.5;
+  letter-spacing: -0.2px;
   margin-bottom: 4px;
 }
 
@@ -36,7 +35,6 @@ main .section-header a:hover {
 
 @media (width >= 900px) {
   main .section-header {
-    max-width: 900px;
     padding-bottom: 0;
   }
 
