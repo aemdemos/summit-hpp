@@ -144,11 +144,10 @@ main .feature-banner p {
     margin-top: 16px;
   }
 
-  /* Content shifted up via asymmetric padding */
+  /* Content vertically centered with 60px padding */
   main > .section.feature-banner-dark {
     min-height: 895px;
-    padding: 0;
-    align-items: flex-start;
-    padding-top: 180px;
+    padding: 60px 0;
+    align-items: center;
   }
 }
