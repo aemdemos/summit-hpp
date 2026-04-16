@@ -1,25 +1,43 @@
-/* GreenLake Promo — two-panel promotional block */
+/* GreenLake Promo — two-panel layout on white/light background
+   Original: flex row, 50px gap, logo+desc+video left, screenshot+h3+CTA right
+   White bg, grey description text, dark heading, dark pill CTA */
+
+/* Force light background — override dark section metadata */
+main > .section.greenlake-promo-container,
+main > .section.dark.greenlake-promo-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+main > .section.dark.greenlake-promo-container h3 {
+  color: var(--text-color);
+}
+
+main > .section.dark.greenlake-promo-container p {
+  color: var(--text-secondary-color);
+}
+
+main > .section.dark.greenlake-promo-container a {
+  color: var(--text-color);
+}
 
 main .greenlake-promo {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  border-radius: 12px;
+  gap: var(--spacing-xl);
+  overflow: visible;
 }
 
-/* --- Left Panel (dark) --- */
+/* --- Left Panel --- */
 
 main .greenlake-promo .greenlake-promo-left {
-  background-color: var(--dark-alt-color);
-  color: var(--text-light-color);
-  padding: var(--spacing-l);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-m);
 }
 
 main .greenlake-promo .greenlake-promo-logo {
-  max-width: 180px;
+  max-width: 220px;
 }
 
 main .greenlake-promo .greenlake-promo-logo img {
@@ -28,9 +46,10 @@ main .greenlake-promo .greenlake-promo-logo img {
 }
 
 main .greenlake-promo .greenlake-promo-description {
-  color: rgb(255 255 255 / 85%);
-  font-size: var(--body-font-size-s);
-  line-height: 1.6;
+  color: var(--text-secondary-color);
+  font-size: var(--body-font-size-l);
+  line-height: 1.5;
+  letter-spacing: -0.2px;
 }
 
 /* Video thumbnail card */
@@ -121,35 +140,31 @@ main .greenlake-promo .greenlake-promo-video-info {
 }
 
 main .greenlake-promo .greenlake-promo-video-title {
-  color: var(--text-light-color);
+  color: var(--text-color);
   font-size: var(--body-font-size-s);
   font-weight: 500;
 }
 
 main .greenlake-promo .greenlake-promo-video-subtitle {
-  color: rgb(255 255 255 / 65%);
+  color: var(--text-secondary-color);
   font-size: var(--body-font-size-xs);
   line-height: 1.4;
 }
 
 main .greenlake-promo .greenlake-promo-video-duration {
-  color: rgb(255 255 255 / 50%);
+  color: var(--text-muted-color);
   font-size: var(--body-font-size-xs);
 }
 
-/* --- Right Panel (lighter dark) --- */
+/* --- Right Panel --- */
 
 main .greenlake-promo .greenlake-promo-right {
-  background-color: var(--dark-color);
-  color: var(--text-light-color);
-  padding: var(--spacing-l);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-m);
 }
 
 main .greenlake-promo .greenlake-promo-screenshot {
-  border-radius: 8px;
   overflow: hidden;
 }
 
@@ -157,41 +172,47 @@ main .greenlake-promo .greenlake-promo-screenshot img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgb(0 0 0 / 30%);
 }
 
 main .greenlake-promo .greenlake-promo-heading {
-  color: var(--text-light-color);
+  color: var(--text-color);
   font-size: var(--heading-font-size-l);
-  letter-spacing: -0.32px;
+  font-weight: 500;
+  letter-spacing: -0.36px;
+  line-height: 1.17;
 }
 
+/* CTA — dark pill with white text + arrow */
 main .greenlake-promo .greenlake-promo-cta {
   margin: 0;
 }
 
+main .section.dark .greenlake-promo .greenlake-promo-cta .button,
+main .section.dark .greenlake-promo .greenlake-promo-cta a,
 main .greenlake-promo .greenlake-promo-cta .button,
 main .greenlake-promo .greenlake-promo-cta a {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  background-color: var(--color-hpe-green);
+  gap: 8px;
+  background-color: var(--dark-alt-color);
   color: var(--text-light-color);
   border: none;
   border-radius: 100px;
-  padding: 14px 28px;
-  font-size: var(--body-font-size-m);
+  padding: 16px 24px;
+  font-size: var(--body-font-size-l);
   font-weight: 500;
   text-decoration: none;
   margin: 0;
   transition: background-color 0.2s;
 }
 
+main .section.dark .greenlake-promo .greenlake-promo-cta .button:hover,
+main .section.dark .greenlake-promo .greenlake-promo-cta a:hover,
 main .greenlake-promo .greenlake-promo-cta .button:hover,
 main .greenlake-promo .greenlake-promo-cta a:hover {
-  background-color: var(--color-hpe-green-hover);
+  background-color: var(--text-color);
   text-decoration: none;
+  color: var(--text-light-color);
 }
 
 main .greenlake-promo .greenlake-promo-cta .button::after,
@@ -212,21 +233,12 @@ main .greenlake-promo .greenlake-promo-cta a:hover::after {
   transform: translateX(4px);
 }
 
-/* === Tablet (600px+) === */
-
-@media (width >= 600px) {
-  main .greenlake-promo .greenlake-promo-left,
-  main .greenlake-promo .greenlake-promo-right {
-    padding: var(--spacing-xl);
-  }
-}
-
 /* === Desktop (900px+) === */
 
 @media (width >= 900px) {
   main .greenlake-promo {
     flex-direction: row;
-    min-height: 772px;
+    gap: 50px;
   }
 
   /* EDS wraps rows in a div — dissolve it so flex-direction: row works */
@@ -237,7 +249,6 @@ main .greenlake-promo .greenlake-promo-cta a:hover::after {
   main .greenlake-promo .greenlake-promo-left,
   main .greenlake-promo .greenlake-promo-right {
     flex: 1;
-    padding: var(--spacing-xxl) var(--spacing-xl);
   }
 
   main .greenlake-promo .greenlake-promo-left {
@@ -245,29 +256,20 @@ main .greenlake-promo .greenlake-promo-cta a:hover::after {
   }
 
   main .greenlake-promo .greenlake-promo-right {
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 100px 0;
   }
 
   main .greenlake-promo .greenlake-promo-logo {
-    max-width: 220px;
+    max-width: 360px;
   }
 
   main .greenlake-promo .greenlake-promo-description {
-    font-size: var(--body-font-size-m);
+    font-size: var(--body-font-size-l);
   }
 
   main .greenlake-promo .greenlake-promo-heading {
-    font-size: var(--heading-font-size-xl);
-  }
-}
-
-/* === Wide (1200px+) === */
-
-@media (width >= 1200px) {
-  main .greenlake-promo .greenlake-promo-left,
-  main .greenlake-promo .greenlake-promo-right {
-    padding: var(--spacing-xxl);
+    font-size: 36px;
   }
 }
 
