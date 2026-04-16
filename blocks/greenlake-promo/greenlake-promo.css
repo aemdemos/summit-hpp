@@ -2,10 +2,10 @@
    Original: flex row, 50px gap, logo+desc+video left, screenshot+h3+CTA right
    White bg, grey description text, dark heading, dark pill CTA */
 
-/* Force light background — override dark section metadata */
+/* Force light grey section background — override dark section metadata */
 main > .section.greenlake-promo-container,
 main > .section.dark.greenlake-promo-container {
-  background-color: var(--background-color);
+  background-color: var(--light-color);
   color: var(--text-color);
 }
 
@@ -156,12 +156,13 @@ main .greenlake-promo .greenlake-promo-video-duration {
   font-size: var(--body-font-size-s);
 }
 
-/* --- Right Panel --- */
+/* --- Right Panel — white bg, centered text below screenshot --- */
 
 main .greenlake-promo .greenlake-promo-right {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-m);
+  background-color: var(--background-color);
 }
 
 main .greenlake-promo .greenlake-promo-screenshot {
@@ -180,11 +181,14 @@ main .greenlake-promo .greenlake-promo-heading {
   font-weight: 500;
   letter-spacing: -0.36px;
   line-height: 1.17;
+  text-align: center;
+  margin-top: var(--spacing-xl);
 }
 
 /* CTA — dark pill with white text + arrow */
 main .greenlake-promo .greenlake-promo-cta {
   margin: 0;
+  text-align: center;
 }
 
 main .section.dark .greenlake-promo .greenlake-promo-cta .button,
@@ -257,6 +261,7 @@ main .greenlake-promo .greenlake-promo-cta a:hover::after {
 
   main .greenlake-promo .greenlake-promo-right {
     justify-content: flex-start;
+    align-items: center;
     padding: 100px 0;
   }
 
