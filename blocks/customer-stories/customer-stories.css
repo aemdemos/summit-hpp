@@ -405,17 +405,22 @@ main .customer-stories .customer-stories-solution {
   display: flex;
 }
 
-/* ===== DESKTOP GRID (900px+) ===== */
+/* ===== DESKTOP SCROLLABLE MASONRY GRID (900px+) =====
+   Original: 10-column fixed-width grid, scrollWidth ~3545px, overflow-x: auto.
+   Tiles span 1-2 columns. Images interleave between text tiles.
+   Our content has fewer tiles, so we use a simplified wider-than-viewport grid. */
 
 @media (width >= 900px) {
+  /* Panel becomes the horizontally scrollable grid */
   main .customer-stories .customer-stories-panel {
     display: grid;
-    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-columns: 560px 560px 400px 560px 400px;
     grid-template-rows: 398px 428px;
     gap: 32px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    padding: 0 56px;
   }
 
   main .customer-stories .customer-stories-panel::-webkit-scrollbar {
@@ -427,7 +432,7 @@ main .customer-stories .customer-stories-solution {
     display: contents;
   }
 
-  /* Row 1: intro, objectives, outcomes */
+  /* Row 1: intro (wide), image+objectives, outcomes */
   main .customer-stories .customer-stories-intro {
     grid-column: 1;
     grid-row: 1;
@@ -443,7 +448,7 @@ main .customer-stories .customer-stories-solution {
     grid-row: 1;
   }
 
-  /* Row 2: quote spans 2 cols, solution 1 col */
+  /* Row 2: quote (wide), solution */
   main .customer-stories .customer-stories-quote {
     grid-column: 1 / 3;
     grid-row: 2;
@@ -461,6 +466,12 @@ main .customer-stories .customer-stories-solution {
   main .customer-stories .customer-stories-quote,
   main .customer-stories .customer-stories-solution {
     min-height: 0;
+  }
+
+  /* Panels wrapper needs to allow overflow beyond section padding */
+  main .customer-stories .customer-stories-panels {
+    margin: 0 calc(-1 * var(--content-padding));
+    padding: 0;
   }
 }
 
