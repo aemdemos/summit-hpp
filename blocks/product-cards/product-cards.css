@@ -16,10 +16,11 @@ main .product-cards .product-card {
   flex: 1 1 100%;
 }
 
-/* Card image */
+/* Card image — constrained to original's ~2.36:1 aspect ratio */
 main .product-cards .product-card-image {
   overflow: hidden;
   background-color: var(--light-color);
+  aspect-ratio: 2.36;
 }
 
 main .product-cards .product-card-image picture {
@@ -30,8 +31,8 @@ main .product-cards .product-card-image picture {
 main .product-cards .product-card-image img {
   display: block;
   width: 100%;
-  height: auto;
-  object-fit: fill;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* Card content */

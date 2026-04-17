@@ -144,8 +144,9 @@ main .feature-banner p {
     margin-top: 16px;
   }
 
-  /* Content vertically centered with 60px padding */
+  /* Content vertically centered — box-sizing includes padding in height */
   main > .section.feature-banner-dark {
+    box-sizing: border-box;
     min-height: 895px;
     padding: 60px 0;
     align-items: center;

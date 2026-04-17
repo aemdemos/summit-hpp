@@ -108,6 +108,21 @@ footer .footer .footer-action-button {
   font-weight: 500;
   background: transparent;
   transition: color var(--transition-base);
+  overflow: visible;
+  white-space: normal;
+  text-overflow: unset;
+}
+
+footer .footer .footer-action-button::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: var(--text-light-color);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17 8l4 4m0 0l-4 4m4-4H3'/%3E%3C/svg%3E") center/contain no-repeat;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2.5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M17 8l4 4m0 0l-4 4m4-4H3'/%3E%3C/svg%3E") center/contain no-repeat;
+  flex-shrink: 0;
 }
 
 footer .footer .footer-action-button:hover {
@@ -236,7 +251,7 @@ footer .footer .footer-nav-toggle[aria-expanded="true"] + .footer-nav-list {
 }
 
 footer .footer .footer-nav-list li {
-  padding: 10px 0 0;
+  padding: 21px 0 0;
 }
 
 footer .footer .footer-nav-list a {
