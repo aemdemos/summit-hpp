@@ -182,10 +182,14 @@ footer .footer .footer-nav-toggle {
   padding: var(--spacing-s) 0;
   background: none;
   border: none;
+  border-radius: 0;
+  overflow: visible;
   color: var(--text-light-color);
   cursor: pointer;
   margin: 0;
   font-family: var(--body-font-family);
+  white-space: normal;
+  text-overflow: unset;
 }
 
 footer .footer .footer-nav-toggle:hover {
