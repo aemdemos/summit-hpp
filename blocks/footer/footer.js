@@ -236,13 +236,21 @@ export default async function decorate(block) {
     ? [...sections]
     : [...fragment.querySelectorAll(':scope > div > div')];
 
+  // Build content area: left rail (logo, actions, social, toggle) + right nav columns
+  const contentArea = document.createElement('div');
+  contentArea.className = 'footer-content';
+
   if (sectionElements.length >= 1) {
-    footer.append(buildTopBar(sectionElements[0]));
+    const leftRail = buildTopBar(sectionElements[0]);
+    leftRail.className = 'footer-left-rail';
+    contentArea.append(leftRail);
   }
 
   if (sectionElements.length >= 2) {
-    footer.append(buildNavColumns(sectionElements[1]));
+    contentArea.append(buildNavColumns(sectionElements[1]));
   }
+
+  footer.append(contentArea);
 
   // Separator
   const hr = document.createElement('hr');

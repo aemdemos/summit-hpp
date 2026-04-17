@@ -31,13 +31,20 @@ footer .footer a:hover {
   text-decoration: underline;
 }
 
-/* ===== TOP BAR ===== */
+/* ===== CONTENT AREA (left rail + nav columns) ===== */
 
-footer .footer .footer-top-bar {
+footer .footer .footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+/* ===== LEFT RAIL ===== */
+
+footer .footer .footer-left-rail {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-l);
-  padding-bottom: var(--spacing-l);
 }
 
 footer .footer .footer-logo {
@@ -326,20 +333,16 @@ footer .footer .footer-language-link:hover {
     padding: 96px 160px;
   }
 
-  /* Main content: left rail + right nav columns */
-  footer .footer .footer-top-bar {
-    display: flex;
+  /* Content area: left rail + right nav columns side by side */
+  footer .footer .footer-content {
     flex-direction: row;
     gap: 56px;
-    padding-bottom: 0;
   }
 
   /* Left rail: logo, actions, social, motion toggle */
-  footer .footer .footer-top-bar > :first-child {
-    display: flex;
-    flex-direction: column;
-    gap: 72px;
+  footer .footer .footer-left-rail {
     flex: 1 1 0;
+    gap: 72px;
   }
 
   footer .footer .footer-nav {
